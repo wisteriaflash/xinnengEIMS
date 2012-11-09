@@ -1,0 +1,9 @@
+<?php
+##网站标识一
+//#本文首发自 <a href='http://www.dedeeims.com'><b>织梦</b></a>，请保留版权文字
+##网站标识二
+//#本文首发自 <a href='http://www.aaa.com'><b>织梦CMS</b></a>，请保留版权文字
+##网站标识三
+//#本文首发自 <a href='http://www.aaa.com'>DedeEIMS</a>，请保留版权文字
+##网站标识四
+//#本文首发自 <a href='http://www.aaa.com'>织梦内容管理系统</a>，请保留版权文字

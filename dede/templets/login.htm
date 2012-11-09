@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $cfg_softname." ".$cfg_version; ?></title>
+<link href="main.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+body {
+	background-color:#F4FBF4;
+	margin:0;
+	padding:0;
+}
+input {
+	color:#000;
+	font-family:Tahoma, SimSun, Arial;
+	font-size:12px;
+}
+input[type="text"], input[type="password"] {
+*margin:-1px 5px 0 5px;
+	width:218px;
+	border:1px solid #999;
+	background-repeat:no-repeat;
+	background-position:left top;
+	margin:-1px 5px 0;
+	padding:2px;
+}
+.text {
+*margin:-1px 5px 0 5px;
+	width:218px;
+	border:1px solid #999;
+	background-repeat:no-repeat;
+	background-position:left top;
+	margin:-1px 5px 0;
+	padding:2px;
+	background-image: url(../images/input.gif);
+}
+ul {
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+}
+.theme li {
+	height:20px;
+	line-height:20px;
+	margin-bottom:15px;
+}
+.theme span {
+	color:#000;
+	display:block;
+	float:left;
+	text-align:right;
+	width:19%;
+}
+.center {
+	margin:0 auto;
+}
+.loginbody {
+	margin-top:50px;
+	height:391px;
+	width:100%;
+	background-attachment:scroll;
+	background-image:url(images/lor_bg.jpg);
+	background-repeat:repeat-x;
+	background-position:0 0;
+}
+.lgCon {
+	width:363px;
+	height:391px;
+	background-color:#F4FBF4;
+}
+.sdLeft {
+	width:7px;
+	background-attachment:scroll;
+	background-image:url(images/sd_left_bg.jpg);
+	background-repeat:no-repeat;
+	background-position:0 0;
+	float:left;
+	height:391px
+}
+.sdCon {
+	float:left;
+	width:345px;
+	height:391px;
+}
+.sdTop {
+	background-attachment:scroll;
+	background-image:url(images/sd_top_bg.jpg);
+	background-repeat:repeat-x;
+	background-position:0 0;
+	height:7px;
+	font-size: 0px;
+	line-height: 0px;
+}
+.sdbImg {
+	background-attachment:scroll;
+	background-image:url(images/login_t_img.jpg);
+	background-repeat:no-repeat;
+	background-position:0 0;
+	height:115px;
+	width:345px;
+}
+.ver {
+	color:#FFF;
+	float:right;
+	margin-top:5px;
+	margin-right:5px;
+}
+.sdRight {
+	float:right;
+	height:391px;
+	width:11px;
+	background-attachment:scroll;
+	background-image:url(images/sd_right_bg.jpg);
+	background-repeat:no-repeat;
+	background-position:0 0;
+}
+.sdButtom {
+	background-image:url(images/sd_buttom.jpg);
+	height:11px;
+	width:345px;
+	background-attachment:scroll;
+	background-repeat:repeat-x;
+	background-position:0 0;
+}
+.login {
+	height:225px;
+	background-color:#FFF;
+	padding-bottom: 12px;
+}
+.dfmsg {
+	font-weight:700;
+	color:red;
+	line-height:20px;
+	width:321px;
+	background-color: #FFF;
+	padding: 12px;
+}
+.tosite {
+	text-align:center;
+	margin-top:32px;
+}
+-->
+</style>
+</head>
+<body>
+<div class="loginbody">
+  <div class="lgCon center">
+    <div class="sdLeft"></div>
+    <div class="sdCon">
+      <div class="sdTop"></div>
+      <div class="sdbImg">
+        <div class="ver"><a href="http://www.dedeeims.com" target="_blank" style="color:#FFF">版本号：<?php echo $cfg_version; ?></a></div>
+      </div>
+      <?php echo $redmsg; ?>
+      <div class="login">
+        <div class="theme">
+          <form action="login.php" method="post" name="form1">
+            <input type="hidden" value="<?php if(!empty($gotopage)) echo $gotopage;?>" name="gotopage"/>
+            <input type="hidden" value="login" name="dopost"/>
+            <ul>
+              <li><span>用户名：</span>
+                <input type="text" class="text" name="userid" style="_width:218px;"/>
+              </li>
+              <li><span>密   码：</span>
+                <input type="password" class="text" name="pwd" style="_width:218px;"/>
+              </li>
+              <li><span>验证码：</span>
+                <input type="text" class="text" style="width: 50px; text-transform: uppercase;" id="vdcode" name="validate"/>
+                <img id="vdimgck" src="../include/vdimgck.php" alt="看不清？点击更换" align="absmiddle" style="cursor:pointer" onClick="this.src=this.src+'?'" /></li>
+              <li style="padding-top: 10px;"><span> </span>
+                <input type="submit" onclick="this.form.submit();" style="border: 0px none ; background: transparent url(images/lg_buttom.gif) repeat scroll 0% 0%; -moz-background-clip: border; -moz-background-origin: padding; -moz-background-inline-policy: continuous; width: 70px; height: 26px; cursor: pointer; font-size: 12px; float:right; margin-right:25px" value="登录" name="sm1"/>
+              </li>
+            </ul>
+          </form>
+        </div>
+        <div class="tosite"><a href="../index.php" target="_blank">网站主页</a> | <a href="http://www.dedeeims.com" target="_blank">官方主站</a></div>
+      </div>
+      <div class="sdButtom"></div>
+    </div>
+    <div class="sdRight"></div>
+  </div>
+</div>
+</body>
+</html>

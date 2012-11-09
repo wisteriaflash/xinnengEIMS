@@ -1,0 +1,180 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>栏目管理</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+<script language="javascript" src="js/context_menu.js"></script>
+<script language="javascript" src="js/ieemu.js"></script>
+<script language="javascript" src="js/dialog.js"></script>
+<script language="javascript" src="../include/dedeajax2.js"></script>
+<script language="javascript">
+function LoadSuns(ctid,tid)
+{
+	if($DE(ctid).innerHTML.length < 10){
+	  var myajax = new DedeAjax($DE(ctid));
+	  myajax.SendGet('catalog_do.php?dopost=GetSunLists&cid='+tid);
+  }
+  else{ if(document.all) showHide(ctid); }
+}
+function showHide(objname)
+{
+   if($DE(objname).style.display=="none") $DE(objname).style.display = "block";
+	 else $DE(objname).style.display="none";
+}
+if(moz) {
+	extendEventObject();
+	extendElementModel();
+	emulateAttachEvent();
+}
+//普通栏目
+function CommonMenu(eobj,obj,tid,tname)
+{
+  var popupoptions
+  popupoptions = [
+    new ContextItem("增加内容",function(){location="catalog_do.php?cid="+tid+"&dopost=addArchives";}),
+    new ContextItem("管理内容",function(){location="catalog_do.php?cid="+tid+"&dopost=listArchives";}),
+    new ContextSeperator(),
+    new ContextItem("预览分类",function(){ window.open("<?php echo $cfg_phpurl; ?>/list.php?tid="+tid); }),
+    new ContextItem("更新HTML",function(){ location="makehtml_list.php?cid="+tid; }),
+    new ContextItem("获取JS文件",function(){ location="catalog_do.php?cid="+tid+"&dopost=GetJs"; }),
+    new ContextSeperator(),
+    new ContextItem("增加子类",function(){location="catalog_add.php?id="+tid;}),
+    new ContextItem("更改栏目",function(){location="catalog_edit.php?id="+tid;}),
+    new ContextSeperator(),
+    new ContextItem("移动栏目",function(){location='catalog_move.php?job=movelist&typeid='+tid}),
+    new ContextItem("删除栏目",function(){location="catalog_del.php?id="+tid+"&typeoldname="+tname;}),
+    new ContextSeperator(),
+    new ContextItem("向上排前一级",function(){ location="catalog_do.php?cid="+tid+"&dopost=upRank"; }),
+    new ContextItem("关闭菜单(<u>C</u>)",function(){})
+  ]
+  ContextMenu.display(eobj,popupoptions)
+}
+//封面模板
+function CommonMenuPart(eobj,obj,tid,tname)
+{
+  var popupoptions
+  popupoptions = [
+    new ContextItem("管理内容",function(){location="catalog_do.php?cid="+tid+"&dopost=listArchives";}),
+    new ContextSeperator(),
+    new ContextItem("预览分类",function(){ window.open("<?php echo $cfg_phpurl; ?>/list.php?tid="+tid); }),
+    new ContextItem("更新HTML",function(){ location="makehtml_list.php?cid="+tid; }),
+    new ContextItem("获取JS文件",function(){ location="catalog_do.php?cid="+tid+"&dopost=GetJs"; }),
+    new ContextSeperator(),
+    new ContextItem("增加子类",function(){location="catalog_add.php?id="+tid;}),
+    new ContextItem("更改栏目",function(){location="catalog_edit.php?id="+tid;}),
+    new ContextSeperator(),
+    new ContextItem("移动栏目",function(){location='catalog_move.php?job=movelist&typeid='+tid}),
+    new ContextItem("删除栏目",function(){location="catalog_del.php?id="+tid+"&typeoldname="+tname;}),
+    new ContextSeperator(),
+    new ContextItem("向上排前一级",function(){ location="catalog_do.php?cid="+tid+"&dopost=upRank"; }),
+    new ContextItem("关闭菜单(<u>C</u>)",function(){})
+  ]
+  ContextMenu.display(eobj,popupoptions)
+}
+//跳转栏目
+function SingleMenu(eobj,obj,tid,tname)
+{
+  var popupoptions
+  popupoptions = [
+    new ContextItem("预览分类",function(){ window.open("<?php echo $cfg_phpurl; ?>/list.php?tid="+tid); }),
+    new ContextSeperator(),
+    new ContextItem("增加子类",function(){location="catalog_add.php?id="+tid;}),
+    new ContextItem("更改栏目",function(){location="catalog_edit.php?id="+tid;}),
+    new ContextItem("移动栏目",function(){location='catalog_move.php?job=movelist&typeid='+tid}),
+    new ContextItem("删除栏目",function(){location="catalog_del.php?id="+tid+"&typeoldname="+tname;}),
+    new ContextSeperator(),
+    new ContextItem("向上排前一级",function(){ window.location="catalog_do.php?cid="+tid+"&dopost=upRank"; }),
+  new ContextItem("关闭菜单(<u>C</u>)",function(){})
+  ]
+  ContextMenu.display(eobj,popupoptions)
+}
+</script>
+<style>
+.coolbg2 {
+	border: 1px solid #000000;
+	background-color: #F2F5E9;
+	height:18px
+}
+.coolbt2 {
+	border-left: 2px solid #EFEFEF;
+	border-top: 2px solid #EFEFEF;
+	border-right: 2px solid #ACACAC;
+	border-bottom: 2px solid #ACACAC;
+	background-color: #F7FCDA
+}
+.bline {
+	border-bottom: 1px solid #DEDEDE;
+	background-color: #FAFEE0;
+}
+.nbline {
+	border-bottom: 1px dashed #DEDEDE;
+	background-color:#FFFFFF;
+}
+.bline2 {
+	border-bottom: 1px dashed #DEDEDE;
+	background-color: #FFFFFF;
+}
+#tListBug td {
+	padding:3px 6px;
+}
+</style>
+
+</head>
+<body onLoad="ContextMenu.intializeContextMenu()">
+<div class="mtitle">
+  <div class="lbox">网站栏目管理 </div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td></td>
+      <td align="right"><div style="float:right;padding-right:6px;"> <a href='catalog_add.php?listtype=all' class='np coolbg'>增加语言入口</a> <a href="catalog_do.php?dopost=upcatcache" class='np coolbg'>更新栏目缓存</a> <a href="makehtml_list.php" class='np coolbg'>更新栏目HTML</a> </a></div></td>
+    </tr>
+  </tbody>
+</table>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"><small>提示：可使用右键菜单进行操作。</small></td>
+      <td align="right"><?php if(empty($exallct)) { ?>
+        <a href='catalog_main.php?exallct=all'>[展开全部]</a>
+        <?php }else{ ?>
+        <a href='catalog_main.php?exallct='>[普通模式]</a>
+        <?php } ?></td>
+    </tr>
+  </tbody>
+</table>
+<table _dlist="line check" class="tlist" id="tListBug">
+  <tbody>
+  <form name='form1' method='post' action='catalog_do.php?dopost=upRankAll'>
+    <tr>
+      <td height="120" bgcolor="#FFFFFF" valign="top"><?php
+if(empty($opendir)) $opendir=-1;
+if($userChannel>0) $opendir=$userChannel;
+$tu = new TypeUnit();
+$tu->ListAllType($userChannel,$opendir);
+?>
+        <br/></td>
+    </tr>
+  </form>
+  </tbody>
+  
+  <tfoot>
+    <tr>
+      <td height="36" bgcolor="#FFFFFF" align="center"><table width="98%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="right">
+            <button class="btn1" type="button" onClick="document.form1.submit();">更新排序</button>
+            <button class="btn1" type="button" onClick="location='makehtml_js.php';">获取JS</button>
+            <button class="btn1" type="button" onClick="location='makehtml_list.php';">更新栏目HTML</button>
+            <button class="btn1" type="button" onClick="location='makehtml_archives.php';">更新文档HTML</button>
+             </td>
+          </tr>
+        </table></td>
+    </tr>
+  </tfoot>
+</table>
+</body>
+</html>

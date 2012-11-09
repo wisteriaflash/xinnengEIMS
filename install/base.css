@@ -1,0 +1,135 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	padding:0px;
+	margin:0px;
+}
+body {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	padding-top: 10px;
+	padding-right: 0;
+	padding-bottom: 10px;
+	padding-left: 0;
+	color: #666666;
+}
+ul {
+	list-style:none;
+}
+a {
+	color:#006533;
+	text-decoration: none;
+}
+a:hover {
+	color:#06C;
+	text-decoration:none;
+}
+input, button, select {
+	vertical-align:middle;
+}
+button {
+	margin-right:5px;
+}
+button.btn1 {
+	height:25px;
+	padding-left:6px;
+	padding-right:6px;
+	font-size:12px;
+	line-height:23px;
+	color:#666;
+	border:1px solid #88AC44;
+	background-image: url(images/button_bg1.jpg);
+	background-repeat: repeat-x;
+	background-position: left center;
+}
+.container {
+	border: 1px solid #CAE6BF;
+	margin: 0 auto;
+	width: 700px;
+	background-attachment: scroll;
+	background-image: url(images/cleft_background.jpg);
+	background-repeat: repeat-y;
+	background-position: 0px 0px;
+}
+.top {
+	background-color: #E5F3E0;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CAE6BF;
+	height: 24px;
+	line-height: 24px;
+}
+.cleft {
+	float: left;
+	width: 148px;
+	background-attachment: scroll;
+	background-image: url(images/cleft_background.gif);
+	background-repeat: repeat-y;
+	background-position: 0px 0px;
+	height: 100%;
+}
+.cleft .cimg {
+	background-attachment: scroll;
+	background-image: url(images/left_IMG.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	height: 198px;
+	width: 100%;
+	margin-bottom: 20px;
+	margin-top: 250px;
+}
+.cright {
+	float: right;
+	width: 530px;
+	background-color: #F8FCF7;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+}
+.cright .licblock {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	padding: 8px;
+	height: 430px;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	margin-bottom: 15px;
+	border: 1px solid #EEEEEE;
+}
+.cright .licblock .license {
+	line-height: 22px;
+}
+.footer {
+	height: 69px;
+	width: 700px;
+	float: left;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #CAE6BF;
+	background-color: #FFF;
+}
+.footer .copyright {
+	float: left;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.footer .cbuttom {
+	float: right;
+	margin-top: 20px;
+	margin-right: 10px;
+}
+.top .title {
+	float: left;
+	margin-left: 10px;
+}
+.top .version {
+	float: right;
+	margin-right: 10px;
+	color: #CBCBCB;
+}
+.clear {
+	clear:both;
+}

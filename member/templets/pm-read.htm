@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo GetLang('readmsg'); ?></title>
+<?php include(DEDEMEMBER."/templets/head_inc.htm"); ?>
+<script type="text/javascript">
+$(function() {
+	$("#navigation .sort").click(function(){
+		$(this).next(".menu").toggleClass("invisible");
+		$(this).toggleClass("hover");
+	})
+})
+</script>
+</head>
+<body>
+<?php include(DEDEMEMBER."/templets/head.htm"); ?>
+<div class="wrapper mT10">
+  <div class="west">
+    <?php include(DEDEMEMBER."/templets/menu.htm"); ?>
+  </div>
+  <div class="east mL10">
+    <div class="heading"><strong class="icon mail mL10" style="width:400px;"><?php echo GetLang('shortmessage'); ?></strong></div>
+    <ul class="titleTabBar fLeftChild mT10">
+      <li><a href="pm.php?dopost=send"><?php echo GetLang('newmsg'); ?></a></li>
+      <li><a href="pm.php?folder=inbox"><?php echo GetLang('inbox'); ?></a></li>
+      <li><a href="pm.php?folder=outbox"><?php echo GetLang('outbox'); ?></a></li>
+      <li><a href="pm.php?folder=track"><?php echo GetLang('track'); ?></a></li>
+    </ul>
+    <div class="clear"></div>
+    <div class="mTB10 mL10 mR10">
+      <table cellspacing="1" class="submit">
+        <thead>
+          <tr>
+            <th><div class="fLeft"><?php echo $row['subject']; ?></div>
+              <em class="fRight mR10"><a class="buttonGary2  button block black" href="pm.php?dopost=send">回复</a></em></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><?php echo text2html($row['message']); ?></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td height="30"><a class="fLeft" href="index.php?uid=<?php echo $row['floginid']; ?>" target='_blank'><?php echo $row['floginid']; ?></a></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<?php include(DEDEMEMBER."/templets/foot.htm"); ?>
+</body>
+</html>

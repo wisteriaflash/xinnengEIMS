@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>提交订单 -- {dede:var.arcRow.title/}</title>
+<link href="{dede:global name='cfg_templeturl'/}/style/dedecms.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../style/dedecms.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="flinkpage">
+<div class="header">
+  <div class="top w960 center">
+    <div class="title">
+      <h1>
+        <h1><a href="{dede:global name='cfg_basehost'/}">{dede:global name='cfg_webname'/}</a></h1>
+      </h1>
+    </div>
+    <!-- /title -->
+  </div>
+  <!-- /top -->
+</div>
+<!-- /header -->
+<div class="clear"></div>
+<div class="w960 clear center mt1">
+  <div class="sp-title">
+    <h2>提交订单</h2>
+    <span class="more"> <a href='{dede:global name='cfg_basehost'/}'>返回首页</a></span> </div>
+  <form action="product_orders.php?dopost=post&aid={dede:var.arcRow.aid/}" method="post">
+  <input name="rvar_formcode" type="hidden" value="{dede:var.formCode/}" />
+    <center>
+      <img src="{dede:var.arcRow.litpic/}" title="{dede:var.arcRow.title/}">
+    </center>
+    <table width="100%" border="0" cellspacing="3" cellpadding="3">
+      <tr>
+        <td width="20%" align="right"><?php echo GetLang('productname');?>：</td>
+        <td width="80%">{dede:var.arcRow.title/}</td>
+      </tr>
+      <tr>
+        <td width="20%" align="right"><?php echo GetLang('productprice');?>：</td>
+        <td width="80%"><?php echo $GLOBALS['addRows']['crunit']['itemValue'];?><?php echo $GLOBALS['addRows']['rfprice']['itemValue'];?>/<?php echo $GLOBALS['addRows']['prunit']['itemValue'];?></td>
+      </tr>
+      <tr>
+        <td align="right"><?php echo GetLang('productinfo');?>：</td>
+        <td rowspan="2" valign="top">{dede:var.arcRow.description/}</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="3" cellpadding="3">
+      <tr>
+        <td width="20%" align="right"><?php echo GetLang('orderno');?>：</td>
+        <td width="80%"><input type="text" size="10" maxlength="10" name="rvar_nums" class="ipt-txt"/>
+          <?php echo $GLOBALS['addRows']['prunit']['itemValue'];?></td>
+      </tr>
+      <tr>
+        <td align="right"><?php echo GetLang('organization');?>：</td>
+        <td><input type="text" size="20" name="rvar_orgname" class="ipt-txt"/>
+          <font color="blue"><?php echo GetLang('ofinfo')?></font></td>
+      </tr>
+      <tr>
+        <td align="right"><?php echo GetLang('linktel');?>：</td>
+        <td><input type="text" size="10" name="rvar_telphone" class="ipt-txt"/>
+          <font color="blue"><?php echo GetLang('fexample');?>：86-021-6658771-12</font></td>
+      </tr>
+      <tr>
+        <td align="right"><?php echo GetLang('address');?>：</td>
+        <td><input type="text" size="50" name="rvar_address"  class="ipt-txt"/></td>
+      </tr>
+      <tr>
+        <td align="right"><?php echo GetLang('postcode');?>：</td>
+        <td><input type="text" size="10" name="rvar_postcode"  class="ipt-txt"/></td>
+      </tr>
+      <tr>
+        <td align="right"><?php echo GetLang('orderform');?>：</td>
+        <td rowspan="2" valign="top"><textarea name="rvar_content" cols="50" rows="5" class="ipt-txt"></textarea>
+          <small><?php echo GetLang('preqire')?>.</small></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">&nbsp;</td>
+        <td><input type="submit" value="<?php echo GetLang('submit');?>" class="btn-2" />
+        <input type="reset" value="<?php echo GetLang('reset');?>" class="btn-2"/>
+          </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<div class="footer">
+  <p class="link"> 网站版权信息及免责声明 </p>
+  <!-- 
+		为了支持织梦团队的发展,请您保留织梦企业信息管理系统的链接信息.
+		我们对支持织梦团队发展的朋友表示真心的感谢!织梦因您更精彩!
+	-->
+  <p class="powered"> Powered by <a href="http://www.dedeeims.com" title="织梦企业信息管理系统(DedeEIMS)--专业的PHP企业信息管理系统，轻松建站的首选利器" target="_blank"><strong>Dede<span>EIMS</span></strong></a> &copy; 2004-2008  <a href="http://www.desdev.cn" target="_blank">DesDev</a> Inc. </p>
+  <!-- /powered -->
+</div>
+</body>
+</html>

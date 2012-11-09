@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>管理员帐号--新增帐号</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+<script language='javascript'>
+	function checkSubmit()
+  {
+     if(document.form1.userid.value==""){
+	     alert("用户ID不能为空！");
+	     document.form1.userid.focus();
+	     return false;
+     }
+     if(document.form1.uname.value==""){
+	     alert("用户名不能为空！");
+	     document.form1.uname.focus();
+	     return false;
+     }
+     if(document.form1.pwd.value==""){
+	     alert("用户密码不能为空！");
+	     document.form1.pwd.focus();
+	     return false;
+     }
+     return true;
+ }
+</script>
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">管理员帐号</div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"></td>
+      <td align="right"><strong><a href="sys_admin_user.php"><u>管理帐号</u></a></strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<table _dlist="line" class="tlist">
+<tbody>
+<tr>
+    <td height="215" align="center" valign="top" bgcolor="#FFFFFF">
+	<form name="form1" action="sys_admin_user_add.php" onSubmit="return checkSubmit();" method="post">
+	<input type="hidden" name="dopost" value="add" />
+  <table width="98%" border="0" cellspacing="1" cellpadding="1">
+          <tr> 
+            <td width="16%" height="30">用户登录ID：</td>
+            <td width="84%"><input name="userid" type="text" class="txt" id="userid" style="width:200px" size="16" />
+              （只能用'0-9'、'a-z'、'A-Z'、'.'、'@'、'_'、'-'、'!'以内范围的字符）</td>
+          </tr>
+          <tr> 
+            <td height="30">用户笔名：</td>
+            <td><input name="uname" type="text" class="txt" id="uname" style="width:200px" size="16" /> &nbsp;（发布文章后显示责任编辑的名字）</td>
+          </tr>
+          <tr> 
+            <td height="30">用户密码：</td>
+            <td><input name="pwd" type="text" class="txt" id="pwd" style="width:200px" size="16" /> &nbsp;（只能用'0-9'、'a-z'、'A-Z'、'.'、'@'、'_'、'-'、'!'以内范围的字符）</td>
+          </tr>
+          <tr> 
+            <td height="30">用户组：</td>
+            <td>
+			    <select name='usertype' style='width:200px'>
+			  	<?php
+			  	
+			  	$dsql->SetQuery("Select * from `#@__admintype` order by rank asc");
+			  	$dsql->Execute("ut");
+			  	while($myrow = $dsql->GetObject("ut"))
+			  	{
+			  		echo "<option value='".$myrow->rank."'>".$myrow->typename."</option>\r\n";
+			  	}
+			  	?>
+			  </select>
+			    &nbsp;
+			    【<a href='sys_group.php'><u>用户组设定</u></a>】
+            </td>
+          </tr>
+          <input type='hidden' name='typeid' value='0' />
+          <!--tr> 
+            <td height="30">授权栏目：</td>
+            <td>
+			
+			<select name="typeid" style="width:160px" id="typeid">
+                <option value="0" selected>--所有频道--</option>
+				<?php echo $typeOptions?>
+             </select>
+			 </td>
+          </tr-->
+          <tr> 
+            <td height="30">真实姓名：</td>
+            <td><input name="tname" type="text" class="txt" id="tname" style="width:200px" size="16" /> &nbsp;</td>
+          </tr>
+          <tr> 
+            <td height="30">电子邮箱：</td>
+            <td><input name="email" type="text" class="txt" id="email" style="width:200px" size="16" /> &nbsp;</td>
+          </tr>
+          <tr> 
+            <td height="30">安全验证串：</td>
+            <td>
+            	<input name="safecode" type="text" class="txt" id="safecode" style="width:200px" size="16" />
+            	<input name="randcode" type="hidden" value="<?php echo $randcode; ?>" />
+            	 &nbsp;
+            	(复制本代码： <font color='red'><?php echo $safecode;  ?></font> )
+            </td>
+          </tr>
+          <tr> 
+            <td height="60">&nbsp;</td>
+            <td><button type="submit" class="btn1s">增加用户</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+	  </td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

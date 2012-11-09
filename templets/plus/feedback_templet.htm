@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={dede:global.cfg_soft_lang/}" />
+<title><?php echo GetLang('usercomments'); ?>{dede:global.title/}</title>
+<link href="{dede:global.cfg_templeturl/}/style/dedecms.css" rel="stylesheet" media="screen" type="text/css" />
+<link href="../style/dedecms.css" rel="stylesheet" media="screen" type="text/css" />
+<body class="commentpage">
+
+<div class="header">
+    <div class="top w960 center">
+      <div class="title">
+        <h1> <a href="{dede:global.cfg_basehost/}/">{dede:global.cfg_webname/}</a> </h1>
+      </div>
+      <!-- /title -->
+		<div class="welcome">
+        <?php if($cfg_ml->M_ID <= 0) { ?>
+            <a href="<?php echo $cfg_memberurl; ?>/index.php"><?php echo GetLang('login'); ?></a> | 
+            <a href="<?php echo $cfg_memberurl; ?>/index_do.php?fmdo=user&dopost=regnew"><?php echo GetLang('register'); ?></a>
+        <?php }else{ ?>
+        <?php echo $cfg_ml->M_LoginID; ?>，<?php echo GetLang('welcomelogin'); ?>
+           <a href="<?php echo $cfg_memberurl; ?>/index.php"><?php echo GetLang('membercenter'); ?></a> |
+            <a href="<?php echo $cfg_memberurl; ?>/myinfo.php"><?php echo GetLang('myinfo'); ?></a> |
+            <a href="<?php echo $cfg_memberurl; ?>/index_do.php?fmdo=login&dopost=exit"><?php echo GetLang('loginout'); ?></a>
+       <?php } ?>
+		</div>
+      <!-- /banner -->
+    </div>
+    <!-- /top -->
+
+	</div><!-- /nav -->
+</div><!-- /header -->
+<div class="w960 clear center mt1 cmt-box">
+	<div class="sp-title">
+		<h2><?php echo GetLang('usercomments'); ?><a href='{dede:global.arcurl/}'>{dede:global.title/}</a></h2>
+	</div>
+	<div>
+		<dl class="tbox">
+			<dt>
+				<strong><?php echo GetLang('commentlists'); ?></strong>
+				<span class="label">
+				<a href='feedback.php?aid={dede:global.aid/}' <?php if($ftype=='') echo "class='thisclass'"; ?>><?php echo GetLang('allcomments'); ?></a>
+				</span>
+			</dt>
+			<dd>
+				<div class="dede_comment">
+{dede:datalist}
+<?php
+  if($fields['userid']!='') $spaceurl = $cfg_basehost.'/member/index.php?uid='.$fields['userid'];
+  else $spaceurl = "#";
+  if($fields['username']=='Guest') $spaceurl = "#";
+  $fields['bgimg'] = 'cmt-neu.gif';
+  $fields['ftypetitle'] = 'norm';
+  if($fields['ftype']=='bad') {
+  	$fields['bgimg'] = 'cmt-bad.gif';
+  	$fields['ftypetitle'] = 'bad';
+  }
+  else if($fields['ftype']=='good') {
+  	$fields['bgimg'] = 'cmt-good.gif';
+  	$fields['ftypetitle'] = 'good';
+  }
+?>
+	  <div class="decmt-box">
+			<div class="decmt-title">
+				<span class="moodico"><img src="{dede:global.cfg_templeturl/}/images/mood/<?php if($fields['face']>0) echo "ico-mood-{$fields['face']}.gif"; ?>" />                </span>
+				<span class="username"> {dede:field.username/}</span>
+				<span class="date"> Time: {dede:field.dtime function="MyDate('m-d H:i',@me)" /}</span></div><!-- /decmt-title -->
+			<div class="decmt-act">
+				<span><a href="feedback.php?fid={dede:field.id/}&action=quote">[<?php echo GetLang('quote'); ?>]</a></span>
+			</div><!-- /decmt-act -->
+			<div class="decmt-content">
+				{dede:field.msg function="Quote_replace(@me)"/}
+			<img src="{dede:global.cfg_templeturl/}/images/{dede:field.bgimg/}" />
+			</div><!-- /decmt-content -->
+		</div><!-- /decmt-box -->
+{/dede:datalist}			{dede:pagelist listitem="info,index,end,pre,next,pageno" listsize="5"/}	</div><!-- /dede_comment -->
+			</dd>
+		</dl>
+	</div>
+
+	<div class="mt1">
+		<dl class="tbox">
+			<dt>
+				<strong><?php echo GetLang('postcomment'); ?></strong>
+			</dt>
+			<dd>
+				<div class="dede_comment_post">
+          <form action="feedback.php" method="post" name="feedback">
+          <input type="hidden" name="action" value="send" />
+          <input type="hidden" name="comtype" value="comments">
+          <input type="hidden" name="aid" value="<?php echo $aid; ?>" />
+          <input type="hidden" name="isconfirm" value="yes" />
+          <div class="dcmp-title">
+						<small><?php echo GetLang('fbalert'); ?></small>
+					</div><!-- /dcmp-title -->
+					<div class="dcmp-stand">
+							<input type="hidden" name="feedbacktype" checked="1" value="feedback" id="dcmp-stand-neu" />
+					</div><!-- /dcmp-stand -->
+					<div class="dcmp-content">
+						<textarea cols="60" name="msg" rows="5" class="ipt-txt"></textarea>
+					</div><!-- /dcmp-content -->
+
+					<div class="dcmp-mood">
+						<strong><?php echo GetLang('faceico'); ?>:</strong>
+						<ul>
+								<li><input type="radio" name='face' value='6' checked="1" /><img src="{dede:global.cfg_templeturl/}/images/mood/ico-mood-6.gif" /></li>
+								<li><input type="radio" name='face' value='4'/><img src="{dede:global.cfg_templeturl/}/images/mood/ico-mood-4.gif" /></li>
+								<li><input type="radio" name='face' value='3'/><img src="{dede:global.cfg_templeturl/}/images/mood/ico-mood-3.gif" /></li>
+								<li><input type="radio" name='face' value='5'/><img src="{dede:global.cfg_templeturl/}/images/mood/ico-mood-5.gif" /></li>
+								<li><input type="radio" name='face' value='2'/><img src="{dede:global.cfg_templeturl/}/images/mood/ico-mood-2.gif" /></li>
+								<li><input type="radio" name='face' value='1'/><img src="{dede:global.cfg_templeturl/}/images/mood/ico-mood-1.gif" /></li>
+								<li><input type="radio" name='face' value='7'/><img src="{dede:global.cfg_templeturl/}/images/mood/ico-mood-7.gif" /></li>
+						</ul>
+					</div><!-- /dcmp-mood -->
+					<div class="dcmp-post"><!--未登陆-->
+						<div class="dcmp-userinfo">
+                   <?php echo GetLang('username'); ?>:
+                    <?php if($cfg_ml->M_ID <= 0) { ?>
+                    <input name="username" type="text" id="username" size="10" class="nb" />
+                    （<a href="../member/index_do.php?fmdo=user&dopost=regnew" target="_blank"><u><?php echo GetLang('register'); ?></u></a>）
+                    <?php echo GetLang('password'); ?>:
+                    <input name="pwd" type="password" id="pwd" size="10"class="nb" />
+                   <?php
+                    }else{  echo $cfg_ml->M_LoginID."&nbsp;"; }
+                   ?>
+                    <input name="notuser" type="checkbox" id="notuser" value="1" />
+                    <?php echo GetLang('anonymous'); ?>
+                <?php if($cfg_feedback_ck=='Y') { ?>
+                <?php echo GetLang('validatecode'); ?>: <input name="validate" type="text" id="validate" size="10" style="height:18px;width:60px;margin-right:6px;" class="nb" />
+                <img src='../include/vdimgck.php' width='60' height='24' />
+				        <?php } ?>
+                   <button type="submit" class="btn-2"><?php echo GetLang('postcommentbt'); ?></button>
+						</div><!-- /dcmp-submit -->
+					</div><!-- /dcmp-post -->
+                    </form>
+				</div><!-- /dede_comment_post -->
+
+			</dd>
+		</dl>
+	</div>
+</div>
+
+{dede:include filename='plus_foot.htm' /}
+
+</body>
+</html>

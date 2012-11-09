@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>栏目管理--修改语言入口</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+<style>
+.exshow {
+	background:url(img/tbody_toggle.gif) 0 -15px no-repeat;
+	width:50px;
+	height:15px;
+	font-size:0px;
+	color:#fafafa;
+	cursor:pointer;
+}
+.exhide {
+	background:url(img/tbody_toggle.gif) no-repeat;
+	width:50px;
+	height:15px;
+	font-size:0px;
+	color:#fafafa;
+	cursor:pointer;
+}
+.ctbody {
+	
+}
+a.exbody {
+	color:#fafafa;
+}
+</style>
+<script language="javascript" src="../images/js/j.js"></script>
+<script language="javascript">
+$(function(){
+	ExbodyClick();
+});
+function ExbodyClick()
+{
+	$("a.exbody").click(function(){
+  	if( $("tr.ctbody").get(0).style.display=="none") {
+  		$(".ctbody").show();
+  		$(".exbody div").get(0).className="exhide";
+  	}
+  	else {
+  		$(".ctbody").hide();
+  		$(".exbody div").get(0).className="exshow";
+  	}
+	});
+}
+</script>
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">栏目管理</div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"><IMG height=14 src="img/book1.gif" width=20>
+       &nbsp;<a href="catalog_main.php"><strong>栏目管理</strong></a> &gt;&gt; <strong>修改语言入口</strong></td>
+      <td align="right">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="tform">
+  <tr>
+  <form name="form1" action="catalog_edit.php" method="post" onSubmit="return checkSubmit();">
+  <input type="hidden" name="dopost" value="savetop" />
+  <input type="hidden" name="id" id="id" value="<?php echo $myrow['id']; ?>" />
+  <input type="hidden" name="typelang" id="id" value="<?php echo $typelang; ?>" />
+  <input type="hidden" name="olddflang" id="olddflang" value="<?php echo $cfg_df_lang; ?>" />
+    <td height="95" bgcolor="#FFFFFF">
+      <table width="100%" border="0"  id="needset" cellspacing="0" cellpadding="0">
+         <tr>
+          <td height="28" colspan="2" style="border-top:1px solid #D7D8D1" class='bline'>&nbsp;提示：在DedeEIMS里，增加语言入口实际上类似旧版的顶级栏目，当然这里操作方法并不完全相同。</td>
+         </tr>
+          <tr>
+            <td width="163" height="26" class='bline'><font color='red'><strong>&nbsp;语种类型：</strong></font></td>
+            <td width="962" class='bline'>
+             <?php echo $myrow['typename']; ?>
+            </td>
+          </tr>
+          <tr>
+            <td class='bline' height="26"><strong>&nbsp;设为默认语种：</strong></td>
+            <td class='bline'>
+              <input name="defultlang" type="checkbox" class="np" id="defultlang" value="1" <?php if($cfg_df_lang==$typelang) echo " checked='checked' "; ?> />
+              <label>（设置为默认语种后，网站入口页将用这种语言）</label>
+            </td>
+          </tr>
+          <tr>
+            <td class='bline' height="26"> <strong>&nbsp;排列顺序： </strong></td>
+            <td class='bline'>
+            	<input name="sortrank" size="6" type="text" value="<?php echo $myrow['sortrank']; ?>" class="pubinputs" style="width:60px" />
+              （由低 -&gt; 高） 
+            </td>
+          </tr>
+          <tr>
+            <td class='bline' height="26"> <strong>&nbsp;内容显示： </strong></td>
+            <td class='bline'>
+            	<input name="isdefault" type="radio" id="isdefault" value="-1" <?php if($myrow['isdefault']==-1) echo " checked' "; ?> />全部为动态页 &nbsp;
+            	<input name="isdefault" type="radio" id="isdefault" value="1" <?php if($myrow['isdefault']!=-1) echo " checked' "; ?> />全部生成HTML（这可能让操作时会感觉比较慢）
+             </td>
+          </tr>
+          <tr>
+            <td height="26" class='bline'><strong>&nbsp;文件保存目录：</strong></td>
+            <td class='bline'>
+             <input name="typedir" type="text" id="typedir" class="pubinputs" style="width:170px" value="<?php echo $myrow["typedir"]; ?>" />
+            </td>
+          </tr>
+          <tr>
+            <td class='bline'><strong>&nbsp;栏目模板：</strong></td>
+            <td class='bline'>
+            	<input name="tempindex" type="text" class="pubinputs" id="tempindex" style="width:250px" value="<?php echo $myrow["tempindex"]; ?>" />
+            </td>
+          </tr>
+          <tbody>
+          <tr>
+            <th colspan="2" _show="yes"><strong>高级内容</strong></th>
+          </tr>
+          <tr class='ctbody'>
+            <td height="65"  class='bline'><strong>&nbsp;关 键 字：</strong></td>
+            <td  class='bline'>
+            	<input type="input" name="keywords" id="keywords" class="alltxt" style="width:420px"  value="<?php echo $myrow["keywords"]; ?>" />
+            </td>
+          </tr>
+          <tr class='ctbody'>
+            <td height="65"  class='bline'><strong>&nbsp;页面摘要：</strong></td>
+            <td height="65"  class='bline'>
+            	<textarea name="description" cols="70" rows="4" id="description" class="alltxt" style="width:420px;height:60px"><?php echo $myrow["description"]; ?></textarea>
+            </td>
+          </tr>
+          <tr class='ctbody'>
+            <td class='bline'>
+            	<strong>&nbsp;页面内容：</strong>
+            </td>
+			      <td class='bline'>
+			      	(栏目页面内容是栏目模板中直接调用的HTML信息，调用标签为{dede:field name='content' /})
+			      </td>
+          </tr>
+          <tr class='ctbody'>
+            <td colspan="2">
+            	<?php
+	            GetEditor("content", $myrow['content'],"450","Default","print","false");
+	            ?>
+	          </td>
+        </tr>
+        </tbody>
+     </table>
+     <table width="98%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+            <td width="1%" height="62"></td>
+            <td width="99%">
+              <button type="submit" class="btn1">确定</button>
+                &nbsp;&nbsp;&nbsp;
+               <button type="button" class="btn1" onClick="location='catalog_main.php';">返回</button>
+            </td>
+          </tr>
+      </table>
+      </td>
+    </form>
+  </tr>
+</table>
+</body>
+</html>

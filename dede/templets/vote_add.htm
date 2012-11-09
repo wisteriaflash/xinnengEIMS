@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>增加投票</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+<script language="javascript">
+var i=1;
+function AddItem()
+{ 
+  i++;
+  if(i>15){
+		alert("最大只允许15个选项！");
+		return;
+  }
+  var obj = document.getElementById("voteitem");
+  obj.innerHTML+="<br/>选项"+i+"： <input name='voteitem"+i+"' type='text' size='30' class='alltxt' style='width:200px' />";
+}
+function ResetItem()
+{ 
+  i = 1;
+	var obj = document.getElementById("voteitem");
+	obj.innerHTML="选项1： <input name='voteitem1' type='text' size='30'>";
+}
+function checkSubmit()
+{
+	if(document.form1.votename.value=="")
+	{
+		alert("投票名称不能为空！");
+		document.form1.votename.focus();
+		return false;
+	}
+}
+</script>
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">投票管理</div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"></td>
+      <td align="right"><strong><a href="vote_main.php"><u>管理以往投票内容记录</u></a></strong></td>
+    </tr>
+  </tbody>
+</table>
+<table _dlist="line" class="tlist">
+<tr>
+    <td height="200" bgcolor="#FFFFFF" valign="top">
+	<table width="100%" border="0" cellspacing="4" cellpadding="4">
+     <form name="form1" method="post" action="vote_add.php" onSubmit="return checkSubmit()">
+		<input type='hidden' name='dopost' value='save' />
+		<tr> 
+          <td width="15%" align="center">投票名称：</td>
+          <td width="85%">
+          	<input name="votename" type="text" id="votename" class='txt' style='width:200px' />
+          </td>
+        </tr>
+        <tr> 
+          <td align="center">投票语言：</td>
+          <td>
+          	<select name='lang' id='lang' style='width:160px'>
+            <?php
+            foreach($lang_has_arr as $lid=>$lname)
+            {
+            	echo "<option value='$lid'>$lname($lid)</option>\r\n";
+            }
+            ?>
+            </select>
+            &nbsp;
+          	<input type="checkbox" name="copyall" value="1" class="np" />
+          	复制给所有已启用语言
+          </td>
+        </tr>
+        <tr> 
+          <td align="center">开始时间：</td>
+          <td>
+          	<input name="starttime" type="text" id="starttime" value="<?php echo $startDay?>" class='txt' style='width:200px' />
+          </td>
+        </tr>
+        <tr> 
+          <td align="center">结束时间：</td>
+          <td>
+          	<input name="endtime" type="text" id="endtime" value="<?php echo $endDay?>" class='txt' style='width:200px' />
+          </td>
+        </tr>
+        <tr> 
+          <td align="center">是否多选：</td>
+          <td>
+          	<input name="ismore" type="radio" class="np" value="0" checked />
+            单选 　 
+            <input type="radio" name="ismore" class="np" value="1" />
+            多选
+          </td>
+        </tr>
+        <tr>
+          <td align="center">投 票 项：</td>
+          <td>
+             <button type="submit" class="btn1s" onClick="AddItem();">增加投票选项</button>
+            <button type="submit" class="btn1s" onClick="ResetItem();">重置投票选项</button>
+          </td>
+        </tr>
+        <tr> 
+          <td></td>
+          <td>
+		  <div id="voteitem">
+			选项1： 
+       <input name="voteitem1" type="text" id="voteitem1" size="30" class='txt' style='width:200px' />
+		  </div>
+		  </td>
+        </tr>
+        <tr> 
+          <td height="47">&nbsp;</td>
+          <td>
+             <button type="submit" class="btn1s">保存投票数据</button>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2">&nbsp;</td>
+        </tr>
+		</form>
+      </table>
+	 </td>
+</tr>
+</table>
+</body>
+</html>

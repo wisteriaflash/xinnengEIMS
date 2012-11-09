@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>更新栏目HTML</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">更新栏目HTML </div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td></td>
+      <td align="right"><a href="makehtml_archives.php?typeid=<?php echo (isset($typeid) ? $typeid : 0); ?>" class="np coolbg">更新文档HTML</a>
+            	<a href="catalog_main.php" class="np coolbg">栏目管理</a></td>
+    </tr>
+  </tbody>
+</table>
+<table _dlist="line check" class="tlist" align="center">
+  <form name="form1" action="makehtml_list_action.php" method="get" target='stafrm'>
+  <tbody>
+    <tr> 
+      <td width="108" valign="top" bgcolor="#FFFFFF">选择栏目：</td>
+      <td width="377" valign="top" bgcolor="#FFFFFF"> 
+    <?php
+       if(empty($cid)) $cid=0;
+       $tl = new TypeLink($cid);
+       $typeOptions = $tl->GetOptionArray($cid,$cuserLogin->getUserChannel(),0,1);
+       echo "<select name='typeid' style='width:300px'>\r\n";
+       if($cid=='0') echo "<option value='0' selected='1'>更新所有栏目...</option>\r\n";
+       echo $typeOptions;
+       echo "</select>";
+		?>
+      </td>
+    </tr>
+    <tr>
+      <td height="20" valign="top" bgcolor="#FFFFFF">每次最大创建页数：</td>
+      <td height="20" valign="top" bgcolor="#FFFFFF"><input name="maxpagesize" type="text" class="txt" id="maxpagesize" value="50" size="10">
+        个文件 </td>
+    </tr>
+    <tr> 
+      <td height="20" valign="top" bgcolor="#FFFFFF">是否更新子栏目：</td>
+      <td height="20" valign="top" bgcolor="#FFFFFF">
+	  <input name="upnext" type="radio" class="np" value="1" checked='1' id="un1"/>
+     <label for="un1">更新子级栏目</label>  
+    <input type="radio" name="upnext" class="np" value="0" id="un2"/>
+     <label for="un2">仅更新所选栏目</label>
+    </td>
+    </tr>
+    <tr> 
+      <td height="20" colspan="2" bgcolor="#FAFAF1" align="center">
+      <button type="button" class="btn1" onClick="document.form1.submit();">开始生成HTML</button>  
+      </td>
+    </tr>
+  </form>
+  <tr bgcolor="#F7FAF3"> 
+    <td height="20" colspan="2"> <table width="100%">
+        <tr> 
+          <td width="74%">进行状态： </td>
+          <td width="26%" align="right"> <script language='javascript'>
+            	function ResizeDiv(obj,ty)
+            	{
+            		if(ty=="+") document.all[obj].style.pixelHeight += 50;
+            		else if(document.all[obj].style.pixelHeight>80) document.all[obj].style.pixelHeight = document.all[obj].style.pixelHeight - 50;
+            	}
+            	</script>
+            [<a href='#' onClick="ResizeDiv('mdv','+');">增大</a>] [<a href='#' onClick="ResizeDiv('mdv','-');">缩小</a>] 
+          </td>
+        </tr>
+      </table></td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr bgcolor="#FFFFFF"> 
+    <td colspan="2" id="mtd">
+    	<div id='mdv' style='width:100%;height:350px;'> 
+        <iframe name="stafrm" frameborder="0" id="stafrm" width="100%" height="100%"></iframe>
+      </div>
+	  </td>
+  </tr>
+  </tfoot>
+</table>
+</body>
+</html>

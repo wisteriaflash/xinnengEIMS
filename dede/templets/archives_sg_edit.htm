@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>更改文档</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+<link href="img/base.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="../include/dedeajax2.js"></script>
+<script language='javascript' src='js/main.js'></script>
+<script language="javascript">
+<!--
+function checkSubmit()
+{
+   if(document.form1.title.value==""){
+	 alert("<?php echo $cInfos['titlename']; ?>不能为空！");
+	 document.form1.title.focus();
+	 return false;
+  }
+}
+-->
+</script>
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">更改文档</div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"><IMG height=14 src="img/book1.gif" width=20> <a href="content_sg_list.php?cid=<?php echo $cid?>&channelid=<?php echo $channelid?>&dopost=listArchives"><u>文档列表</u></a>&gt;&gt;更改文档</td>
+      <td align="right"><a href="catalog_main.php">[<u>栏目管理</u>]</a></td>
+    </tr>
+  </tbody>
+</table>
+<table width="98%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td height="2"></td>
+  </tr>
+</table>
+<form name="form1" action="archives_sg_edit.php" enctype="multipart/form-data" method="post" onSubmit="return checkSubmit();">
+  <input type="hidden" name="channelid" value="<?php echo $channelid; ?>" />
+  <input type="hidden" name="id" value="<?php echo $aid; ?>" />
+  <input type="hidden" name="sortrank" value="<?php echo $addRow['senddate']; ?>" />
+  <input type="hidden" name="pubdate" value="<?php echo $arcRow['pubdate']; ?>" />
+  <input type="hidden" name="dopost" value="save" />
+  <table class="tform"  id="needset">
+    <tbody>
+      <tr>
+        <th colspan="2" _show="yes"><strong>常规信息</strong></th>
+      </tr>
+      <tr>
+        <td height="24" class="bline"><table width="800" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="90">&nbsp;<?php echo $cInfos['titlename']; ?>：</td>
+              <td><input name="title" type="text" class="txt" id="title" style="width:388px" value="<?php echo $addRow['title']; ?>">
+                &nbsp;</td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr>
+        <td width="400%" height="24" class="bline"><table width="800" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="90">&nbsp;自定义属性：</td>
+              <td><?php
+				$dsql->SetQuery("Select * From `#@__arcatt` where att<>'j' And att<>'p' order by sortid asc");
+        $dsql->Execute();
+        while($trow = $dsql->GetObject())
+        {
+					  if(ereg($trow->att,$addRow['flag']))
+            		  echo "<input class='np' type='checkbox' name='flags[]' id='flags{$trow->att}' value='{$trow->att}' checked='checked' /> <label for='flags{$trow->att}'>{$trow->attname}[{$trow->att}]</label> ";
+            else
+            		  echo "<input class='np' type='checkbox' name='flags[]' id='flags{$trow->att}' value='{$trow->att}' /> <label for='flags{$trow->att}'>{$trow->attname}[{$trow->att}]</label> ";
+         }
+          ?></td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr>
+        <td height="24" class="bline"><table width="800" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="90">&nbsp;浏览权限：</td>
+              <td><select name="arcrank" id="arcrank" style="width:150px">
+                  <option value='<?php echo $addRow["arcrank"]; ?>'><?php echo $addRow["rankname"]; ?></option>
+                  <?php
+              $urank = $cuserLogin->getUserRank();
+              $dsql->SetQuery("Select * from `#@__arcrank` where adminrank<='$urank' And rank<>'{$addRow["arcrank"]}' ");
+              $dsql->Execute();
+              while($row = $dsql->GetObject()) {
+              	echo "     <option value='".$row->rank."'>".$row->membername."</option>\r\n";
+              }
+              ?>
+                </select></td>
+              <td width="90"></td>
+              <td></td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr id="pictable" style='<?php if($cInfos['needpic']==0) echo 'display:none'; ?>'>
+        <td height="24" class="bline"><table width="800" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="90" height="81">&nbsp;缩 略 图：<br/>
+                &nbsp; </td>
+              <td width="500"><input name="picname" type="text" class="txt" id="picname" style="width:350px" value="<?php echo $addRow["litpic"]; ?>">
+                <input type="button" name="Submit" value="浏览..." style="width:60px" onClick="SelectImage('form1.picname','');" />
+                <input type="button" name="Submit2" value="裁剪" style="margin-left:8px;" onClick="imageCut('picname');" class='np coolbg'/>
+                <br />
+                <input type='checkbox' class='np' name='ddisremote' value='1' />
+                远程 </td>
+              <td align="center"><img src="<?php if( !empty($addRow["litpic"]) ) echo $addRow["litpic"]; else echo "img/pview.gif"; ?>" width="150" height="100" id="picview" name="picview" /></td>
+            </tr>
+          </table></td>
+      </tr>
+      <?php if($cInfos['dfcid']>0)
+      {
+      	echo "<input type='hidden' name='typeid' value='{$cInfos['dfcid']}' />\r\n";
+      }
+      else
+      {
+      ?>
+      <tr>
+        <td height="24" class="bline"><table width="800" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="90">&nbsp;文档主栏目：</td>
+              <td><?php
+           	$typeOptions = GetOptionList($addRow["typeid"],$cuserLogin->getUserChannel(),$channelid);
+           	echo "<select name='typeid' style='width:300'>\r\n";
+            if($addRow["typeid"]=="0") echo "<option value='0' selected>请选择主分类...</option>\r\n";
+            echo $typeOptions;
+            echo "</select>";
+			    ?></td>
+            </tr>
+          </table></td>
+      </tr>
+    </tbody>
+    <?php } ?>
+    <tbody>
+      <tr>
+        <th colspan="2" _show="yes"><strong>附加信息</strong></th>
+      </tr>
+      <tr>
+        <td><?php
+        PrintAutoFieldsEdit($cInfos['fieldset'],$addRow,'autofield');
+      ?></td>
+      </tr>
+      <tr>
+        <td width="400%" height="24" class="bline">&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+  <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+      <td height="56"><table width="100%" border="0" cellspacing="1" cellpadding="1">
+          <tr>
+            <td width="17%">&nbsp;</td>
+            <td width="83%"><table width="214" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="115"><button type="submit" class="btn1">保存</button></td>
+                  <td width="99"><button type="button" class="btn1" onClick="location.reload();" >重置</button></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

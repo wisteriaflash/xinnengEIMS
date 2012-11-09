@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo GetLang('member').' '.GetLang('register'); ?></title>
+<?php include(DEDEMEMBER."/templets/head_inc.htm"); ?>
+<script type="text/javascript" language="javascript" src='js/reg_new_<?php echo $userLang; ?>.js'></script>
+<script type="text/javascript">
+var reMethod = "POST"
+var pwdmin = <?php echo $cfg_mb_pwdmin; ?>;
+function SelLang(selobj)
+{
+	location = "index_do.php?fmdo=user&dopost=regnew&lang="+selobj.options[selobj.selectedIndex].value;
+}
+function changeAuthCode() {
+	var num = 	new Date().getTime();
+	var rand = Math.round(Math.random() * 10000);
+	num = num + rand;
+	if ($("#vdimgck")[0]) {
+		$("#vdimgck")[0].src = "../include/vdimgck.php?tag=" + num;
+	}
+	return false;	
+}
+</script>
+</head>
+<body>
+<?php include(DEDEMEMBER."/templets/head.htm"); ?>
+<div class="wrapper mT10">
+  <div class="west">
+    <div class="ccc pd10">
+      <h4><?php echo GetLang('reg_service');?>：</h4>
+      <div class="allList mTB10 clear">
+        <div class="img"><img src="/member/templets/images/order.png" width="48" height="48" alt="<?php echo GetLang('reg_order_title'); ?>" /></div>
+        <div class="txt">
+          <h5 class="p1 blackA"><?php echo GetLang('reg_order_title'); ?></h5>
+          <p class="p2"><?php echo GetLang('reg_order'); ?></p>
+        </div>
+      </div>
+      <div class="allList mTB10 clear">
+        <div class="img"><img src="/member/templets/images/service.png" width="48" height="48" alt="<?php echo GetLang('reg_service_title'); ?>" /></div>
+        <div class="txt">
+          <h5 class="p1 blackA"><?php echo GetLang('reg_service_title'); ?></h5>
+          <p class="p2"><?php echo GetLang('reg_service'); ?></p>
+        </div>
+      </div>
+      <div class="allList mTB10 clear">
+        <div class="img"><img src="/member/templets/images/encrypt.png" width="48" height="48" alt="<?php echo GetLang('reg_encrypt_title'); ?>" /></div>
+        <div class="txt">
+          <h5 class="p1 blackA"><?php echo GetLang('reg_encrypt_title'); ?></h5>
+          <p class="p2"><?php echo GetLang('reg_encrypt'); ?></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="east mL10">
+    <form name="form2" id="regUser" action="reg_new.php" method="post">
+      <input type="hidden" name="dopost" value="regok" />
+      <table cellspacing="1" class="submit">
+        <tbody>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('language'); ?></td>
+            <td><select name='slang' id='slang' style='width:160px' onchange='SelLang(this)'>
+                <?php
+            foreach($lang_map_arr as $lid=>$lname)
+            {
+            	if($lid==$userLang) echo "<option value='$lid' selected>$lname($lid)</option>\r\n";
+            	else echo "<option value='$lid'>$lname($lid)</option>\r\n";
+            }
+           ?>
+              </select>
+              <span style="color:red;">*</span></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('username'); ?></td>
+            <td><input name="userid" type="text" id="txtUsername" class="text"  />
+              <span style="color:red;">*</span></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('password'); ?></td>
+            <td><input name="userpwd" type="password" id="txtPassword" class="text"  />
+              <span style="color:red;">*</span></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('cpassword'); ?></td>
+            <td><input name="userpwdok" type="password" id="userpwdok" value="" size="20" class="text"  />
+              <span style="color:red;">*</span></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top">Email：</td>
+            <td><input name="email" type="text" id="email" class="text" />
+              <span style="color:red;">*</span></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('sex'); ?></td>
+            <td><input type="radio" name="sex" value="1" checked/>
+              <?php echo GetLang('man'); ?> &nbsp;
+              <input type="radio" name="sex" value="2" />
+              <?php echo GetLang('woman'); ?> &nbsp; </td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('uname'); ?></td>
+            <td><input name="uname" type="text" id="uname" class="text"  />
+              <span style="color:red;">*</span></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('company'); ?></td>
+            <td><input name="company" type="text" id="company" class="text" />
+              <span style="color:red;">*</span></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('mobile'); ?></td>
+            <td><input name="mobile" type="text" id="mobile" class="text" /></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('tel'); ?></td>
+            <td><input name="tel" type="text" id="tel" class="text" />
+              <span style="color:red;">*</span></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('fax'); ?></td>
+            <td><input name="fax" type="text" id="fax" class="text" /></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('address'); ?></td>
+            <td><input name="address" type="text" id="address" class="text" style='width:350px;' /></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('validatecode'); ?></td>
+            <td><input name="vdcode" type="text" id="vdcode" style='width:50px;text-transform:uppercase;' class="text" />
+              <img src="../include/vdimgck.php" alt="<?php echo GetLang('needchange'); ?>" name="vdimgck" align="absmiddle" id="vdimgck" style="cursor：pointer"/> <a href="#vdcode" onclick="changeAuthCode()"><?php echo GetLang('needchange'); ?></a></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td height="45">&nbsp;</td>
+            <td height="45"><button class="button5" type="submit"><?php echo GetLang('register'); ?></button></td>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
+  </div>
+</div>
+<div class="clearfix"></div>
+<?php include(DEDEMEMBER."/templets/foot.htm"); ?>
+</body>
+</html>

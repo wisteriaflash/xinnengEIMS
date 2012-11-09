@@ -1,0 +1,94 @@
+<!--This is IE DTD patch , Don't delete this line.-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $cfg_softname." ".$cfg_version; ?></title>
+<!--[if IE]>
+<style type="text/css" media="screen">.right{height:100%; top:0; bottom:0; border-top:66px solid #d0e6f1; border-bottom:0px solid #d0e6f1; z-index:1;}</style>
+<![endif]-->
+<script src="../jquery.js" language="javascript" type="text/javascript"></script>
+<script src="../frame.js" language="javascript" type="text/javascript"></script>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="frame.js" language="javascript" type="text/javascript"></script>
+<link href="frame.css" rel="stylesheet" type="text/css" />
+<link href="../frame.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="showmenu">
+<div class="pagemask"></div>
+<iframe class="iframemask"></iframe>
+<div class="allmenu">
+  <div class="allmenu-box">
+    <?php
+	echo $mapstring;
+?>
+    <br style='clear:both' />
+  </div>
+</div>
+<div class="head">
+  <div class="top">
+    <div class="top_logo"> <img src="img/admin_top_logo.gif" width="170" height="37" alt="DedeCms Logo" title="Welcome use DedeCms" /> </div>
+    <div class="top_link">
+      <ul>
+        <li class="welcome">您好：<?php echo $cuserLogin->getUserName(); ?> ，欢迎使用DedeEIMS！</li>
+        <li><a href="index_body.php" target="main">系统主页</a></li>
+        <li><a href="../index.php?upcache=1" target="_blank">网站主页</a></li>
+        <li><a href="../member" target="_blank">会员中心</a></li>        
+        <li><a href="http://www.dedeeims.com/plus/diy.php?action=post&diyid=1" target="_blank" style="color:#FFF">用户反馈</a></li>
+        <li><a href="exit.php" target="_top">注销</a></li>
+      </ul>
+      <div class="quick"> <a href="#" class="ac_qucikmenu" id="ac_qucikmenu">快捷方式</a> <a href="#" class="ac_qucikadd" id="ac_qucikadd">
+        <!--ADD-->
+        </a> </div>
+    </div>
+  </div>
+  <div class="topnav">
+    <div class="menuact">
+    	<a href="#" id="togglemenu">隐藏菜单</a>
+    	<!--a href="#" id="allmenu">功能地图</a--> 
+    </div>
+    <div class="nav" id="nav">
+      <ul>
+      <?php foreach($menuMaps as $k => $val) { ?>
+        <li><a <?php if($k==1) { ?>class="thisclass" <?php }?>href="<?php echo $mapLinks[$k];?>" _for="<?php echo $mapNames[$k];?>" target="main"><?php echo $val;?></a></li>
+      <?php } ?>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--<div class="left">
+  <div class="menu" id="menu">
+    <iframe src="index_menu.php" id="menufra" name="menu" frameborder="0"></iframe>
+  </div>
+</div> -->
+<div class="left">
+  <div class="menu" id="menu">
+  	<?php include_once('index_menu.php');?>
+  </div>
+</div>
+<div class="right">
+  <div class="main">
+    <iframe id="main" name="main" frameborder="0" src="index_body.php"></iframe>
+  </div>
+</div>
+<div class="qucikmenu" id="qucikmenu">
+  <ul>
+    <?php
+      $dtp = new DedeTagparse();
+      $dtp->SetNameSpace('menu','<','>');
+      $dtp->LoadTemplet($myIcoFile);
+      if(is_array($dtp->CTags))
+      {
+         foreach($dtp->CTags as $ctag)
+         {
+         		$title = $ctag->GetAtt('title');
+         		$ico = $ctag->GetAtt('ico');
+         		$link = $ctag->GetAtt('link');
+         		echo "<li><a href='{$link}' target='main'>{$title}</a></li>\r\n";
+      		}
+			}
+	 ?>
+  </ul>
+</div>
+</body>
+</html>

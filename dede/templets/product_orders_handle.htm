@@ -1,0 +1,109 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>会员权限管理</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">订单管理</div>
+</div>
+<table _dlist="line" class="tlist" align="center">
+    <thead>
+       <tr height="28">
+          <td>
+            <strong><a href="product_orders.php">订单信息</a></strong>
+      &gt; 订单处理</td>
+          <td align="right" colspan="3">订单编号：<?php echo $ordersInfo['oid'];?></td>
+       </tr>
+    </thead>
+    <form action="product_orders.php?id=<?php echo $id;?>&dopost=handle&action=operate" method="post"> 
+    <tbody>
+        <tr bgcolor="#F8FCF1" height="24">
+          <td colspan="6">产品名称：<a href="<?php echo $cfg_basehost;?>/plus/view.php?aid=<?php echo $ordersInfo['aid'];?>" target="_blank"><?php echo $arcRow['title'];?></a></td>
+        </tr>
+        <tr bgcolor="#F8FCF1" height="24">
+          <td colspan="6">订购数量：<?php echo $addRows['crunit']['itemValue'];?><span style="color:red;"><?php echo $addRows['rfprice']['itemValue'];?></span>*<span style="color:red;"><?php echo $ordersInfo['prnums'];?></span><?php echo $addRows['prunit']['itemValue'];?></td>
+        </tr>
+        <tr bgcolor="#F8FCF1" height="24">
+          <td colspan="6">单位名称：<?php echo $ordersInfo['orgname'];?>[<?php if($userInfo['mid']) { ?><a href="member_view.php?id=<?php echo $userInfo['mid'];?>"><?php echo $userInfo['uname'];?></a><?php }else{ ?><?php echo $userInfo['uname'];?><?php }?>]</td>
+        </tr>
+        <tr bgcolor="#F8FCF1" height="24">
+          <td colspan="6">联系电话：<?php echo $ordersInfo['telphone'];?></td>
+        </tr>
+        <tr bgcolor="#F8FCF1" height="24">
+          <td colspan="6">邮政编码：<?php echo $ordersInfo['postcode'];?></td>
+        </tr>
+        <tr bgcolor="#F8FCF1" height="24">
+          <td colspan="6">详细地址：<?php echo $ordersInfo['address'];?></td>
+        </tr>
+        <tr bgcolor="#F8FCF1" height="24">
+          <td colspan="6">订单留言：</td>
+        </tr>
+        <tr bgcolor="#F8FCF1" height="24">
+          <td colspan="6"><?php echo html2text($ordersInfo['content']);?></td>
+        </tr>
+    </tbody>
+    </form>
+    
+    <thead>
+       <tr height="28">
+          <td  colspan="4">
+            <strong>处理记录</strong>
+          </td>
+       </tr>
+    </thead>
+	<tbody>    
+
+    <tr bgcolor="#FDFEE9" height="24" align="center">
+      <td width="10%" align="left">时间</td>
+      <td width="30%">结果</td>
+      <td width="10%">操作人</td>
+      <td width="18%">日期</td>
+    </tr>
+	{dede:datalist}
+   <tr align="center" bgcolor="#FFFFFF" height="24">
+     <td align="left">
+		{dede:field.dateline function="MyDate('H:i',@me)"/}
+	 </td>
+     <td>
+		{dede:field.message/}
+     </td>
+     <td>
+		{dede:field.operator/}
+     </td>
+	 <td>
+		{dede:field.dateline function='GetDateMk(@me)'/}
+	 </td>
+    </tr>
+	{/dede:datalist}
+    <tr>
+      <td height="24" colspan="4" bgcolor="#F8FCF1"><div class="pagelist">{dede:pagelist listsize=3/}</div></td>
+    </tr>
+  </tbody>
+</table>
+<table _dlist="line" class="tlist" align="center">
+    <form action="product_orders.php?id=<?php echo $id;?>&dopost=handle&action=operate" method="post"> 
+    <tbody>
+        <tr bgcolor="#F8FCF1" height="24">
+          <td colspan="4">处理订单：</td>
+        </tr>
+        <tr bgcolor="#F8FCF1" height="24">
+          <td width="58%" colspan="4"><textarea name="message" cols="50" rows="8"></textarea></td>
+        </tr>
+        <tr>
+          <td height="24" colspan="2" bgcolor="#F8FCF1"><button class="btn1" type="submit">处理</button> <button class="btn1" type="button" onClick="location='product_orders.php';">返回</button></td>
+        </tr>
+    </tbody>
+    </form>
+    
+    <tbody>
+	{dede:datalist}
+	{/dede:datalist}
+  <td width="10%"></tbody>
+</table>
+</body>
+</html>

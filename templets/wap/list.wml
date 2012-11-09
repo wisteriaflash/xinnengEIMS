@@ -1,0 +1,42 @@
+<?php
+echo '<'.'?xml version="1.0" encoding="UTF-8" ?'.">\r\n";
+?>
+<!DOCTYPE wml PUBLIC '-//WAPFORUM//DTD WML 1.1//EN' 'http://www.wapforum.org/DTD/wml_1.1.xml'>
+<wml>
+<card id='main' title='<?php echo $typename; ?>'>
+
+<p><img src='<?php echo $cfg_templeturl; ?>/wap/logo.gif' alt='<?php echo $cfg_webname; ?>' /></p>
+
+<p>
+<a href='<?php echo $cfg_cmspath; ?>/wap.php'><?php echo GetLang('indexname'); ?></a> &gt;&gt; <a href='wap.php?action=list&id=<?php echo $langid; ?>'><?php echo $langname; ?></a> &gt; 
+<?php
+if($typename != $langname) echo " $typename &gt; ";
+?>
+<?php
+if($channellistnext != '') echo "<p><img src='{$cfg_templeturl}/wap/hr.gif' alt='sp line' /></p>\r\n";
+echo $channellistnext;
+?>
+</p>
+<p><img src='<?php echo $cfg_templeturl; ?>/wap/hr.gif' alt='sp line' /></p>
+
+<p>
+<?php
+if(!empty($catcontect)) echo $catcontect;
+?>
+{dede:datalist}
+<a href='wap.php?action=article&amp;id=<?php echo $fields['ID']; ?>'><?php echo ConvertStr($fields['title']); ?></a> [<?php echo MyDate("m-d",$fields['pubdate']); ?>]<br />
+{/dede:datalist}
+</p>
+
+<p><img src='<?php echo $cfg_templeturl; ?>/wap/hr.gif' alt='sp line' /></p>
+
+<p> {dede:pagelist listsize='2' /} </p>
+
+<p><img src='<?php echo $cfg_templeturl; ?>/wap/hr.gif' alt='sp line' /></p>
+
+<p>
+<a href='http://www.dedeeims.com/wap.php'>Power by DedeEIMS</a> 
+Now Time: <?php echo $curtime; ?>
+</p>
+</card>
+</wml>

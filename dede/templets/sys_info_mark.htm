@@ -1,0 +1,132 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>系统配置参数 - 图片水印设置</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">图片水印设置</div>
+</div>
+<table _dlist="line check" class="tlist" align="center">
+  <form action="sys_info_mark.php" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="action" value="save">
+  <input type="hidden" name="photo_markimg" value="<?php echo $photo_markimg?>">
+<tbody>
+  <tr bgcolor="#FFFFFF"> 
+    <td width="41%" height="24">上传的图片是否使用图片水印功能：<br> </td>
+    <td width="59%"> <input class="np" id="np1" type="radio" value="1" name="photo_markup"<?php if($photo_markup==1) echo ' checked';?>>
+      <label for="np1">开启</label> 
+      <input class="np" id="np2" type="radio" value="0" name="photo_markup"<?php if($photo_markup==0) echo ' checked';?>>
+      <label for="np2">关闭</label> </td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td height="24">采集的图片是否使用图片水印功能：</td>
+    <td> <input class="np" id="cj1" type="radio" value="1" name="photo_markdown"<?php if($photo_markdown==1) echo ' checked';?>>
+      <label for="cj1">开启</label> 
+        <input class="np" id="cj2" type="radio" value="0" name="photo_markdown"<?php if($photo_markdown==0) echo ' checked';?>>
+      <label for="cj2">关闭</label></td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td height="24">选择水印的文件类型：</td>
+    <td>
+    	<input name="photo_marktype" id="pm1" type="radio" value="0" <?php if($photo_marktype == 0) echo 'checked'?>><label for="pm1">gif</label>
+        &nbsp;<input type="radio" name="photo_marktype" id="pm2" value="1" <?php if($photo_marktype == 1) echo 'checked'?>><label for="pm2">png</label>
+        &nbsp;<input type="radio" name="photo_marktype" id="pm3" value="2" <?php if($photo_marktype == 2) echo 'checked'?>><label for="pm3">文字</label>
+       
+   </td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td height="24">添加水印的图片大小控制（设置为0为不限）：</td>
+    <td> 宽： 
+      <input name="photo_wwidth" type=text class="txt" id="photo_wwidth"   value="<?php echo $photo_wwidth?>" size="5">
+      高： 
+      <input name="photo_wheight" type=text class="txt" id="photo_wheight"  value="<?php echo $photo_wheight?>" size="5"> </td>
+  </tr>
+  
+  <tr bgcolor="#FFFFFF"> 
+    <td height="24">水印图片文件名（如果不存在，则使用文字水印）：</td>
+    <td><img src="../data/mark/<?php echo $photo_markimg; ?>" alt="dede"></td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td height="24">上传新图片：</td>
+    <td>
+	<input name="newimg" type="file" class="txt" id="newimg" style="width:300">
+    <br>
+	<?php echo "你的系统支持的图片格式：".$cfg_photo_support; ?>	</td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td height="24">水印图片文字：(&nbsp;请查看data\mark\simhei.ttf字体库是否存在)</td>
+    <td> <input name="photo_watertext" type="text" class="txt"  value="<?php echo $photo_watertext?>"></td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td height="24">水印图片文字字体大小：</td>
+    <td> <input name="photo_fontsize" type=text class="txt" id="photo_fontsize"  value="<?php echo $photo_fontsize?>"></td>
+  </tr>
+  <tr bgcolor="#FFFFFF"> 
+    <td height="24">水印图片文字颜色（默认#FF0000为红色）：</td>
+    <td> <input name="photo_fontcolor" type=text class="txt" id="photo_fontcolor"  value="<?php echo $photo_fontcolor?>"></td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td height="24">设置 JPEG 类型的图片附件添加水印后质量参数，范围为 0～100 的整数，数值越大结果图片效果越好，但尺寸也越大。</td>
+    <td>
+      <input name="photo_marktrans" type="text" class="txt" id="photo_marktrans" value="<?php echo $photo_marktrans?>">   </td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td height="24">设置 GIF 类型水印图片与原始图片的融合度,水印透明度（0—100，值越小越透明）：</td>
+    <td><input name="photo_diaphaneity" type=text class="txt" id="photo_diaphaneity"  value="<?php echo $photo_diaphaneity?>"></td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td height="24">水印位置：</td>
+    <td>
+	<input class="np" type="radio" id="rand" name="photo_waterpos"  value="0"<?php if($photo_waterpos==0) echo ' checked';?>>
+         <label id="rand"> 随机位置</label>
+	<table width="300" border="1" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="33%"><input class="np" id="pw1" type="radio" name="photo_waterpos"  value="1"<?php if($photo_waterpos==1) echo ' checked';?>>
+          <label for="pw1">顶部居左</label></td>
+        <td width="33%"><input class="np" id="pw2" type="radio" name="photo_waterpos"  value="2"<?php if($photo_waterpos==2) echo ' checked';?>>
+           <label for="pw2">顶部居中</label></td>
+        <td><input class="np" id="pw3" type="radio" name="photo_waterpos"  value="3"<?php if($photo_waterpos==3) echo ' checked';?>>
+           <label for="pw3">顶部居右</label></td>
+      </tr>
+      <tr>
+        <td><input class="np" id="pw4" type="radio" name="photo_waterpos"  value="4"<?php if($photo_waterpos==4) echo ' checked';?>>
+           <label for="pw4">左边居中</label></td>
+        <td><input class="np" id="pw5" type="radio" name="photo_waterpos"  value="5"<?php if($photo_waterpos==5) echo ' checked';?>>
+           <label for="pw5">图片中心</label></td>
+        <td><input class="np" id="pw6" type="radio" name="photo_waterpos"  value="6"<?php if($photo_waterpos==6) echo ' checked';?>>
+           <label for="pw6">右边居中</label></td>
+      </tr>
+      <tr>
+        <td><input class="np" id="pw7" type="radio" name="photo_waterpos"  value="7"<?php if($photo_waterpos==7) echo ' checked';?>>
+          <label for="pw7">底部居左</label></td>
+        <td><input class="np" id="pw8" type="radio" name="photo_waterpos"  value="8"<?php if($photo_waterpos==8) echo ' checked';?>>
+          <label for="pw8">底部居中</label></td>
+        <td><input name="photo_waterpos" type="radio" class="np" id="pw9"  value="9"<?php if($photo_waterpos==9) echo ' checked';?>>
+          <label for="pw9">底部居右</label></td>
+      </tr>
+    </table></td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr bgcolor="#F3FCE4"> 
+    <td height="37" colspan="2">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="7%">&nbsp;</td>
+          <td width="93%">
+         <button type="submit" class="btn1" onClick="document.form1.submit();">确定</button>
+        &nbsp;
+         <button type="reset" class="btn1" onClick="document.form2.submit();">重置</button>  </td>
+        </tr>
+      </table>	  </td>
+  </tr>
+  </tfoot>
+  </form>
+</table>
+</body>
+</html>

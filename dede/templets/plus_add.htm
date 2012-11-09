@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>安装新插件</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">插件管理</div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"><b>&nbsp;<a href="plus_main.php"><u>插件管理</u></a>  &gt; 安装新插件：</b></td>
+      <td align="right"></td>
+    </tr>
+  </tbody>
+</table>
+<table _dlist="line" class="tlist">
+  <form name="form1" action="plus_add.php" method="post">
+   <input type='hidden' name='dopost' value='save'>
+      <td width="19%" align="center" bgcolor="#FFFFFF">插件名称</td>
+      <td width="81%" bgcolor="#FFFFFF"><input name="plusname" type="text" class="txt" id="plusname"> 
+      </td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#FFFFFF">作者</td>
+      <td bgcolor="#FFFFFF"> <input name="writer" type="text" class="txt" id="writer"> </td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#FFFFFF">主程序文件</td>
+      <td bgcolor="#FFFFFF"><input name="link" type="text" class="txt" id="link" size="30"> </td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#FFFFFF">目标框架</td>
+      <td bgcolor="#FFFFFF"><input name="target" type="text" class="txt" id="target" value="main"></td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#FFFFFF">文件列表</td>
+      <td bgcolor="#FFFFFF">文件用&quot;,&quot;分开，路径相对于管理目录（当前目录）<br>
+      <textarea name="filelist" rows="8" class="txt" id="filelist" style="width:60%"></textarea></td>
+    </tr>
+    <tr bgcolor="#F9FDF0"> 
+      <td height="28" colspan="2"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td width="26%">&nbsp;</td>
+            <td width="15%">
+            <button type="submit" class="btn1">提交</button></td>
+            <td width="59%"> <button type="submit" class="btn1" onClick="location='plus_main.php';">返回</button>
+          </td>
+          </tr>
+        </table></td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

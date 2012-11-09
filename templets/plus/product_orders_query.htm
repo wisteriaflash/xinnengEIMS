@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>订单查询 -- {dede:var.arcRow.title/}</title>
+<link href="{dede:global name='cfg_templeturl'/}/style/dedecms.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../style/dedecms.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="flinkpage">
+<div class="header">
+  <div class="top w960 center">
+    <div class="title">
+      <h1>
+        <h1><a href="{dede:global name='cfg_basehost'/}">{dede:global name='cfg_webname'/}</a></h1>
+      </h1>
+    </div>
+    <!-- /title -->
+  </div>
+  <!-- /top -->
+</div>
+<!-- /header -->
+<div class="clear"></div>
+<div class="w960 clear center mt1">
+  <div class="sp-title">
+    <h2>订单记录</h2>
+    <span class="more"> <a href='{dede:global name='cfg_basehost'/}'>返回首页</a></span> </div>
+  <table width="100%" border="0" cellspacing="3" cellpadding="3">
+      <tr>
+        <td width="20%" align="right">订单号：</td>
+        <td width="80%"><font color="red">{dede:var.ordersInfo.oid/}</font></td>
+      </tr>  
+      <tr>
+        <td width="20%" align="right">时间：</td>
+        <td width="80%">{dede:var.ordersInfo.dateline function="GetDateMK(@me)"/}</td>
+      </tr>
+      <tr>
+        <td align="right">IP：</td>
+        <td>{dede:var.ordersInfo.userip/}</td>
+      </tr>
+      <tr>
+        <td align="right"><?php echo GetLang('organization');?>：</td>
+        <td>{dede:var.ordersInfo.orgname/}</td>
+      </tr>
+      <tr>
+        <td align="right"><?php echo GetLang('linktel');?>：</td>
+        <td>{dede:var.ordersInfo.telphone/}</td>
+      </tr>
+      <tr>
+        <td align="right"><?php echo GetLang('address');?>：</td>
+        <td>{dede:var.ordersInfo.address/}</td>
+      </tr>
+            <tr>
+        <td align="right"><?php echo GetLang('postcode');?>：</td>
+        <td>{dede:var.ordersInfo.postcode/}</td>
+      </tr>
+            <tr>
+        <td align="right"><?php echo GetLang('orderform');?>：</td>
+        <td>{dede:var.ordersInfo.content/}</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="right">&nbsp;</td>
+        <td><input type="submit" value="<?php echo GetLang('close');?>" class="btn-2" onClick="window.close()"/></td>
+      </tr>
+    </table>    
+</div>
+<div class="footer">
+  <p class="link"> 网站版权信息及免责声明 </p>
+  <!-- 
+		为了支持织梦团队的发展,请您保留织梦企业信息管理系统的链接信息.
+		我们对支持织梦团队发展的朋友表示真心的感谢!织梦因您更精彩!
+	-->
+  <p class="powered"> Powered by <a href="http://www.dedeeims.com" title="织梦企业信息管理系统(DedeEIMS)--专业的PHP企业信息管理系统，轻松建站的首选利器" target="_blank"><strong>Dede<span>EIMS</span></strong></a> &copy; 2004-2008  <a href="http://www.desdev.cn" target="_blank">DesDev</a> Inc. </p>
+  <!-- /powered -->
+</div>
+</body>
+</html>

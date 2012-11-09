@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+
+.onetd {
+	height:28px;
+}
+
+.twbox {
+	font-size:12px;
+	overflow:hidden;
+	margin-top: 8px;
+	margin-right: auto;
+	margin-bottom: 8px;
+	margin-left: auto;
+}
+.twbox thead tr td {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	height:20px;
+	line-height:20px;
+	text-indent:5px;
+}
+.twbox thead tr td strong {
+	color:#656565;
+	font-size:12px;
+	letter-spacing:2px;
+	margin-right:14px;
+	font-weight: bold;
+}
+.twbox thead tr td span {
+color:#CCDDAA;
+}
+.twbox thead tr td p {
+display:inline;
+float:right;
+height:31px;
+margin:-31px 10px 0 0;
+overflow:hidden;
+}
+.twbox thead tr td p * {
+float:right;
+}
+.twbox thead tr td a.thlink {
+color:#FFFFFF;
+}
+.twbox thead tr td a.thlink:hover {
+color:#FFFF00;
+text-decoration:none;
+}
+.twbox tbody {
+overflow:hidden;
+text-align:left;
+}
+.twbox tbody tr th {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	color:#6D8A4F;
+	font-weight:normal;
+	height:21px;
+	letter-spacing:2px;
+	line-height:21px;
+	text-indent:5px;
+}
+.twbox tbody tr td {
+	color:#333333;
+	vertical-align:top;
+	padding: 5px;
+}
+.twbox tbody tr td p {
+line-height:21px;
+}
+.twbox tbody tr td p strong img {
+vertical-align:middle;
+}
+.twbox tbody tr td img {
+margin:0 10px 5px 0;
+vertical-align:top;
+}
+.twbox tbody tr td small {
+	color:#888888;
+	font-size: 12px;
+}
+.twbox tfoot tr td {
+line-height:25px;
+padding:10px;
+text-align:center;
+}
+.twbox tfoot tr td p {
+line-height:21px;
+margin-bottom:10px;
+}

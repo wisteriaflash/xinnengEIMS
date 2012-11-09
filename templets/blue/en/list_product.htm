@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:global.cfg_webname/}</title>
+<link href="{dede:global.cfg_templeturl/}/blue/css/greenstyle.css" rel="stylesheet" type="text/css" />
+<meta name="keywords" content="{dede:field.keywords /}" />
+<meta name="description" content="{dede:field.description function='html2text(@me)'/}" />
+<script type="text/javascript" src="{dede:global.cfg_cmspath/}/images/js/j.js"></script>
+<script language="javascript" type="text/javascript" src="{dede:global.cfg_cmsurl/}/include/dedeajax2.js"></script>
+<script type="text/javascript">
+function CheckLogin(){
+	  var taget_obj = document.getElementById('_userlogin');
+	  myajax = new DedeAjax(taget_obj,false,false,'','','');
+	  myajax.SendGet2("/member/ajax_loginsta.php");
+	  DedeXHTTP = null;
+}
+$(function() {
+	$("#navigation .sort").click(function(){
+		$(this).next(".menu").toggleClass("invisible");
+		$(this).toggleClass("hover");
+	})
+})
+</script>
+</head>
+<body>
+{dede:include filename="header.htm"/}
+<div class="wrapper">
+  <div class="fLeft"> <img src="{dede:global.cfg_templeturl/}/blue/images/logo.jpg" width="199" height="33" vspace="14" class="fLeft" /> </div>
+  <form id="search" class="fRight" action="{dede:global.cfg_phpurl/}/search.php" name="formsearch">
+    <input type='hidden' name='lang' value='{dede:handlang/}' />
+    <input name='keyword' type='text' class="text" />
+    <button name="searchbt" type="submit">&nbsp;</button>
+  </form>
+  <div class="clear"></div>
+  <div class="module green wrapper mT10">
+    <div class="top">
+      <div class="t_l"></div>
+      <div class="t_r"></div>
+      <ul id="navMenu" class="fLeftChild overflow fLeft">
+       {dede:channel get='index'}<li><a href="[field:typeurl/]">[field:lang.indexname/]</a></li>{/dede:channel}
+       {dede:channel type='top'}<li><a href='[field:typeurl/]'>[field:typename/]</a></li> {/dede:channel}
+      </ul>
+      <span class="mT5 mR5"><a id="res" href="{dede:global.cfg_clihost/}/data/rssmap.html">&nbsp;</a></span> </div>
+  </div>
+  <div class="module silver wrapper mT10">
+    <div class="top">
+      <div class="t_l"></div>
+      <div class="t_r"></div>
+      <ul id="position" class="fLeftChild overflow">
+        <li class="home"><a href="{dede:global.cfg_clihost/}">{dede:lang.indexname/}</a></li>
+          > {dede:field name='position'/}
+      </ul>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="west">
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.productcatalog/}</strong></dt>
+        <dd class="body pB5">
+          <ul id="navigation">
+            {dede:cattree}{/dede:cattree}
+          </ul>
+        </dd>
+      </dl>
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.hotproduct/}</strong></dt>
+        <dd class="body pB5 grayA">
+          <ol class="list">
+          {dede:arclist channelid='6' row='6'} 
+            <li><b class="[field:global.autoindex runphp='yes']@me = (@me<=3)? "highLight" : "";[/field:global.autoindex]">[field:global.autoindex/]</b><a href='[field:arcurl/]'>[field:title/]</a></li>
+          {/dede:arclist}
+          </ol>
+        </dd>
+      </dl>
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.contactus/}</strong></dt>
+        <dd class="body pB5">
+          <ol class="list">
+            {dede:mylang eid='contacttype' /}
+          </ol>
+        </dd>
+      </dl>
+    </div>
+    <div class="east">
+      <dl class="e2e2e2 mT10">
+        <dt class="heading"><strong class="mL5">{dede:field.typename/}</strong></dt>
+        <dd class="body pB5">
+          <ul id="products">
+          {dede:list pagesize='9'}
+            <li>
+              <dl class="e2e2e2">
+                <dt><a href="[field:arcurl/]" title="[field:title/]" class=""><img src="[field:litpic/]" alt="[field:title/]" /></a></dt>
+                <dd class="textCenter"><strong><a href="[field:arcurl/]" target="_blank">[field:title/]</a></strong></dd>
+                <dd class="textCenter">[field:lang.rfprice/]<span class="aRed">￥[field:rfprice/]</span><a class="mL10" href="/plus/product_orders.php?aid=[field:id/]" target="[field:lang.inquiry/]">[field:lang.inquiry/]</a></dd>
+              </dl>
+            </li>
+          {/dede:list}
+          </ul>
+          <div class='paglist clear'>
+			{dede:pagelist listsize='7' /}
+		  </div>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  {dede:include filename='footer.htm' /}
+
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title><?php echo $diy->name;?></title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox"><?php echo $diy->name;?>内容列表</div>
+</div>
+<form action="diy_list.php" method="post">
+<input type="hidden" name="diyid" value="<?php echo $diyid;?>" />
+<table _dlist="line" class="tlist" align="center">
+<tr>
+	<td colspan="2" height="28">
+	<div style='float:left'>&nbsp;<a href='diy_main.php'><b>自定义表单管理</b></a> &gt; <b>内容列表</b></div>
+	<div style='float:right;padding-right:8px;'>
+		<a href="../plus/diy.php?action=list&diyid=<?php echo $diy->diyid; ?>" target="_blank"><img src='img/gtk-tmp.png' align='left' title='预览' alt='预览' /><u>前台预览</u></a>
+	</div>
+	</td>
+</tr>
+{dede:datalist}
+<?php 
+if(!empty($fields))
+{
+	$fields['sta'] = $fields['ifcheck'] == 1 ? '已审核' : '未审核';    
+		echo '<tr bgcolor="#F8FDE3"><td width="20%"><input type="checkbox" name="id[]" value="'.$fields['id'].'" class="np" />id</td><td><a href="diy_list.php?action=edit&diyid='.$diy->diyid.'&id='.$fields['id'].'">'.$fields['id'].'</a> &nbsp; 状态: '.$fields['sta'].'</td></tr>';
+		foreach($fieldlist as $field=>$fielddata)
+		{
+			$allowhtml = array('htmltext');
+			if(!in_array($fielddata[1],$allowhtml)){
+				$fields[$field] = htmlspecialchars($fields[$field]);
+			}
+			echo '<tr><td bgcolor="#ffffff">'.$fielddata[0].'</td><td bgcolor="#ffffff">'.$fields[$field].'</td></tr>';
+		}
+} else {
+	echo "<tr><td bgcolor=\"#ffffff\">暂无记录</td></tr>";
+}
+?>
+{/dede:datalist}
+<tr><td colspan="2" bgcolor="#ffffff">{dede:pagelist listsize=5 /}</td></tr>
+<tr>
+<td colspan="2" height='36' align="center" bgcolor="#F8FCF1">
+	<label><input type="radio" name="action" value="check" class='np' />审核</label>
+	<label><input type="radio" name="action" value="delete"  class='np' />删除</label>
+	&nbsp;&nbsp;
+    <button class="btn1" type="submit">提交</button>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<?php
+//未登录显示的head
+if(!$cfg_ml->IsLogin()) {
+?>
+
+<div class="module green wrapper">
+  <div class="top">
+    <div class="t_l"></div>
+    <div class="t_r"></div>
+    <em><a href="../" style="border:none"><img src="../member/templets/images/UserCenter.jpg" width="300" height="63" style="border:none"/></a></em> <span id="topBar" class="mR10">
+    <ul id="userMenu" class="fLeftChild mL10">
+      <li><a href="../" title="<?php echo GetLang('indexname'); ?>"><?php echo GetLang('indexname'); ?></a></li>
+      <li><a href="../member/index_do.php?fmdo=user&dopost=regnew" title="<?php echo GetLang('register'); ?>"><?php echo GetLang('register'); ?></a></li>
+      <li><a href="../member/login.php" title="<?php echo GetLang('login'); ?>"><?php echo GetLang('login'); ?></a></li>
+      <li class="help"><a href="http://www.dedeeims.com/help/" title="DedeEIMS Help Center"> <?php echo GetLang('help'); ?> </a></li>
+    </ul>
+    </span> </div>
+</div>
+<?php
+}
+//登录后显示的head
+else {
+?>
+<div class="module green wrapper">
+  <div class="top">
+    <div class="t_l"> </div>
+    <div class="t_r"> </div>
+    <em><a href="../"><img src="../member/templets/images/UserCenter.jpg" width="300" height="63" style="border:none"/></a></em> <span id="topBar" class="mR10">
+    <ul id="userMenu" class="fLeftChild">
+      <li> <a href="../" title="<?php echo GetLang('indexname'); ?>"><?php echo GetLang('indexname'); ?></a> </li>
+      <li> <a href="../member/index.php" title="<?php echo GetLang('membercenter'); ?>"><?php echo GetLang('membercenter'); ?></a> </li>
+      <li> <a href="../member/index_do.php?fmdo=login&dopost=exit" title="<?php echo GetLang('loginout'); ?>"><?php echo GetLang('loginout'); ?></a> </li>
+      <li id="help"> <a href="http://www.dedeeims.com/help/" title="<?php echo GetLang('help'); ?>"><?php echo GetLang('help'); ?></a> </li>
+    </ul>
+    <p class="mL10">
+      <script type="text/javascript">
+      var now=(new Date()).getHours();
+			if(now>6&&now<=12) {
+				document.write("<?php echo GetLang('goodmorning'); ?>");
+			} else if(now>12&&now<=18) {
+				document.write("<?php echo GetLang('goodafternoon'); ?>");
+			} else {
+				document.write("<?php echo GetLang('goodevening'); ?>");
+			}
+			</script>
+      <i><?php echo $cfg_ml->M_UserName?></i> </p>
+    </span> </div>
+</div>
+<?php
+}
+?>

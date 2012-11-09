@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>会员权限管理</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">会员权限管理</div>
+</div>
+<table _dlist="line" class="tlist" align="center">
+  <form name="form1" action="member_rank.php" method="post">
+    <input type="hidden" name="dopost" value="save">
+    <tr height="28">
+      <td colspan="4">
+      	<strong><a href='member_rank.php'><u>会员级别管理</u></a> &gt; 会员详细级别：</strong>      </td>
+    </tr>
+    <tr bgcolor="#F8FCF1" height="24">
+      <td colspan="4"><strong>级别名称和级别值：（注册会员这个级别不能删除，否则会员系统将会无法正常使用某些功能）</strong></td>
+    </tr>
+    <tr bgcolor="#FDFEE9" height="24" align="center">
+      <td width="20%">级别名称</td>
+      <td width="20%">级别值</td>
+      <td width="15%">默认积分</td>
+      <td width="15%">权限</td>
+    </tr>
+	<input type="hidden" name="ID_<?php echo $k?>" value="<?php echo $row['id']; ?>">
+   <tr align="center" bgcolor="#FFFFFF" height="24">
+     <td>
+	      <input name="name_<?php echo $k?>" value="<?php echo $row['membername']; ?>" type="text" id="name_<?php echo $k?>" class='txt' />
+	   </td>
+     <td>
+	      <input name="rank_<?php echo $k?>" value="<?php echo $row['rank']; ?>"  type="text" id="rank_<?php echo $k?>" class='txt' />
+      </td>
+	   <td>
+	      <input name="scores_<?php echo $k?>"  value="<?php echo $row['scores']; ?>"  type="text" id="scores_<?php echo $k?>" class='txt' />
+	   </td>
+     <td align="center">
+     	<a href="member_rank.php?dopost=del&id=<?php echo $row['id']?>">删除</a>
+     </td>
+    </tr>
+			<input type="hidden" name="idend" value="<?php echo $k; ?>" />
+    <tr>
+      <td height="24" colspan="4" bgcolor="#F8FCF1">
+      	<input name="check_<?php echo $k?>" type="hidden" id="check_<?php echo $k?>"  class="np" value="1" checked='checked' />
+      </td>
+    </tr>
+    <tr>
+      <td height="36" colspan="4" align="center" bgcolor="#FFFFFF">
+ 
+        <button type="submit" class="btn1">保存</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn1" onclick="location.href='member_rank.php';">返回</button>
+       </td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

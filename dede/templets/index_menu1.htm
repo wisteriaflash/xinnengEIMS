@@ -1,0 +1,8 @@
+<?php
+foreach($menuMaps as $openitem => $val)
+{
+	echo '<div id="items_'.$mapNames[$openitem].'">';
+	GetMenus($cuserLogin->getUserRank(),'main');
+    echo '</div>';
+}
+?>

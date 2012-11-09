@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo GetLang('loggingin'); ?></title>
+<?php include(DEDEMEMBER."/templets/head_inc.htm"); ?>
+<script type="text/javascript">
+function changeAuthCode() {
+	var num = 	new Date().getTime();
+	var rand = Math.round(Math.random() * 10000);
+	num = num + rand;
+	if ($("#vdimgck")[0]) {
+		$("#vdimgck")[0].src = "../include/vdimgck.php?tag=" + num;
+	}
+	return false;	
+}
+</script>
+</head>
+<body>
+<?php include(DEDEMEMBER."/templets/head.htm"); ?>
+<div class="wrapper mT10" style="position:relative">
+  <div style="margin-top:50px"><img src="../member/templets/images/b.gif" width="950" height="180" /></div>
+  <div id="login" class="ccc pd10">
+    <div class="top">
+      <div class="notice"><?php echo GetLang('reg_needlogin');?></div>
+    </div>
+    <div class="theme">
+      <h4 class="mB10"><?php echo GetLang('login');?></h4>
+      <form name='form1' method='POST' action='index_do.php'>
+        <input type="hidden" name="fmdo" value="login" />
+        <input type="hidden" name="dopost" value="login" />
+        <input type="hidden" name="gourl" value="<?php if(!empty($gourl)) echo $gourl; ?>" />
+        <ul>
+          <li><span><?php echo GetLang('username'); ?></span>
+            <input name="userid" type="text" id="txtUsername" class="text" />
+          </li>
+          <li><span><?php echo GetLang('password'); ?></span>
+            <input name="pwd" type="password" id="txtPassword" class="text" />
+          </li>
+          <li><span><?php echo GetLang('validatecode'); ?></span>
+            <input name="vdcode" type="text" id="vdcode" style='width:50px;text-transform:uppercase;' class="text" />
+            <img id="vdimgck" src="../include/vdimgck.php" alt="<?php echo GetLang('needchange'); ?>" align="absmiddle" style="cursor:pointer" onclick="this.src=this.src+'?'" /> </li>
+          <li style="padding-left:30%">
+            <input id="btnSignCheck" name="" type="submit" value="<?php echo GetLang('login'); ?>" />
+            <span><a href="resetpassword.php" title="<?php echo GetLang('findpassword'); ?>" ><?php echo GetLang('findpassword'); ?></a></span></li>
+        </ul>
+      </form>
+    </div>
+    <div class="useNew">
+      <h4 class="mT10"><?php echo GetLang('regnew'); ?></h4>
+      <p class="signUp"><a href="index_do.php?fmdo=user&dopost=regnew"><?php echo GetLang('regnew'); ?></a></p>
+    </div>
+  </div>
+  <div class="ccc pd10">
+    <h4><?php echo GetLang('reg_service');?>：</h4>
+    <div class="allList mTB10 clear">
+      <div class="img"><img src="/member/templets/images/order.png" width="32" height="32" alt="<?php echo GetLang('reg_order_title'); ?>" /></div>
+      <div class="txt">
+        <h5 class="p1 blackA"><?php echo GetLang('reg_order_title'); ?></h5>
+        <p class="p2"><?php echo GetLang('reg_order'); ?></p>
+      </div>
+    </div>
+    <div class="allList mTB10 clear">
+      <div class="img"><img src="/member/templets/images/service.png" width="32" height="32" alt="<?php echo GetLang('reg_service_title'); ?>" /></div>
+      <div class="txt">
+        <h5 class="p1 blackA"><?php echo GetLang('reg_service_title'); ?></h5>
+        <p class="p2"><?php echo GetLang('reg_service'); ?></p>
+      </div>
+    </div>
+    <div class="allList mTB10 clear">
+      <div class="img"><img src="/member/templets/images/encrypt.png" width="32" height="32" alt="<?php echo GetLang('reg_encrypt_title'); ?>" /></div>
+      <div class="txt">
+        <h5 class="p1 blackA"><?php echo GetLang('reg_encrypt_title'); ?></h5>
+        <p class="p2"><?php echo GetLang('reg_encrypt'); ?></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<?php include(DEDEMEMBER."/templets/foot.htm"); ?>
+</body>
+</html>

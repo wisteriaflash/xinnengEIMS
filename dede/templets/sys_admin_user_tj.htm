@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>管理员帐号--绩效统计</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+<script language='javascript' src='../include/dedeajax2.js'></script>
+<script language='javascript'>
+	//gcontainer,mShowError,mShowWait,mErrCon,mErrDisplay,mWaitDisplay
+	function LoadUser(uid)
+	{
+		var loadhtml = $DE('loaddiv').innerHTML;
+		var ajaxdiv = $DE('userct'+uid);
+		var myajax = new DedeAjax(ajaxdiv, true, true, '载入失败！', loadhtml);
+		myajax.SendGet2('sys_admin_user_tj.php?dopost=getone&uid='+uid);
+	}
+</script>
+<style>
+.userct {
+	padding-top:12px;
+	width:100%;
+	height:60px;
+}
+</style>
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">管理员绩效统计</div>
+</div>
+<div id='loaddiv' style='display:none'>
+	<p align='center'><img src='img/loadinglit.gif' /> 请稍后，正在载入中...</p>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"></td>
+      <td align="right"><strong><a href="sys_admin_user.php"><u>管理员帐号</u></a></strong>&gt; <strong>编辑绩效统计</strong></td>
+    </tr>
+  </tbody>
+</table>
+<table _dlist="line" class="tlist">
+<tr>
+  <td height="269" valign="top" bgcolor="#FFFFFF">
+  <?php
+  $dsql->Execute('me', 'Select * From `#@__admin` order by id asc');
+  while( $arr = $dsql->GetArray('me') )
+  {
+  	echo "<div id='userct{$arr['id']}' class='userct'><p align='center'><img src='img/loadinglit.gif' /> 请稍后，正在载入中...</p></div>\r\n<script language='javascript'>LoadUser({$arr['id']});</script>\r\n";
+  }
+  ?>
+  </td>
+</tr>
+</table>
+</body>
+</html>

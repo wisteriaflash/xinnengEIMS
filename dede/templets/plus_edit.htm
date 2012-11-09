@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>修改插件</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">插件管理</div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"> <b>&nbsp;<a href="plus_main.php"><u>插件管理</u></a> 
+        &gt; 修改插件：</b> </td>
+      <td align="right"></td>
+    </tr>
+  </tbody>
+</table>
+<table _dlist="line" class="tlist">
+  <form name="form1" action="plus_edit.php" method="post">
+   <input type='hidden' name='dopost' value='saveedit'>
+   <input type='hidden' name='aid' value='<?php echo $aid?>'>
+    <tr> 
+      <td width="19%" align="center" bgcolor="#FFFFFF">插件名称</td>
+      <td width="81%" bgcolor="#FFFFFF">
+      	<input name='plusname' type='text' class="txt" style='width:180px' value='<?php echo $row['plusname']?>'>
+      </td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#FFFFFF">作者</td>
+      <td bgcolor="#FFFFFF">
+      	<?php echo $row['writer']?>
+      </td>
+    </tr>
+     <tr> 
+      <td align="center" bgcolor="#FFFFFF">菜单配置</td>
+      <td bgcolor="#FFFFFF">
+      	<textarea name="menustring" rows="6" class="txt" id="menustring" style="width:80%"><?php echo $row['menustring']?></textarea>
+      </td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#FFFFFF">文件列表</td>
+      <td bgcolor="#FFFFFF">文件用&quot;,&quot;分开，路径相对于管理目录（当前目录）<br>
+      <textarea name="filelist" rows="8" class="txt" id="filelist" style="width:80%"><?php echo $row['filelist']?></textarea></td>
+    </tr>
+    <tr bgcolor="#F9FDF0"> 
+      <td height="28" colspan="2">
+      	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td width="26%">&nbsp;</td>
+            <td width="15%">
+             <button type="submit" class="btn1">提交</button>
+           </td>
+            <td width="59%">
+             <button type="submit" class="btn1" onClick="location='plus_main.php';">返回</button></td>
+          </tr>
+        </table>
+        </td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

@@ -1,0 +1,269 @@
+@import url("global.css");
+/*
+
+“红色” 样式
+
+2008.8.12 10:48 for Fangyu12@gmail.com
+
+Last modified 2008.10.06 15:30
+
+Copyright (c) 2008, DedeEIMS All rights reserved.
+
+*/
+/* 页眉
+-------------------------------------------------------------------*/
+#topBar {
+	line-height:25px;
+	height:25px;
+	background-color:#EEEEEE;
+}
+#topBar ol li {
+	margin-left: -1px;
+	border-left: 1px solid #999;
+	height:14px;
+	line-height:14px;
+	padding-right: 8px;
+	padding-left: 10px;
+}
+#userMenu li {
+	padding-right: 8px;
+	padding-left: 8px;
+}
+#userMenu li a {
+	background-image: url(../images/u.gif);
+	background-repeat: no-repeat;
+	display: block;
+	float:left;
+	padding-left:20px;
+}
+#userMenu li a.person {
+	background-position: left 5px;
+}
+#userMenu li a.favorite {
+	background-position: left -16px;
+}
+#userMenu li a.exit{
+	background:none;
+}
+#search {
+	background-image: url(../images/s.jpg);
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 231px;
+	margin-top:30px;
+}
+#search input {
+	background-image: none;
+	border-style: none;
+	width: 160px;
+	background-color: transparent;
+}
+#search button {
+	background-image: none;
+	border-style: none;
+	width: 50px;
+	background-color: transparent;
+}
+/* 导航菜单
+-------------------------------------------------------------------*/
+#navMenu li {
+	background-image: url(../images/l.jpg);
+	background-repeat: no-repeat;
+	background-position: left center;
+	width: 90px;
+	margin-left: -2px;
+}
+#navMenu a {
+	color:#fff;
+	text-align:center;
+	display:block;
+	font-size: 14px;
+	text-decoration: none;
+	padding-right: 10px;
+	padding-left: 10px;
+	white-space: nowrap;
+	margin-left: 2px;
+}
+#navMenu a.thisclass,
+#navMenu a:hover,
+#navMenu a:active{
+	background-image: url(../images/bg.png);
+	background-repeat: repeat-x;
+	background-position: 0px -120px;
+	color:#DDF1A3;
+}
+#res {
+	background-image: url(../images/r.gif);
+	background-repeat: no-repeat;
+	background-position: left -40px;
+	height: 20px;
+	width: 46px;
+	display:block;
+	text-decoration: none;
+}
+
+/* 当前位置
+-------------------------------------------------------------------*/
+#position {
+	line-height: 32px;
+	height: 32px;
+}
+#position li.home {
+	background-image: url(../images/r.gif);
+	background-repeat: no-repeat;
+	background-position: 0 3px;
+	height: 31px;
+	float: left;
+	padding-left: 20px;
+}
+#position li {
+	margin:0 3px;
+	background-image: url(../images/square.gif);
+	background-repeat: no-repeat;
+	background-position: -6000px center;
+	padding-left: 1em;
+}
+/* 产品导航
+-------------------------------------------------------------------*/
+#navigation .sort {
+	font-size: 12px;
+	font-weight: normal;
+	background-image: url(../images/nt.gif);
+	background-position: left center;
+	height: 26px;
+	line-height:26px;
+	text-indent: 15px;
+	cursor:pointer;
+	background-repeat: no-repeat;
+}
+#navigation .hover {
+	background-image: url(../images/nt.gif);
+	background-position: left center;
+	background-color: #f6f6f6;
+}
+#navigation .menu li {
+	background-repeat: no-repeat;
+	background-position: -7000px; center;
+	line-height: 25px;
+	margin-left: 2em;
+}
+#navigation .menu li a {
+	margin-left: 1em;
+}
+/* 关于我们
+-------------------------------------------------------------------*/
+#about li {
+	line-height: 29px;
+	font-weight: bold;
+	background-image: url(../images/a.jpg);
+	background-repeat: no-repeat;
+	text-indent: 2em;
+	height: 29px;
+	width: 230px;
+	margin-bottom:5px;
+}
+/* 文章小工具
+-------------------------------------------------------------------*/
+#tools li{
+	padding-left:22px;
+	background-image:url(../images/c.gif);
+	background-repeat:no-repeat;
+	margin-right:10px;
+}
+#tools li a{
+	color:#777;
+}
+#tools li#act-fav{
+	background-position:4px 3px;
+}
+#tools li#act-err{
+	background-position:4px -34px;
+}
+#tools li#act-pus{
+	background-position:4px -70px;
+}
+#tools li#act-pnt{
+	background-position:4px -106px;
+}
+#ask {
+	background-image: url(../images/x.gif);
+	background-repeat: no-repeat;
+	display: block;
+	height: 20px;
+	width: 72px;
+	margin-top:2px;
+}
+
+/* 新闻动态列表
+-------------------------------------------------------------------*/
+#news li {
+	background-image: url(../images/lt.gif);
+	background-repeat: no-repeat;
+	background-position: left 7px;
+	padding-left: 20px;
+	border-bottom: 1px solid #e2e2e2;
+	margin-bottom: 8px;
+	padding-bottom: 8px;
+	line-height:26px;
+}
+/* 搜索结果
+-------------------------------------------------------------------*/
+#resultlist {
+	padding:2px 20px;
+}
+#resultlist h2 {
+	display:none;
+}
+/* 产品
+-------------------------------------------------------------------*/
+#products {
+	overflow:hidden;
+}
+#products li {
+	width:33.3%;
+	float:left;
+	margin-top: 20px;
+	position: relative;
+}
+#products dl {
+	padding:15px;
+	height: 240px;
+	width: 178px;
+	margin: 0px auto;
+	background-image: url(../images/img_bg.png);
+	background-repeat: no-repeat;
+}
+#products dl dt {
+	margin-bottom:10px;
+}
+#products dl dt a {
+	display: table-cell !important;
+	display:block;
+	height:162px;
+	font-size:130px;
+	width:178px;
+	overflow:hidden;
+	text-align:center;
+	vertical-align:middle;
+}
+#products dl dt img {
+	vertical-align:middle;
+	max-width:178px;
+	max-height:162px;
+	width:expression(this.width>178?178:true);
+	height:expression(this.height>162?162:true);
+	border-width: 0px;
+}
+#products dl dd {
+	margin-top:3px;
+}
+#products dl dt .noLitpic {
+	background-image: url(../images/litpic.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+#products dl dt .vipLitpic {
+	background-image: url(../images/litpic.gif);
+	background-repeat: no-repeat;
+	background-position: left -162px;
+}

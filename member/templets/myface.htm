@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo GetLang('faceset'); ?></title>
+<?php include(DEDEMEMBER."/templets/head_inc.htm"); ?>
+<script type="text/javascript">
+$(function() {
+	$("#navigation .sort").click(function(){
+		$(this).next(".menu").toggleClass("invisible");
+		$(this).toggleClass("hover");
+	})
+})
+</script>
+</head>
+<body>
+<?php include(DEDEMEMBER."/templets/head.htm"); ?>
+<div class="wrapper mT10">
+  <div class="west">
+    <?php include(DEDEMEMBER."/templets/menu.htm"); ?>
+  </div>
+  <div class="east mL10">
+    <div class="heading"><strong class="icon info mL10" style="width:400px;"><?php echo GetLang('personaldata'); ?></strong></div>
+    <ul class="titleTabBar fLeftChild mT10">
+      <li><a href="myinfo.php"><?php echo GetLang('mydata'); ?></a></li>
+      <li class="select"><a href=""><?php echo GetLang('faceset'); ?></a></li>
+    </ul>
+    <div class="clear"></div>
+    <form class="mTB10 mL10 mR10" action="myface.php" method="post" enctype="multipart/form-data" name="form1">
+      <input type="hidden" name="dopost" value="save" />
+      <table cellspacing="1" class="submit">
+        <tbody>
+          <tr>
+            <td width="15%" align="right" valign="top"><?php echo GetLang('desurl'); ?></td>
+            <td><input name='oldface' type='hidden' id='oldface' value='<?php echo $face; ?>' />
+              <input name='faceurl' type='text' id='faceurl' size='35' class='text' style='width:250px' value='<?php echo $face; ?>' /></td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('choosefile'); ?></td>
+            <td><input name="face" type="file" id="face" size="45" />
+              180 x 180px</td>
+          </tr>
+          <tr>
+            <td align="right" valign="top"><?php echo GetLang('oldface'); ?></td>
+            <td><div id="faceview" class="overflow mTB10">
+                <?php
+       	if($face!='') echo " <img src='$face' alt=‘头像’ />\r\n";
+       	?>
+              </div></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td height="45">&nbsp;</td>
+            <td height="45"><button class="button2" type="submit"><?php echo GetLang('update'); ?></button>
+              <button class="button2 mL10" type="reset"><?php echo GetLang('reset'); ?></button></td>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
+  </div>
+</div>
+<div class="clearfix"></div>
+<?php include(DEDEMEMBER."/templets/foot.htm"); ?>
+</body>
+</html>

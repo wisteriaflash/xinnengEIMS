@@ -1,0 +1,38 @@
+<div id="topBar">
+  <div class="wrapper">
+  <div class="login">
+      <div id="_userlogin">
+        <form name="userlogin" action="/member/index_do.php" method="POST">
+          <input type="hidden" name="fmdo" value="login" />
+          <input type="hidden" name="dopost" value="login" />
+          <input type="hidden" name="keeptime" value="604800" />
+          <ul class="fLeftChild">
+            <li>
+              <label>{dede:lang.username/}</label>
+              <input type="text" name="userid" class="text" style="width:80px;" />
+            </li>
+            <li>
+              <label>{dede:lang.password/}</label>
+              <input type="password" name="pwd" class="text" style="width:80px;" />
+            </li>
+            <li>
+              <label>{dede:lang.validatecode/}</label>
+              <input type="text" name="vdcode" class="text" style="width:50px;"/>
+              <img src="{dede:global.cfg_cmsurl/}/include/vdimgck.php" alt="{dede:lang.validatecode/}" align="absmiddle"/></li>
+            <li>
+              <input class="mL5 mR5" name="submit" type="submit" value="{dede:lang.login/}" />
+            </li>
+            <li><a href="/member/index_do.php?fmdo=user&dopost=regnew" target="_blank">{dede:lang.register/}</a></li>
+          </ul>
+        </form>
+      </div>
+    </div>
+    <script language="javascript" type="text/javascript">CheckLogin();</script>
+    <ol class="fRight fLeftChild overflow mT5">
+    {dede:langlist}
+      <li><a href="[field:typeurl/]" title="[field:langname/]">[field:langname/]</a></li>
+    {/dede:langlist} 
+    </ol>
+    <i class="fRight">{dede:lang.langent/}</i>
+  </div>
+</div>

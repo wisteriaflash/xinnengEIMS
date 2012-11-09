@@ -1,0 +1,186 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>查看会员</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+<script language='javascript'src='../data/enums/area.js'></script>
+<script>
+function checkSubmit()
+{
+  if(document.form2.email.value=="")
+  {
+    document.form2.email.focus();
+    alert("Email不能为空！");
+    return false;
+  }
+  if(document.form2.uname.value=="")
+  {
+    document.form2.uname.focus();
+    alert("用户昵称不能为空！");
+    return false;
+  }
+}
+</script>
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">网站会员管理</div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"><a href='<?php echo $ENV_GOBACK_URL; ?>'><b>会员管理</b></a>&gt;&gt;查看会员</td>
+      <td align="right">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table _dlist="line" class="tlist">
+<tr>
+<td height="200" bgcolor="#FFFFFF">
+	<?php
+	if($row['matt']==10) echo "<font color='red'>当前用户是网站管理员关连的帐号，在本页只能修改基本资料，不能修改密码！</font>";
+	?>
+	<table width="98%" border="0" cellspacing="0" cellpadding="0" >
+        <tr> 
+          <td colspan="2" height="10" ></td>
+        </tr>
+        <form name="form2" action="member_do.php" method="post" onSubmit="return checkSubmit();">
+          <input type="hidden" name="dopost" value="edituser" />
+          <input type="hidden" name="id" value="<?php echo $id?>" />
+          <tr> 
+            <td width="17%" height="28" align="right" >用户名：</td>
+            <td width="83%" height="28" > 
+              <?php
+			  echo "<b>".$row['userid']."</b>";
+              if($row['face']!='') {
+			     echo "<br /><img src='{$row['face']}' width='80'/>";
+			  }
+			  ?>
+             </td>
+          </tr>
+          <tr> 
+            <td height="28" align="right" >密　码：</td>
+            <td height="28" >
+            <input name="pwd" type="text" class="txt" id="pwd" />
+            (不修改留空)
+            </td>
+          </tr>
+          <tr> 
+            <td height="28" align="right" >注册时间：</td>
+            <td height="28" > 
+              <?php echo GetDateTimeMk($row['jointime'])?>
+              　ＩＰ： 
+              <?php echo $row['joinip']?>
+             </td>
+          </tr>
+          <tr> 
+            <td height="28" align="right" >最近登录时间：</td>
+            <td height="28" > 
+              <?php echo GetDateTimeMk($row['logintime'])?>
+              　ＩＰ： 
+              <?php echo $row['loginip']?>
+             </td>
+          </tr>
+          <tr> 
+            <td height="28" align="right" >推荐级别：</td>
+            <td height="28" >
+            <input name="matt" type="text" id="matt" value="<?php echo $row['matt']?>" size="3" />
+            (0为普通，1为推荐, 10 为管理员)
+            </td>
+          </tr>
+          <tr> 
+            <td height="28" align="right" >等级：</td>
+            <td height="28" >
+            <?php
+             $MemberTypes = '';
+             $dsql->SetQuery("Select rank,membername From `#@__arcrank` where rank>0");
+             $dsql->Execute('n');
+             $MemberTypes[0] = "限制会员";
+             while($nrow = $dsql->GetObject('n')){
+	              $MemberTypes[$nrow->rank] = $nrow->membername;
+             }
+             $options = "<select name='rank' style='width:80px'>\r\n";
+             foreach($MemberTypes as $k=>$v)
+             {
+  	            if($k!=$row['rank']) $options .= "<option value='$k'>$v</option>\r\n";
+  	            else $options .= "<option value='$k' selected>$v</option>\r\n";
+             }
+             $options .= "</select>\r\n";
+			 echo $options;
+			?>
+            </td>
+          </tr>
+          <tr> 
+            <td height="28" align="right" >称　呼：</td>
+            <td height="28" >
+            <input name="uname" type="text" class="txt" id="uname" style="width:150px;" value="<?php echo $row['uname']?>" size="20" />
+           </td>
+          </tr>
+          <tr> 
+            <td height="28" align="right" >性　别：</td>
+            <td height="28" >
+            <input type="radio" name="sex" class="np" value="1"<?php if($row['sex']=="1" ) echo" checked='1'" ;?> />
+              男 &nbsp; 
+             <input type="radio" name="sex" class="np" value="2"<?php if($row['sex']=="2" ) echo" checked='1'" ;?> />
+              女
+             </td>
+          </tr>
+          <tr height="28">
+                <td align="right"><span>公司名称：</span></td>
+                <td>
+          <input name="company" type="text" id="company" class="txt" value="<?php echo $row['company']; ?>" style="width:150px;" />
+        </td></tr>
+        <tr> 
+            <td height="28" align="right" >电子邮箱：</td>
+            <td height="28" >
+            <input name="email" type="text" class="txt" id="email" style="width:150px;" value="<?php echo $row['email']?>" />
+            </td>
+         </tr>
+        <tr height="28">
+                <td align="right"><span>手 机：</span></td>
+                <td>
+          <input name="mobile" type="text" id="mobile" class="txt" value="<?php echo $row['mobile']; ?>" style="width:150px;"/>
+        </td></tr>
+        <tr height="28">
+                <td align="right"><span>电 话：</span></td>
+                <td>
+          <input name="tel" type="text" id="tel" class="txt" value="<?php echo $row['tel']; ?>" style="width:150px;" />
+        </td></tr>
+        <tr height="28">
+                <td align="right"><span>传 真：</span></td>
+                <td>
+          <input name="fax" type="text" id="fax" class="txt" value="<?php echo $row['fax']; ?>" style="width:150px;" />
+        </td></tr>
+        <tr height="28">
+                <td align="right"><span>公司地址：</span></td>
+                <td>
+          <input name="address" type="text" id="address" class="txt" style='width:350px;' value="<?php echo $row['address']; ?>" />
+        </td></tr>
+          <tr> 
+            <td width="17%" height="28" align="right">特殊操作：</td>
+            <td width="83%">
+              <a href='member_do.php?dopost=memberlogin&id=<?php echo $row['mid']; ?>' target='_blank'><u>登陆到此用户控制面板</u></a>
+              |
+              <a href='../member/pm.php?dopost=send&uid=<?php echo $row['userid']; ?>' target='_blank'><u>向此用户发短信</u></a>
+            </td> 
+          </tr>
+          <tr> 
+            <td height="67" align="right" >&nbsp;</td>
+            <td height="67" >
+            <button type="submit" class="btn1">确定修改</button>
+              &nbsp;&nbsp;
+            <button type="reset" class="btn1">重置表单</button>
+            </td>
+          </tr>
+        </form>
+    </table>
+    </td>
+</tr>
+</table>
+</body>
+</html>

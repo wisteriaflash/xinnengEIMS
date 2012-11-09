@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DedeEIMS安装向导</title>
+<link href="base.css" rel="stylesheet" type="text/css" />
+<link href="tbody.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="container">
+  <div class="top">
+    <div class="title">DedeEIMS安装向导 - 环境检测</div>
+    <div class="version">V1.1</div>
+  </div>
+  <div class="cleft">
+    <div class="cimg" style="margin-top:400px"></div>
+  </div>
+  <div class="cright">
+    <div class="cinfo">
+      <table cellspacing="0" cellpadding="0" border="0" align="center" class="twbox">
+        <thead>
+          <tr>
+            <td colspan="2"><strong>服务器信息</strong></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th width="300" align="left"><strong>参数</strong></th>
+            <th width="424" align="left"><strong>值</strong></th>
+          </tr>
+          <tr>
+            <td>服务器域名</td>
+            <td><?php echo $sp_name; ?></td>
+          </tr>
+          <tr>
+            <td>服务器操作系统</td>
+            <td><?php echo $sp_os; ?></td>
+          </tr>
+          <tr>
+            <td>服务器解译引擎</td>
+            <td><?php echo $sp_server; ?></td>
+          </tr>
+          <tr>
+            <td>PHP版本</td>
+            <td><?php echo $phpv; ?></td>
+          </tr>
+          <tr>
+            <td>系统安装目录</td>
+            <td><?php echo DEDEROOT; ?></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cinfo">
+      <table cellspacing="0" cellpadding="0" border="0" align="center" class="twbox">
+        <thead>
+          <tr>
+            <td colspan="3"><strong>系统环境检测</strong></td>
+          </tr>
+          <tr>
+            <td colspan="3">系统环境要求必须满足下列所有条件，否则系统或系统部份功能将无法使用。 </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th align="left" width="154"><strong>需开启的变量或函数</strong></th>
+            <th width="56" align="left"><strong>要求</strong></th>
+            <th width="320" align="left"><strong>实际状态及建议</strong></th>
+          </tr>
+          <tr>
+            <td>allow_url_fopen</td>
+            <td align="center">On </td>
+            <td><?php echo $sp_allow_url_fopen; ?>(<small>不符合要求将导致采集、远程资料本地化等功能无法应用)</small></td>
+          </tr>
+          <tr>
+            <td>safe_mode</td>
+            <td align="center">Off</td>
+            <td><?php echo $sp_safe_mode; ?><small>(本系统不支持在<span class="STYLE2">非win主机的安全模式</span>下运行)</small></td>
+          </tr>
+          <tr>
+            <td>GD 支持 </td>
+            <td align="center">On</td>
+            <td><?php echo $sp_gd; ?><small>(不支持将导致与图片相关的大多数功能无法使用或引发警告)</small></td>
+          </tr>
+          <tr>
+            <td>MySQL 支持</td>
+            <td align="center">On</td>
+            <td><?php echo $sp_mysql; ?><small>(不支持无法使用本系统)</small></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cinfo">
+      <table cellspacing="0" cellpadding="0" border="0" align="center" class="twbox">
+        <thead>
+          <tr>
+            <td colspan="3"><strong>目录权限检测</strong></td>
+          </tr>
+          <tr>
+            <td colspan="3">系统要求必须满足下列所有的目录权限全部可读写的需求才能使用，其它应用目录可安装后在管理后台检测。 </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th align="left" width="300"><strong>目录名</strong></th>
+            <th width="212" align="left"><strong>读取权限</strong></th>
+            <th width="212" align="left"><strong>写入权限</strong></th>
+          </tr>
+          <?php
+			foreach($sp_testdirs as $d)
+			{
+			?>
+          <tr>
+            <td><?php echo $d; ?></td>
+            <?php
+      		$fulld = DEDEROOT.str_replace('/*','',$d);
+      		$rsta = (is_readable($fulld) ? '<font color=green>[√]读</font>' : '<font color=red>[×]读</font>');
+	    		$wsta = (TestWrite($fulld) ? '<font color=green>[√]写</font>' : '<font color=red>[×]写</font>');
+	    		echo "<td>$rsta</td><td>$wsta</td>\r\n";
+      ?>
+          </tr>
+          <?php
+			}
+			?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="copyright">© 2004-2008 <a href="http://www.desdev.cn" target="_blank">DesDev Inc.</a></div>
+    <div class="cbuttom">
+      <button type="button" class="btn1" onclick="window.location.href='index.php';">上一步</button>
+      <button type="submit" class="btn1" onclick="window.location.href='index.php?step=3';">下一步</button>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+</body>
+</html>

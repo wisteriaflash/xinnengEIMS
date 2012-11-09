@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:field.title/}</title>
+<link href="{dede:global.cfg_templeturl/}/blue/css/greenstyle.css" rel="stylesheet" type="text/css" />
+<link href="{dede:global.cfg_templeturl/}/blue/css/facebox.css" rel="stylesheet" type="text/css" />
+<meta name="keywords" content="{dede:field.keywords /}" />
+<meta name="description" content="{dede:field.description function='html2text(@me)'/}" />
+<script type="text/javascript" src="{dede:global.cfg_clihost/}/images/js/j.js"></script>
+<script language="javascript" type="text/javascript" src="{dede:global.cfg_cmsurl/}/include/dedeajax2.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templeturl/}/blue/js/jcarousellite.js"></script>
+<script type="text/javascript">
+function CheckLogin()
+{
+	  var taget_obj = document.getElementById('_userlogin');
+	  myajax = new DedeAjax(taget_obj,false,false,'','','');
+	  myajax.SendGet2("{dede:global.cfg_cmsurl/}/member/ajax_loginsta.php");
+	  DedeXHTTP = null;
+}
+$(function() {
+	$("#navigation .sort").click(function(){
+		$(this).next(".menu").toggleClass("invisible");
+		$(this).toggleClass("hover");
+	})
+});
+$(function() {
+	$("#navigation .sort").click(function(){
+		$(this).next(".menu").toggleClass("invisible");
+		$(this).toggleClass("hover");
+	})
+	if ($.facebox) 
+    $('a[rel*=facebox]').facebox({
+		loading_image : '{dede:global.cfg_templeturl/}/blue/images/facebox/loading.gif',
+		close_image   : '{dede:global.cfg_templeturl/}/blue/images/facebox/closelabel.gif',
+		next_image    : '{dede:global.cfg_templeturl/}/blue/images/facebox/fast_forward.png',
+		play_image    : '{dede:global.cfg_templeturl/}/blue/images/facebox/play.png',
+		pause_image   : '{dede:global.cfg_templeturl/}/blue/images/facebox/pause.png',
+		prev_image    : '{dede:global.cfg_templeturl/}/blue/images/facebox/rewind.png'
+    }) 
+
+	$(".scroll").jCarouselLite({})
+});
+function ChangePic(picsrc, imgid)
+{
+	$(imgid).get(0).src = picsrc;
+}
+</script>
+</head>
+<body>
+{dede:include filename="header.htm"/}
+<div class="wrapper">
+  <div class="fLeft"> <img src="{dede:global.cfg_templeturl/}/blue/images/logo.jpg" width="199" height="33" vspace="14" class="fLeft" /> </div>
+  <form id="search" class="fRight" action="{dede:global.cfg_phpurl/}/search.php" name="formsearch">
+    <input type='hidden' name='lang' value='{dede:handlang/}' />
+    <input name='keyword' type='text' class="text" />
+    <button name="searchbt" type="submit">&nbsp;</button>
+  </form>
+  <div class="clear"></div>
+  <div class="module green wrapper mT10">
+    <div class="top">
+      <div class="t_l"></div>
+      <div class="t_r"></div>
+      <ul id="navMenu" class="fLeftChild overflow fLeft">
+        {dede:channel get='index'}
+        <li><a href="[field:typeurl/]">[field:lang.indexname/]</a></li>
+        {/dede:channel}
+        {dede:channel type='top'}
+        <li><a href='[field:typeurl/]'>[field:typename/]</a></li>
+        {/dede:channel}
+      </ul>
+      <span class="mT5 mR5"><a id="res" href="{dede:global.cfg_clihost/}/data/rssmap.html"></a></span> </div>
+  </div>
+  <div class="module silver wrapper mT10">
+    <div class="top">
+      <div class="t_l"></div>
+      <div class="t_r"></div>
+      <ul id="position" class="fLeftChild overflow">
+        <li class="home"><a href="{dede:global.cfg_clihost/}">{dede:lang.indexname/}</a></li>
+        > {dede:field name='position'/}
+      </ul>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="west">
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.productcatalog/}</strong></dt>
+        <dd class="body pB5">
+          <ul id="navigation">
+            {dede:cattree}{/dede:cattree}
+          </ul>
+        </dd>
+      </dl>
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.hotproduct/}</strong></dt>
+        <dd class="body pB5 grayA">
+          <ol class="list">
+            {dede:arclist channelid='6' row='6'}
+            <li><b class="[field:global.autoindex runphp='yes']@me = (@me<=3)? "highlight" : "";[/field:global.autoindex]">[field:global.autoindex/]</b><a href='[field:arcurl/]'>[field:title/]</a></li>
+            {/dede:arclist}
+          </ol>
+        </dd>
+      </dl>
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.contactus/}</strong></dt>
+        <dd class="body pB5">
+          <ol class="list">
+            {dede:mylang eid='contacttype' /}
+          </ol>
+        </dd>
+      </dl>
+    </div>
+    <div class="east">
+      <dl class="e2e2e2 mTB10">
+        <dt class="heading"><strong class="mL5">{dede:lang.productinfo/}</strong></dt>
+        <dd class="body pB5">
+          <h2 class="mTB10 aBlack">{dede:field.title /}</h2>
+          <div class="pB5 dashed">{dede:lang.promulgator/}：{dede:field.writer/}　 {dede:lang.pubdate/}：{dede:field.pubdate function="MyDate('Y-m-d H:i',@me)"/}　 {dede:lang.visitor/}：
+            <script src="{dede:field name='phpurl'/}/count.php?view=yes&aid={dede:field name='id'/}&mid={dede:field name='mid'/}" type='text/javascript' language="javascript"></script>
+          </div>
+          <div class="artContent">
+            <center>
+						 {dede:field name='bigpic' row='1'}
+             <div id='bigpic'>
+               <a href="[field:imgsrc/]" title="[field:text/]" rel="facebox"><img src="[field:imgsrc/]" id="bigpicimg" /></a>
+             </div>
+             {/dede:field}
+              <div class="jCarouselLite mTB10">
+                <button class="imgScroll prev fLeft" type="button" onfocus="this.blur()">&nbsp;</button>
+                <div class="scroll overflow fLeft" style="width:95%">
+                  <ul class="w25 textCenter">
+                  {dede:productimagelist}
+                  <li><a href="javascript:ChangePic('[field:imgsrc/]', '#bigpicimg');" title="[field:text/]" rel="facebox"><img src="[field:imgsrc/]" width="120" height="90" /></a></li>
+                  {/dede:productimagelist}
+                  </ul>
+                </div>
+                <button class="imgScroll next fRight" type="button" onfocus="this.blur()">&nbsp;</button>
+                <div class="clear"></div>
+              </div>
+            </center>
+            <table width="98%"  border="0" align="center" class="tList mTB10" style="font-size:12px">
+              <thead>
+                <tr>
+                  <th colspan="4" align="left">{dede:lang.productinfo/}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th width="25%" class="aBlack">{dede:lang.standard/}</th>
+                  <td width="25%">{dede:field.psize /}</td>
+                  <th width="25%"class="aBlack">{dede:lang.brand/}</th>
+                  <td width="25%">{dede:field.brand /}</td>
+                </tr>
+                <tr>
+                  <th class="aBlack">{dede:lang.rfprice/}:</th>
+                  <td><span class="aRed fLeft">￥{dede:field.rfprice/}</span><a class="fLeft mL10" id="ask" href="{dede:global.cfg_cmsurl/}/plus/product_orders.php?aid={dede:field.id/}" title="{dede:lang.inquiry/}" target="_blank"></a></td>
+                  <th>&nbsp;</th>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th colspan="4" align="left" class="aBlack">{dede:lang.introduce/}</th>
+                </tr>
+                <tr>
+                  <td colspan="4">{dede:field.body /}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="clear fRight fLeftChild" id="tools">
+            <li class="act-pnt"><a href="#" onclick="window.print();">{dede:lang.print/}</a></li>
+            <li class="act-pus"><a href="{dede:field name='phpurl'/}/recommend.php?aid={dede:field.id/}&lang={dede:handlang/}" target="_blank">{dede:lang.recommend/}</a></li>
+            <li class="act-fav"><a href="{dede:field name='phpurl'/}/stow.php?aid={dede:field.id/}&lang={dede:handlang/}" target="_blank">{dede:lang.favorite/}</a></li>
+            <li class="act-fb"><a href="{dede:field name='phpurl'/}/feedback.php?aid={dede:field.id/}&lang={dede:handlang/}" target="_blank">{dede:lang.feedback/}</a></li>
+          </ul>
+          <div class="clearfix"></div>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  {dede:include filename='footer.htm' /} </div>
+</body>
+</html>

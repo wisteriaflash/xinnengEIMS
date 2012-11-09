@@ -1,0 +1,440 @@
+@import url("global.css");
+/*
+
+“红色” 样式
+
+2008.8.12 10:48 for Fangyu12@gmail.com
+
+Last modified 2008.10.06 15:30
+
+Copyright (c) 2008, DedeEIMS All rights reserved.
+
+*/
+/* 页眉
+-------------------------------------------------------------------*/
+/* 登入信息
+-------------------------------------------------------------------*/
+#topBar {
+	float: right;
+	height: 12px;
+	line-height: 12px;
+	margin-top: 25px;
+}
+#topBar span, #topBar #userMenu li {
+	padding-right: 8px;
+	padding-left: 8px;
+	line-height: 12px;
+	height: 12px;
+	padding-top: 1px;
+	white-space: nowrap;
+}
+#topBar p {
+	float: right;
+}
+#topBar p i {
+	font-style: normal;
+	padding-right: 3px;
+	color:#90c304;
+}
+#topBar #userMenu {
+	float: right;
+}
+#topBar #userMenu li {
+	float: left;
+}
+#topBar #userMenu li#help {
+	border-left-width: 2px;
+	border-left-style: solid;
+	border-left-color: #91c300;
+	text-align: right;
+	padding-right: 0px;
+}
+/* 导航
+-------------------------------------------------------------------*/
+#navigation {
+	border:1px solid #CFCFCF;
+}
+#navigation .sort {
+	font-size: 14px;
+	font-weight: normal;
+	background-image: url(../images/t_bg.gif);
+	background-position: left -36px;
+	height: 35px;
+	line-height:35px;
+	text-indent: 15px;
+	cursor:pointer;
+	background-repeat: no-repeat;
+}
+#navigation .menu li {
+	background-image: url(../images/square.gif);
+	background-repeat: no-repeat;
+	background-position: -7000px;
+center;
+	line-height: 25px;
+	height: 25px;
+	margin-left: 2em;
+}
+#navigation .menu li a {
+	margin-left: 1em;
+}
+/* 栏目分页
+-------------------------------------------------------------------*/
+.titleTabBar {
+	background-image: url(../images/t.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+	height: 37px;
+}
+.titleTabBar li a {
+	height:37px;
+	line-height:31px;
+	display:block;
+	float:left;
+	cursor:pointer;
+	padding-top: 0;
+	padding-right: 21px;
+	padding-bottom: 0;
+	padding-left: 21px;
+}
+.titleTabBar li a:hover {
+	text-decoration: none;
+}
+.titleTabBar li.select a {
+	padding-right: 20px;
+	padding-left: 20px;
+	color: #FFF;
+	background-image: url(../images/t.gif);
+	background-repeat: no-repeat;
+	background-position: center -163px;
+}
+/* 好友列表
+-------------------------------------------------------------------*/
+.buddy {
+	line-height: 24px;
+}
+.buddy dt {
+	background-position: -5000px center;
+	background-repeat: no-repeat;
+	padding-left: 15px;
+}
+.buddy li {
+	margin-left:1em;
+}
+/* 表格-列表
+-------------------------------------------------------------------*/
+table.list1 {
+	color: #666;
+	width: 100%;
+	border: 1px solid #dddddd;
+}
+table.list1 thead th, table.list1 tbody td {
+	white-space: nowrap;
+	padding-right: 4px;
+	padding-left: 4px;
+	border-right: 1px solid #DDDDDD;
+}
+table.list1 thead th {
+	text-align: center;
+	color: #2F2F2F;
+	font-weight: normal;
+	line-height: 24px;
+	height: 24px;
+	background-image: url(../images/bg_th.gif);
+	background-repeat: repeat-x;
+	background-position: left top;
+}
+table.list1 thead a:hover {
+	text-decoration: none;
+}
+table.list1 thead th img {
+	vertical-align: middle;
+}
+table.list1 tbody tr {
+	background-color: #fff;
+}
+table.list1 tbody tr td {
+	vertical-align: top;
+	white-space: nowrap;
+	height: 25px;
+	line-height: 25px;
+}
+table.list1 tbody tr.even td {
+	background: #f7f7f7;
+	border-bottom: 1px solid #f7f7f7;
+}
+table.list1 tbody tr.click td {
+	background-color: #D9EBF5;
+	border-color: #D9EBF5;
+}
+table.list1 tbody tr.hover td {
+	background-color: #EDF5FA;
+	border-color: #EDF5FA;
+}
+table.list1 tfoot tr {
+}
+table.list1 tfoot td {
+	border-top: 1px solid #dddddd;
+}
+table.list {
+	border-spacing: 1px;
+	background-color: #e7e7e7;
+	color: #666;
+	width: 100%;
+}
+table.list td, table.list th {
+	padding: 4px;
+	white-space: nowrap;
+}
+table.list thead th {
+	text-align: center;
+	color: #2F2F2F;
+	font-weight: bold;
+	line-height: 25px;
+	height: 25px;
+	background-color: #F0FBDD;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-bottom-color: #acd98c;
+	border-left-color: #fff;
+}
+table.list thead a:hover {
+	text-decoration: none;
+}
+table.list thead th img {
+	vertical-align: middle;
+}
+table.list tbody th {
+	font-weight: bold;
+}
+table.list tbody tr {
+	background-color: #fff;
+	text-align: left;
+}
+table.list tbody tr td {
+	height: 25px;
+	background: #fff;
+	border: 1px solid #fff;
+	line-height: 25px;
+}
+table.list tbody tr.click td {
+	background-color: #ffc;
+}
+table.list tbody tr.hover td, table.list tbody tr.row0:hover td, table.list tbody tr.row1:hover td {
+	background-color: #ffd;
+}
+table.list tbody .row1, .row1 {
+	background: #f9f9f9;
+	border-top: 1px solid #fff;
+}
+table.list tbody .row1 td {
+	background: #f9f9f9;
+	border-top: 1px solid #FFF;
+}
+table.list tfoot tr {
+	color: #333;
+}
+table.list tfoot td, table.list tfoot th {
+	background-color: #FBFBFB;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #acd98c;
+}
+/* 表格-提交
+-------------------------------------------------------------------*/
+table.submit {
+	border-spacing: 1px;
+	background-color: #fff;
+	color: #000;
+	width: 100%;
+}
+table.submit td, table.submit th {
+	padding: 4px;
+}
+table.submit thead th {
+	text-align: left;
+	font-weight: bold;
+	line-height: 25px;
+	height: 25px;
+	background-color: #F0FBDD;
+}
+table.submit thead a:hover {
+	text-decoration: none;
+}
+table.submit thead th img {
+	vertical-align: middle;
+}
+table.submit tbody th {
+	font-weight: bold;
+}
+table.submit tbody tr {
+	background-color: #fff;
+	text-align: left;
+}
+table.submit tbody tr td {
+	/*height: 25px;*/
+	line-height: 25px;
+}
+table.submit tbody tr.click td {
+	background-color: #ffc;
+}
+table.submit tbody .row1 {
+	background: #F7FDF0;
+	border-top: 1px solid #fff;
+}
+table.submit tbody .row1 td {
+	background: #F7FDF0;
+	border-top: 1px solid #FFF;
+}
+table.submit tfoot tr {
+	color: #333;
+}
+table.submit tfoot td, table.submit tfoot th {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #F6F6F6;
+}
+/* 头像
+-------------------------------------------------------------------*/
+#faceview {
+	display: table-cell !important;
+	display:block;
+	height:180px;
+	font-size:145px;
+	width:180px;
+	overflow:hidden;
+	text-align:center;
+	vertical-align:middle;
+	border: medium solid #CCC;
+}
+#faceview img {
+	vertical-align:middle;
+	max-width:180px;
+	max-height:180px;
+ width:expression(this.width>180?180:true);
+ height:expression(this.height>180?180:true);
+	border-width: 0px;
+}/* 登录
+-------------------------------------------------------------------*/
+#login {
+	float: right;
+	width: 28%;
+	background-color: #fffefa;
+	position: absolute;
+	top: -30px !important;
+	top: 20px;
+	right: 20px;
+}
+#login .top {
+	height: 40px;
+}
+#login .top .notice {
+	color: #f3781d;
+	font-weight: bold;
+	font-size: 12px;
+	height: 30px;
+	line-height: 30px;
+}
+#login .content h3 {
+	line-height: 40px;
+	height: 40px;
+	color: #39953a;
+	font-size: 14px;
+	margin-bottom: 10px;
+	text-indent: 1em;
+}
+#login .theme {
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: dotted;
+	border-bottom-style: dotted;
+	border-top-color: #666666;
+	border-bottom-color: #666666;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	clear: both;
+}
+#login .theme li {
+	margin-bottom: 20px;
+	line-height: 20px;
+	height: 20px;
+}
+#login .theme span {
+	color: #000000;
+	text-align: right;
+	width: 30%;
+	display: block;
+	float: left;
+}
+#login .theme #txtUsername, #login .theme #txtPassword {
+	width: 55%;
+}
+#login .theme #btnSignCheck {
+	float: left;
+}
+#login .useNew .signUp {
+	text-align: right;
+	font-weight: bold;
+}
+/* 标示
+-------------------------------------------------------------------*/
+/*16x16 图标*/
+.icon {
+	background-image: url(../images/t_ico.gif);
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	background-color: transparent;
+}
+.icon16 {
+	background-image: url("../images/t_ico.gif");
+	background-repeat: no-repeat;
+	padding-bottom: 1px;
+	height: 15px;
+	width: 16px;
+	display: block;
+}
+/*订单*/
+.order {
+	background-position: 0 center;
+}
+/*收藏夹*/
+.fav {
+	background-position: -500px center;
+}
+/*首页*/
+.home {
+	background-position: -1000px center;
+}
+/*文档*/
+.info {
+	background-position: -1500px center;
+}
+/*短信*/
+.mail {
+	background-position: -2000px center;
+}
+/*加密档案*/
+.sec {
+	background-position: -2500px center;
+}
+/*设置头像*/
+.faceSet {
+	background-position: -3000px center;
+}
+/*个人资料*/
+.infoEdit {
+	background-position: -3500px center;
+}
+/*礼物*/
+.f {
+	background-position: -4000px center;
+}
+/*注销*/
+.logOut {
+	background-position: -4500px center;
+}
+/*我的文档*/
+.doc {
+	background-position: -5500px center;
+}

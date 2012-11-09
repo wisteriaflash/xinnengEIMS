@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DedeEIMS安装向导</title>
+<link href="base.css" rel="stylesheet" type="text/css" />
+<link href="tbody.css" rel="stylesheet" type="text/css" />
+<script src="../include/dedeajax2.js" language="javascript" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+<!--
+	function $o(tid){
+		return document.getElementById(tid);
+	}
+	function TestDbPwd()
+	{
+	  var dbhost = $o('dbhost').value;
+		var dbname = $o('dbname').value;
+		var dbuser = $o('dbuser').value;
+		var dbpwd = $o('dbpwd').value;
+		var myajax = new DedeAjax($o('dbpwdsta'),false,true,'-','-','...');
+		myajax.SendGet2('index.php?step=10&dbhost='+dbhost+'&dbuser='+dbuser+'&dbname='+dbname+'&dbpwd='+dbpwd);
+    DedeXHTTP = null;
+	}
+	function DoInstall()
+	{
+		//$o('postloader').style.display = 'block';
+		document.form1.submit();
+	}
+-->
+</script>
+</head>
+<body>
+<form action="index.php" method="post" name="form1">
+  <input type="hidden" name="step" value="4" />
+  <div class="container">
+    <div class="top">
+      <div class="title">DedeEIMS安装向导 - 参数设置</div>
+      <div class="version">V1.1</div>
+    </div>
+    <div class="cleft">
+      <div class="cimg" style="margin-top:677px"></div>
+    </div>
+    <div class="cright">
+      <div class="cinfo">
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="twbox">
+          <thead>
+            <tr>
+              <td colspan="2"><strong>服务器信息</strong></td>
+            </tr>
+            <tr>
+              <td colspan="2">MySQL数据库服务器的相关信息，如果您购买的空间主机请通过<a href="http://www.dedeeims.com/host/" target="_blank">空间主机商</a>获取数据库服务器信息</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="onetd"><strong>数据库主机：</strong></td>
+              <td><input name="dbhost" id="dbhost" type="text" value="localhost" class="input-txt" />
+                <small>一般为localhost</small></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>数据库名称：</strong></td>
+              <td><input name="dbname" id="dbname" type="text" value="<?php echo $dfDbname; ?>" class="input-txt" /></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>数据库用户：</strong></td>
+              <td><input name="dbuser" id="dbuser" type="text" value="root" class="input-txt" /></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>数据库密码：</strong></td>
+              <td><div style='float:left;margin-right:3px;'>
+                  <input name="dbpwd" id="dbpwd" type="text" class="input-txt" onChange="TestDbPwd()" />
+                </div>
+                <div style='float:left' id='dbpwdsta'></div></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>数据表前缀：</strong></td>
+              <td><input name="dbprefix" type="text" value="dede_" class="input-txt" />
+                <small>如无特殊需要,请不要修改</small></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>数据库编码：</strong></td>
+              <td><?php
+						if($s_lang=='utf-8')
+						{
+						?>
+                <input type="radio" name="dblang" id="dblang_utf8" value="utf8" checked="checked" />
+                <label for="dblang_latin1">UTF8</label>
+                <?php
+						}
+						else
+						{
+						?>
+                <input type="radio" name="dblang" id="dblang_gbk" value="gbk" checked="checked" />
+                <label for="dblang_gbk">GBK</label>
+                <input type="radio" name="dblang" id="dblang_latin1" value="latin1" />
+                <label for="dblang_latin1">LATIN1</label>
+                <?php
+						}
+						?>
+                <small>仅对4.1+以上版本的MySql选择</small></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cinfo">
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="twbox">
+          <thead>
+            <tr>
+              <td colspan="3"><strong>管理员初始密码</strong></td>
+            </tr>
+            <tr>
+              <td colspan="2">设置初始管理员的账号信息，请您牢记设置的管理信息 </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="onetd"><strong>用户名：</strong></td>
+              <td><input name="adminuser" type="text" value="admin" class="input-txt" />
+                <p><small>只能用'0-9'、'a-z'、'A-Z'、'.'、'@'、'_'、'-'、'!'以内范围的字符</small></p></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>密　码：</strong></td>
+              <td><input name="adminpwd" type="text" value="admin" class="input-txt" /></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>Cookie加密码：</strong></td>
+              <td><input name="cookieencode" type="text" value="<?php echo $rnd_cookieEncode; ?>" class="input-txt" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cinfo">
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="twbox">
+          <thead>
+            <tr>
+              <td colspan="2"><strong>基本设置</strong></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="onetd" width="22%"><strong>安装目录：</strong></td>
+              <td><?php
+                if(empty($basepath))
+                {
+                	echo "<font color='green'>目录检测正常</font>";
+                }else{
+               		echo "<font color='red'>请您安装在系统根目录</font>";
+                }
+                ?></td>
+            </tr>
+            <tr>
+              <td class="onetd" width="22%"><strong>语言选择：</strong></td>
+              <td><?php
+					foreach($lang_map_arr as $code => $name)
+					{
+						if($code=='gb2312') echo "<input type='checkbox' name='setuplangs[]' value='$code' id='$code' checked /> <label for='$code'>$name($code)</label> ";
+						else echo "<input type='checkbox' name='setuplangs[]' value='$code' id='$code'/> <label for='$code'>$name($code)</label> ";
+					}
+					?></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>默认前台语言：</strong></td>
+              <td><?php
+					foreach($lang_map_arr as $code => $name)
+					{
+						if($code=='gb2312') echo "<input type='radio' name='dflang' value='$code' id='m$code' checked /> <label for='m$code'> $name($code)</label> ";
+						else echo "<input type='radio' name='dflang' value='$code' id='m$code'/> <label for='m$code'>$name($code)</label> ";
+					}
+					?></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>栏目归档选项：</strong></td>
+              <td><input type='radio' name='isdefault' value='-1' id="isdf1" checked />
+                <label for="isdf1">全动态浏览</label>
+                <input type='radio' name='isdefault' value='1'  id="isdf2"/>
+                <label for="isdf2">生成静态HTML(需手动更新)</label></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong> 网站域名：</strong></td>
+              <td><input name="baseurl" type="text" value="<?php echo $baseurl; ?>" class="input-txt" /></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>公司名称：</strong></td>
+              <td><input name="webname" type="text" value="织梦企业信息管理系统" class="input-txt" /></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>联 系 人：</strong></td>
+              <td><input name="linkman" type="text" value="" class="input-txt" /></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>联系电话：</strong></td>
+              <td><input name="tel" type="text" value="" class="input-txt" /></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>公司传真：</strong></td>
+              <td><input name="fax" type="text" value="" class="input-txt" /></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>联系邮箱：</strong></td>
+              <td><input name="adminmail" type="text" value="admin@site.com" class="input-txt" /></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>公司地址：</strong></td>
+              <td><input name="address" type="text" value="" class="input-txt" style="width:300px" /></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>导航选择：</strong></td>
+              <td><?php
+					foreach($install_lang['gb2312'] as $k=>$v)
+					{
+						echo "			<input type='checkbox' name='navs[]' value='$k' id='$k' checked/> <label for='$k'>$v &nbsp;</label>\r\n";
+					}
+					?></td>
+            </tr>
+            <tr>
+              <td class="onetd"><strong>风格选择：</strong></td>
+              <td><!-- //三组一行 -->
+                <div class='skinline'>
+                  <input type='radio' name='dfstyle' value='default' id='dfstyle1' checked/>
+                  <label for='dfstyle1'><img src='images/skin-default.gif' width='150' /></label>
+                  &nbsp;
+                  <input type='radio' name='dfstyle' value='blue' id='dfstyle2'/>
+                  <label for='dfstyle2'><img src='images/skin-blue.gif' width='150' /></label>
+                </div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="copyright">© 2004-2008 <a href="http://www.desdev.cn" target="_blank">DesDev Inc.</a></div>
+      <div class="cbuttom">
+        <button type="button" class="btn1" onclick="window.location.href='index.php?step=2';" >上一步</button>
+        <button type="submit" class="btn1" onclick="window.location.href='index.php?step=4';" >下一步</button>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</form>
+</body>
+</html>

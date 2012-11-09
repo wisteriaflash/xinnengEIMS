@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:global.cfg_webname/}</title>
+<link href="{dede:global.cfg_templeturl/}/blue/css/greenstyle.css" rel="stylesheet" type="text/css" />
+<meta name="description" content="{dede:global.cfg_description/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<script language="javascript" type="text/javascript" src="{dede:global.cfg_cmsurl/}/include/dedeajax2.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_clihost/}/images/js/j.js"></script>
+<script type="text/javascript">
+function CheckLogin(){
+	  var taget_obj = document.getElementById('_userlogin');
+	  myajax = new DedeAjax(taget_obj,false,false,'','','');
+	  myajax.SendGet2("/member/ajax_loginsta.php");
+	  DedeXHTTP = null;
+}
+$(function() {
+	$("#navigation .sort").click(function(){
+		$(this).next(".menu").toggleClass("invisible");
+		$(this).toggleClass("hover");
+	})
+})
+</script>
+</head>
+<body>
+{dede:include filename="header.htm"/}
+<div class="wrapper">
+  <div class="fLeft"> <img src="{dede:global.cfg_templeturl/}/blue/images/logo.jpg" width="199" height="33" vspace="14" class="fLeft" /> </div>
+  <form id="search" class="fRight" action="{dede:global.cfg_phpurl/}/search.php" name="formsearch">
+    <input type='hidden' name='lang' value='{dede:handlang/}' />
+    <input name='keyword' type='text' class="text" />
+    <button name="searchbt" type="submit">&nbsp;</button>
+  </form>
+  <div class="clear"></div>
+  <div class="module green wrapper mT10">
+    <div class="top">
+      <div class="t_l"></div>
+      <div class="t_r"></div>
+      <ul id="navMenu" class="fLeftChild overflow fLeft">
+       {dede:channel get='index'}<li><a href="[field:typeurl/]">[field:lang.indexname/]</a></li>{/dede:channel}
+       {dede:channel type='top'}<li><a href='[field:typeurl/]'>[field:typename/]</a></li> {/dede:channel}
+      </ul>
+     <span class="mT5 mR5"><a id="res" href="{dede:global.cfg_clihost/}/data/rssmap.html"></a></span> </div>
+  </div>
+  <img src="{dede:global.cfg_templeturl/}/blue/images/banner.gif" width="950" height="190" />
+  <div class="wrapper">
+    <div class="west" style="width:730px;">
+    <div class="fLeft" style="width: 250px; margin-top: 10px;">
+    <script language='javascript'>
+linkarr = new Array();
+picarr = new Array();
+textarr = new Array();
+var swf_width=250;
+var swf_height=180;
+var files = "";
+var links = "";
+var texts = "";
+//这里设置调用标记
+{dede:arclist flag='f' row='5'}
+linkarr[[field:global.autoindex/]] = "[field:arcurl/]";
+picarr[[field:global.autoindex/]]  = "[field:litpic/]";
+textarr[[field:global.autoindex/]] = "[field:title function='html2text(@me)'/]";
+{/dede:arclist}
+for(i=1;i<picarr.length;i++){
+  if(files=="") files = picarr[i];
+  else files += "|"+picarr[i];
+}
+for(i=1;i<linkarr.length;i++){
+  if(links=="") links = linkarr[i];
+  else links += "|"+linkarr[i];
+}
+for(i=1;i<textarr.length;i++){
+  if(texts=="") texts = textarr[i];
+  else texts += "|"+textarr[i];
+}
+document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ swf_width +'" height="'+ swf_height +'">');
+document.write('<param name="movie" value="{dede:global.cfg_templeturl/}/images/bcastr3.swf"><param name="quality" value="high">');
+document.write('<param name="menu" value="false"><param name=wmode value="opaque">');
+document.write('<param name="FlashVars" value="bcastr_file='+files+'&bcastr_link='+links+'&bcastr_title='+texts+'">');
+document.write('<embed src="{dede:global.cfg_templeturl/}/images/bcastr3.swf" wmode="opaque" FlashVars="bcastr_file='+files+'&bcastr_link='+links+'&bcastr_title='+texts+'& menu="false" quality="high" width="'+ swf_width +'" height="'+ swf_height +'" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />'); document.write('</object>');
+</script>
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.news/}</strong></dt>
+        <dd class="body pB5 grayA">
+          <ol class="list">
+          {dede:arclist row='6' titlelen='60' channelid='1'}
+            <li><b class="[field:global.autoindex runphp='yes']@me = (@me<=3)? "highLight" : "";[/field:global.autoindex]">[field:global.autoindex/]</b><a href='[field:arcurl/]'>[field:title/]</a></li>
+          {/dede:arclist}
+          </ol>
+        </dd>
+      </dl>
+      </div>
+      
+      <div class="fRight" style="width:470px;">
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.aboutus/}</strong></dt>
+        <dd class="body pB5 grayA" style="line-height:26px;"> 
+        <img src="{dede:global.cfg_templeturl/}/blue/images/l.gif" width="109" height="106" hspace="10" vspace="20" class="fRight" /> {dede:mylang eid='introduce' function='cn_substr(@me,430)'/}... </dd>
+        
+      </dl>
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.newproduct/}</strong></dt>
+        <dd class="body pB5">
+          <ul class="w25 textCenter">
+           {dede:arclist channelid='6' row='8'} 
+            <li><a href="[field:arcurl/]" title="[field:fulltitle/]" target="_blank"><img src="[field:litpic/]" width="100" height="100" alt="[field:fulltitle/]" /></a><p><a href="/" title="[field:fulltitle/]" target="_blank">[field:title/]</a></p></li>
+           {/dede:arclist}  
+          </ul>
+          <div class="clearfix"></div>
+        </dd>
+      </dl>
+      </div>
+    </div>
+    <div class="east" style="width:210px;">
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.contactus/}</strong></dt>
+        <dd class="body pB5">
+          <ol class="list">
+            {dede:mylang eid='contacttype' /}
+          </ol>
+        <p class="textCenter"><a href="{dede:global.cfg_clihost/}/plus/guestbook.php"><img src="{dede:global.cfg_templeturl/}/blue/images/gb.gif" width="171" height="47" align="middle" /></a></p> </dd>
+      </dl>
+      <dl class="e2e2e2 mT10">
+        <dt class="caption"><strong class="mL5">{dede:lang.partner/}</strong></dt>
+        <dd class="body pB5">
+          <ul class="w50 textCenter">
+          {dede:flink row='6' type='image'}
+            <li><a href="[field:url/]"><img src="[field:logo/]" width="88" height="31" /></a></li>
+          {/dede:flink}
+          </ul>
+          <div class="clearfix"></div>
+          <ul class="w33 textCenter blueA">
+          {dede:flink row='6' type='text'}
+            <li><a href='[field:url/]'>[field:webname/]</a></li>
+          {/dede:flink}  
+          </ul>
+          <div class="clearfix"></div>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  {dede:include filename='footer.htm' /}
+</div>
+</body>
+</html>

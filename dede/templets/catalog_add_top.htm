@@ -1,0 +1,203 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>栏目管理--增加语言入口</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+<style>
+.exshow {
+	background:url(img/tbody_toggle.gif) 0 -15px no-repeat;
+	width:50px;
+	height:15px;
+	font-size:0px;
+	color:#fafafa;
+	cursor:pointer;
+}
+.exhide {
+	background:url(img/tbody_toggle.gif) no-repeat;
+	width:50px;
+	height:15px;
+	font-size:0px;
+	color:#fafafa;
+	cursor:pointer;
+}
+.ctbody {
+	
+}
+a.exbody {
+	color:#fafafa;
+}
+.fl {
+	float:left;
+}
+</style>
+<script language="javascript" src="../images/js/j.js"></script>
+<script language="javascript">
+$(function(){
+	ExbodyClick();
+	TypenameOnChange();
+});
+function TypenameOnChange()
+{
+	$("#typename").change(function(){
+		if(this.value=='') return false;
+		var vs = this.value.split('(');
+		$("#typedir").get(0).value = vs[1].replace(')', '');
+	});
+}
+function ExbodyClick()
+{
+	$("a.exbody").click(function(){
+  	if( $("tr.ctbody").get(0).style.display=="none") {
+  		$(".ctbody").show();
+  		$(".exbody div").get(0).className="exhide";
+  	}
+  	else {
+  		$(".ctbody").hide();
+  		$(".exbody div").get(0).className="exshow";
+  	}
+	});
+}
+function ShowHideHelp(spanid)
+{
+	if( $("#"+spanid).get(0).style.display=="none") {
+		$("#"+spanid).show();
+	} else {
+		$("#"+spanid).hide();
+	}
+}
+function checkSubmit()
+{
+	
+}
+</script>
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">栏目管理</div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"><IMG height=14 src="img/book1.gif" width=20>
+       &nbsp;<a href="catalog_main.php"><strong>栏目管理</strong></a> &gt;&gt; <strong>增加语言入口</strong></td>
+      <td align="right">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table  class="tform">
+  <tr>
+  <form name="form1" action="catalog_add.php" method="post" onSubmit="return checkSubmit();">
+  <input type="hidden" name="dopost" value="savetop" />
+    <td height="95" bgcolor="#FFFFFF">
+      <table width="100%" border="0"  id="needset" cellspacing="0" cellpadding="0">
+         <tr>
+          <td height="28" colspan="2" style="border-top:1px solid #D7D8D1" class='bline'>&nbsp;提示：在DedeEIMS里，增加语言入口实际上类似旧版的顶级栏目，当然这里操作方法并不完全相同。</td>
+         </tr>
+          <tr>
+            <td width="20%" height="28" class='bline'><font color='red'><strong>&nbsp;语种类型：</strong></font></td>
+            <td width="80%" class='bline'>
+            <div class='fl'>
+            <select name='typename' id='typename' style='width:160px'>
+            <option value=''>--请选择--</option>
+            <?php
+            foreach($lang_map_arr as $lid=>$lname)
+            {
+            	echo "<option value='$lname($lid)'>$lname($lid)</option>\r\n";
+            }
+            ?>
+            </select>
+            </div>
+            <div class='fl'>&nbsp;<img src='img/help.gif' onClick="ShowHideHelp('hlp1')" style='cursor:pointer;' /></div>
+            <div id='hlp1' style='clear:both;display:none'>
+            <font color='#6A6C62'>（如果你想指定一个列表外的语言，请先在 include/lang/language.map.inc 增加一个项目，
+            <br />并翻译一个语言包保存到 include/lang/youlang.utf8.php）</font></div>
+            </td>
+          </tr>
+          <tr>
+            <td class='bline' height="26"><strong>&nbsp;设为默认语种：</strong></td>
+            <td class='bline'>
+              <input name="defultlang" type="checkbox" class="np" id="defultlang" value="1" />
+              <label>（设置为默认语种后，网站入口页将用这种语言）</label>
+            </td>
+          </tr>
+          <tr>
+            <td class='bline' height="26"> <strong>&nbsp;排列顺序： </strong></td>
+            <td class='bline'><input name="sortrank" size="6" type="text" value="50" class="txt" style="width:60px" />
+              （由低 -&gt; 高） </td>
+          </tr>
+          <tr>
+            <td class='bline' height="26"> <strong>&nbsp;内容显示： </strong></td>
+            <td class='bline'>
+            	<input name="isdefault" type="radio" class='np' id="isdefault" value="-1" checked  />全部为动态页 &nbsp;
+            	<input name="isdefault" type="radio" class='np' id="isdefault" value="1" />全部生成HTML（这可能让操作时会感觉比较慢）
+             </td>
+          </tr>
+          <tr>
+            <td height="26" class='bline'><strong>&nbsp;文件保存目录：</strong></td>
+            <td class='bline'>
+			      <?php
+            $pardir = ($cfg_arcdir!='' ? '{cmspath}'.$cfg_arcdir.'/' : '{cmspath}/');
+            echo $pardir;
+            echo "<input name=\"pardir\" type=\"hidden\" id=\"pardir\" value=\"$pardir\"/>";
+            ?>
+             <input name="typedir" type="text" id="typedir" class="txt" style="width:170px" />
+            </td>
+          </tr>
+          <tr>
+            <td class='bline'><strong>&nbsp;栏目模板：</strong></td>
+            <td class='bline'>
+            	<input name="tempindex" type="text" class="txt" id="tempindex" style="width:250px" value="{style}/{lang}/index.htm" />
+            </td>
+          </tr>
+          <tbody>
+          <tr>
+            <th colspan="2" _show="yes"><strong>高级内容</strong></th>
+          </tr>
+          <tr class='ctbody'>
+            <td height="65"  class='bline'><strong>&nbsp;关 键 字：</strong></td>
+            <td  class='bline'>
+            	<input type="input" name="keywords" id="keywords" class="txt" style="width:420px" />
+            </td>
+          </tr>
+          <tr class='ctbody'>
+            <td height="65"  class='bline'><strong>&nbsp;页面摘要：</strong></td>
+            <td height="65"  class='bline'> <textarea name="description" cols="70" rows="4" id="description" class="txt" style="width:420px;height:60px"></textarea></td>
+          </tr>
+          <tr class='ctbody'>
+            <td class='bline'>
+            	<strong>&nbsp;页面内容：</strong>
+            </td>
+			      <td class='bline'>
+			      	(栏目页面内容是栏目模板中直接调用的HTML信息，调用标签为{dede:field name='content' /})
+			      </td>
+          </tr>
+          <tr class='ctbody'>
+            <td colspan="2">
+            	<?php
+	            GetEditor("content","","450","Default","print","false");
+	            ?>
+	          </td>
+        </tr>
+        </tbody>
+     </table>
+     <table width="98%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+            <td width="1%" height="62"></td>
+            <td width="99%">
+              <button type="submit" class="btn1">确定</button>
+                &nbsp;&nbsp;&nbsp;
+               <button type="button" class="btn1" onClick="location='catalog_main.php';">返回</button>
+            </td>
+          </tr>
+      </table>
+      </td>
+    </form>
+  </tr>
+</table>
+</body>
+</html>

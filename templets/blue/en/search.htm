@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:lang.searchresult/} : {dede:global.keyword/}</title>
+<link href="{dede:global.cfg_templeturl/}/blue/css/greenstyle.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{dede:global.cfg_cmsurl/}/include/dedeajax2.js"></script>
+<script type="text/javascript">
+function CheckLogin(){
+	  var taget_obj = document.getElementById('_userlogin');
+	  myajax = new DedeAjax(taget_obj,false,false,'','','');
+	  myajax.SendGet2("/member/ajax_loginsta.php");
+	  DedeXHTTP = null;
+}
+</script>
+</head>
+<body>
+{dede:include filename="header.htm"/}
+<div class="wrapper">
+  <div class="fLeft"> <img src="{dede:global.cfg_templeturl/}/blue/images/logo.jpg" width="199" height="33" vspace="14" class="fLeft" /> </div>
+  <form id="search" class="fRight" action="{dede:global.cfg_phpurl/}/search.php" name="formsearch">
+    <input type='hidden' name='lang' value='{dede:handlang/}' />
+    <input name='keyword' type='text' class="text" />
+    <button name="searchbt" type="submit">&nbsp;</button>
+  </form>
+  <div class="clear"></div>
+  <div class="module green wrapper mT10">
+    <div class="top">
+      <div class="t_l"></div>
+      <div class="t_r"></div>
+      <ul id="navMenu" class="fLeftChild overflow fLeft">
+        {dede:channel get='index'}
+        <li><a href="[field:typeurl/]">[field:lang.indexname/]</a></li>
+        {/dede:channel}
+        {dede:channel type='top'}
+        <li><a href='[field:typeurl/]'>[field:typename/]</a></li>
+        {/dede:channel}
+      </ul>
+      <span class="mT5 mR5"><a id="res" href="{dede:global.cfg_clihost/}/data/rssmap.html">&nbsp;</a></span> </div>
+  </div>
+  <div class="module silver wrapper mT10">
+    <div class="top">
+      <div class="t_l"></div>
+      <div class="t_r"></div>
+      <ul id="position" class="fLeftChild overflow">
+        <li class="home"><a href="{dede:global.cfg_clihost/}">{dede:lang.indexname/}</a></li>
+        <li>{dede:lang.searchresult/}<i class="aRed mL5 mR5">{dede:global.keyword/}</i></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="content" id="resultlist"> {dede:list pagesize='12' listtype='text'}
+      <div class="item">
+        <h3><a href="[field:arcurl/]" target="_blank" class='title'>[field:title/]</a></h3>
+        <p class="intro">[field:description/]...</p>
+        <p class="info"> <small>[field:lang.type/] : </small><span> <a href="[field:typeurl/]" target="_blank">[field:typename/]</a></span> <small>[field:lang.click/] : </small><span> [field:click/]</span> <small>[field:lang.datetime/] : </small><span> [field:stime/]</span> </p>
+        <p><span><a href="[field:arcurl/]" target="_blank">[field:arcurl/]</a></span></p>
+      </div>
+      {/dede:list}
+      <div class='paglist'> {dede:pagelist listsize='7' /} </div>
+    </div>
+  </div>
+  {dede:include filename='footer.htm' /}
+</div>
+</body>
+</html>

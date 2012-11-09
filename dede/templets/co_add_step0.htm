@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>选择内容模型</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">选择内容模型</div>
+</div>
+<table _dlist="line" class="tlist">
+  <form name="form1" action="co_add.php" method="get">
+    <input type='hidden' name='step' value='1' />
+    <tr> 
+      <td height="34" colspan="3" bgcolor="#FFFFFF">
+	  <select name="channelid" id="channelid" style="width:250px">
+    <?php
+	  $dsql->SetQuery("Select id,typename From `#@__channeltype` where id in(1,2) order by id asc ");
+	  $dsql->Execute();
+	  while($row = $dsql->GetObject())
+	  {
+	     echo "<option value='{$row->id}'>{$row->typename}</option>\r\n";
+	  }
+	  ?>
+	  </select>
+	  </td>
+    </tr>
+    <tr> 
+      <td height="24" colspan="3" bgcolor="#F8FCF1"> 
+       <button type="submit" class="btn1s">确定</button>
+      </td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

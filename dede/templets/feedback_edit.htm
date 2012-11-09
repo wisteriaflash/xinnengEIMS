@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>编辑评论</title>
+<link href="main.css" rel="stylesheet" type="text/css" />
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+<link href="img/base.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">评论管理</div>
+</div>
+<form name="form1" method="post" action="feedback_edit.php">
+<input type="hidden" name="dopost" value="edit" />
+<input type="hidden" name="id" value="<?php echo $row['id']; ?>" />
+<table class="tform">
+  <thead>
+    <tr>
+      <td colspan="2"><div class="title"><strong><a href="<?php echo $ENV_GOBACK_URL; ?>"><u>评论管理</u></a> &gt;&gt; 编辑评论：</strong></div></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th colspan="2" _show="yes">常规信息</th>
+    </tr>
+    <tr>
+      <td width="100" class="td1"><strong>评论所属文章</strong></td>
+      <td><p>
+          <?php echo $row['arctitle']; ?>
+        </p></td>
+    </tr>
+    <tr>
+      <td width="100" class="td1"><strong>评论人</strong></td>
+      <td><p>
+          <input name="username" type="text" id="username" size="20" value="<?php echo $row['username']; ?>" />
+        </p></td>
+    </tr>
+    <tr>
+      <td width="100" class="td1"><strong>评论发布时间</strong></td>
+      <td><p><?php echo GetDateTimeMK($row['dtime']); ?></p></td>
+    </tr>
+    <tr>
+      <td width="100" class="td1"><strong>IP地址</strong></td>
+      <td><p>
+          <?php echo $row['ip']; ?>
+        </p></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <th colspan="2" _show="yes">说明信息</th>
+    </tr>
+    <tr>
+      <td width="100" class="td1"><strong>评论内容</strong></td>
+      <td><p>
+         <textarea name="msg" cols="60" rows="5" id="msg"><?php echo jstrim($row['msg'],500); ?></textarea><small>更改的评论内容HTML代码不会被屏蔽，可用HTML语法编辑。</small>
+        </p></td>
+    </tr>
+    <tr>
+      <td width="100" class="td1"><strong>管理员回复</strong></td>
+      <td><p>
+          <textarea name="adminmsg" cols="60" rows="5" id="adminmsg"></textarea><small>回复内容的HTML代码会被屏蔽。</small>
+        </p></td>
+    </tr>
+  </tbody>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td class="td1">&nbsp;</td>
+      <td>
+      <button type="submit" class="btn7">保存更改</button>
+        &nbsp;&nbsp;
+        <button type="button" class="btn7" onClick="location='<?php echo $ENV_GOBACK_URL; ?>';" >不理返回</button></td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

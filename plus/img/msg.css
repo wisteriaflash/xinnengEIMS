@@ -1,0 +1,130 @@
+@charset "utf-8";
+
+
+
+button,input,select{
+	vertical-align:middle;
+}
+
+button{
+	margin-right:5px;
+}
+
+button.btn1{
+	height:25px;
+	padding-left:6px;
+	padding-right:6px;
+	font-size:12px;
+	line-height:23px;
+	color:#666;
+	border:1px solid #88AC44;
+	background:url(button_bg1.jpg) left center repeat-x;
+}
+
+button.btn1s{
+	height:19px;
+	padding-left:3px;
+	padding-right:3px;
+	font-size:12px;
+	line-height:17px;
+	color:#666;
+	border:1px solid #88AC44;
+	background:url(button_bg1.jpg) left center repeat-x;
+}
+
+button.btn6{
+	width:88px;
+	height:31px;
+	line-height:31px;
+	font-size:12px;
+	letter-spacing:1px;
+	color:#F1862E;
+	border:none;
+	font-weight:bold;
+	background:url(button_bg6.gif) center center no-repeat;
+}
+
+button.btn7{
+	width:88px;
+	height:31px;
+	line-height:31px;
+	font-size:12px;
+	letter-spacing:1px;
+	color:#81AB2C;
+	border:none;
+	font-weight:bold;
+	background:url(button_bg7.gif) center center no-repeat;
+}
+
+button.btn8{
+	width:88px;
+	height:31px;
+	line-height:31px;
+	font-size:12px;
+	letter-spacing:1px;
+	color:#5581AC;
+	border:none;
+	font-weight:bold;
+	background:url(button_bg8.gif) center center no-repeat;
+}
+
+
+/*消息框*/
+.dedemsg{
+	width:98%;
+	margin:7px auto;
+	border-bottom:2px solid #EBF0E0;
+	clear:both;
+	padding-bottom:5px;
+}
+.dedemsg .title{
+	color:#859E69;
+	border:1px solid #EBF0E0;
+	line-height:23px;
+	height:23px;
+	text-indent:7px;
+	background:#F9FAF4;
+	font-weight:bold;
+	letter-spacing:1px;
+}
+.dedemsg .msg{
+	padding:7px 10px 10px 20px;
+	line-height:21px;
+	color:#666;
+	font-size:12px;
+	background-position:18px 10px;
+	background-repeat:no-repeat;
+}
+
+.dedemsg .stat1{
+	padding:7px 10px 10px 100px;
+	background-image:url(msg_system.gif);
+}
+
+.dedemsg .stat2{
+	padding:7px 10px 10px 100px;
+	background-image:url(msg_ok.gif);
+}
+
+.dedemsg .stat3{
+	padding:7px 10px 10px 100px;
+	background-image:url(msg_error.gif);
+}
+
+.dedemsg .stat4{
+	padding:7px 10px 10px 100px;
+	background-image:url(msg_ask.gif);
+}
+
+.dedemsg .stat5{
+	padding:7px 10px 10px 100px;
+	background-image:url(msg_stop.gif);
+}
+
+
+.dedemsg div p{
+	padding:7px 0px 5px 2px;
+}
+.dedemsg div p strong{
+	color:#444;
+}

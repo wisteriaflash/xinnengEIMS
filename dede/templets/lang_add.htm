@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>增加自定义资料</title>
+<link href="main.css" rel="stylesheet" type="text/css" />
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+<script language='javascript'>
+</script>
+<style type="text/css">
+<!--
+.STYLE1 {color: #666666}
+-->
+</style>
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">自定义资料管理 </div>
+</div>
+<form name="form1" action="lang_add.php" method="post">
+<input type="hidden" name="dopost" value="save" />
+<table class="tform">
+    <thead>
+      <tr>
+        <td colspan="2"><div class="title"><strong><a href="lang_main.php">自定义资料管理</a> &gt;&gt; 增加自定义资料：</strong></div></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td width="100" class="td1"><strong>说明</strong></td>
+        <td><p>
+            <input name="cid" type="text" id="cid" class="txt" style="width:200px" />
+          </p></td>
+      </tr>
+      <tr>
+        <td width="100" class="td1"><strong>调用标识</strong></td>
+        <td><p>
+            <input name="eid" type="text" id="eid" class="txt" style="width:200px" /><small>(必须为非中文)</small>
+          </p></td>
+      </tr>
+      <tr>
+        <td width="100" class="td1"><strong>语言</strong></td>
+        <td><p>
+            <select name='lang' id='lang' style='width:160px'>
+              <?php
+            foreach($lang_has_arr as $lid=>$lname)
+            {
+            	echo "<option value='$lid'>$lname($lid)</option>\r\n";
+            }
+            ?>
+            </select>
+            &nbsp;
+            <input type="checkbox" name="copyall" value="1" class="np" id="ck1" />
+            <label for="ck1">复制给所有已启用语</label>
+          </p></td>
+      </tr>
+      <tr>
+        <td width="100" class="td1"><strong>详细内容</strong></td>
+        <td><p>
+            <?php
+	         GetEditor("langtxt", '',"300","Small","print","false");
+	      ?>
+          </p></td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr>
+        <td class="td1">&nbsp;</td>
+        <td><button type="submit" class="btn7">保存更改</button>
+          &nbsp;&nbsp;
+          <button type="reset" class="btn7">重设</button></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+</body>
+</html>

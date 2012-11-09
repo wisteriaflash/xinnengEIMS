@@ -1,0 +1,384 @@
+<?php
+@set_time_limit(0);
+//error_reporting(E_ALL);
+error_reporting(E_ALL || ~E_NOTICE);
+
+$verMsg = ' 织梦企业信息管理系统 V1.1 ';
+$s_lang = 'utf-8';
+$dfDbname = 'dedeeimsv1';
+$errmsg = '';
+$insLockfile = dirname(__FILE__).'/install_lock.txt';
+
+define('DEDEINC',dirname(__FILE__).'/../include');
+define('DEDEDATA',dirname(__FILE__).'/../data');
+define('DEDEROOT',ereg_replace("[\\/]install",'',dirname(__FILE__)));
+header("Content-Type: text/html; charset={$s_lang}");
+
+require_once(DEDEROOT.'/install/install.inc.php');
+require_once(dirname(__FILE__).'/install.lang.php');
+
+foreach(Array('_GET','_POST','_COOKIE') as $_request)
+{
+	 foreach($$_request as $_k => $_v) ${$_k} = RunMagicQuotes($_v);
+}
+
+require_once(DEDEINC.'/common.func.php');
+
+if( file_exists(dirname(__FILE__).'/install_lock.txt') )
+{
+	exit(" 程序已运行安装，如果你确定要重新安装，请先从FTP中删除 install/install_lock.txt！");
+}
+
+if(empty($step))
+{
+	$step = 1;
+}
+/*------------------------
+使用协议书
+function _1_Agreement()
+------------------------*/
+if($step==1)
+{
+	include('./templates/step-1.html');
+	exit();
+}
+/*------------------------
+环境测试
+function _2_TestEnv()
+------------------------*/
+else if($step==2)
+{
+	 $phpv = phpversion();
+	 $sp_os = @getenv('OS');
+	 $sp_gd = gdversion();
+	 $sp_server = $_SERVER['SERVER_SOFTWARE'];
+	 $sp_host = (empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_HOST'] : $_SERVER['REMOTE_ADDR']);
+	 $sp_name = $_SERVER['SERVER_NAME'];
+	 $sp_max_execution_time = ini_get('max_execution_time');
+	 $sp_allow_reference = (ini_get('allow_call_time_pass_reference') ? '<font color=green>[√]On</font>' : '<font color=red>[×]Off</font>');
+   $sp_allow_url_fopen = (ini_get('allow_url_fopen') ? '<font color=green>[√]On</font>' : '<font color=red>[×]Off</font>');
+   $sp_safe_mode = (ini_get('safe_mode') ? '<font color=red>[×]On</font>' : '<font color=green>[√]Off</font>');
+   $sp_gd = ($sp_gd>0 ? '<font color=green>[√]On</font>' : '<font color=red>[×]Off</font>');
+   $sp_mysql = (function_exists('mysql_connect') ? '<font color=green>[√]On</font>' : '<font color=red>[×]Off</font>');
+
+   if($sp_mysql=='<font color=red>[×]Off</font>')
+   {
+   		$sp_mysql_err = true;
+   }
+   else
+   {
+   		$sp_mysql_err = false;
+   }
+
+   $sp_testdirs = array(
+        '/',
+        '/data/*',
+        '/a/*',
+        '/install',
+        '/uploads/*'
+        
+   );
+	 include('./templates/step-2.html');
+	 exit();
+}
+/*------------------------
+设置参数
+function _3_WriteSeting()
+------------------------*/
+else if($step==3)
+{
+  if(!empty($_SERVER['REQUEST_URI']))
+  {
+  	$scriptName = $_SERVER['REQUEST_URI'];
+  }
+  else
+  {
+  	$scriptName = $_SERVER['PHP_SELF'];
+  }
+
+  $basepath = eregi_replace('/install(.*)$','',$scriptName);
+
+  if(empty($_SERVER['HTTP_HOST']))
+  {
+  	$baseurl = 'http://'.$_SERVER['HTTP_HOST'];
+  }
+  else
+  {
+  	$baseurl = "http://".$_SERVER['SERVER_NAME'];
+  }
+
+  $rnd_cookieEncode = chr(mt_rand(ord('A'),ord('Z'))).chr(mt_rand(ord('a'),ord('z'))).chr(mt_rand(ord('A'),ord('Z'))).chr(mt_rand(ord('A'),ord('Z'))).chr(mt_rand(ord('a'),ord('z'))).mt_rand(1000,9999).chr(mt_rand(ord('A'),ord('Z')));
+
+  include('./templates/step-3.html');
+	exit();
+}
+/*------------------------
+普通安装
+function _4_Setup()
+------------------------*/
+else if($step==4)
+{
+
+  require_once(dirname(__FILE__)."/sql.inc.php");
+  
+  $conn = mysql_connect($dbhost,$dbuser,$dbpwd) or die("<script>alert('数据库服务器或登录密码无效，\\n\\n无法连接数据库，请重新设定！');history.go(-1);</script>");
+
+  mysql_query("CREATE DATABASE IF NOT EXISTS `".$dbname."`;",$conn);
+	
+  mysql_select_db($dbname) or die("<script>alert('选择数据库失败，可能是你没权限，请预先创建一个数据库！');history.go(-1);</script>");
+
+  //获得数据库版本信息
+  $rs = mysql_query("SELECT VERSION();",$conn);
+  $row = mysql_fetch_array($rs);
+  $mysqlVersions = explode('.',trim($row[0]));
+  $mysqlVersion = $mysqlVersions[0].".".$mysqlVersions[1];
+
+  mysql_query("SET NAMES '$dblang',character_set_client=binary,sql_mode='';",$conn);
+
+  $fp = fopen(dirname(__FILE__)."/common.inc.php","r");
+  $configStr1 = fread($fp,filesize(dirname(__FILE__)."/common.inc.php"));
+  fclose($fp);
+
+  $fp = fopen(dirname(__FILE__)."/config.cache.inc.php","r");
+  $configStr2 = fread($fp,filesize(dirname(__FILE__)."/config.cache.inc.php"));
+  fclose($fp);
+
+  //common.inc.php
+  $configStr1 = str_replace("~dbhost~",$dbhost,$configStr1);
+	$configStr1 = str_replace("~dbname~",$dbname,$configStr1);
+	$configStr1 = str_replace("~dbuser~",$dbuser,$configStr1);
+	$configStr1 = str_replace("~dbpwd~",$dbpwd,$configStr1);
+	$configStr1 = str_replace("~dbprefix~",$dbprefix,$configStr1);
+	$configStr1 = str_replace("~dblang~",$dblang,$configStr1);
+
+  @chmod(DEDEROOT.'/data',0777);
+  $fp = fopen(DEDEROOT."/data/common.inc.php","w") or die("<script>alert('写入配置失败，请检查../data目录是否可写入！');history.go(-1);</script>");
+  fwrite($fp,$configStr1);
+  fclose($fp);
+
+	//config.cache.inc.php
+	$cmspath = trim(ereg_replace('/{1,}','/',$cmspath));
+	if($cmspath!='' && !ereg('^/',$cmspath)) $cmspath = '/'.$cmspath;
+
+	if($cmspath=='') $indexUrl = '/';
+	else $indexUrl = $cmspath;
+
+	$configStr2 = str_replace("~baseurl~", $baseurl, $configStr2);
+	$configStr2 = str_replace("~basepath~", $cmspath, $configStr2);
+	$configStr2 = str_replace("~indexurl~", $indexUrl, $configStr2);
+	$configStr2 = str_replace("~cookieEncode~", $cookieencode, $configStr2);
+	$configStr2 = str_replace("~webname~", $webname, $configStr2);
+	$configStr2 = str_replace("~adminmail~", $adminmail, $configStr2);
+	$configStr2 = str_replace("~dflang~", $dflang, $configStr2);
+	$configStr2 = str_replace("~dfstyle~", $dfstyle, $configStr2);
+
+	$fp = fopen(DEDEROOT.'/data/config.cache.inc.php','w');
+  fwrite($fp,$configStr2);
+  fclose($fp);
+
+  $fp = fopen(DEDEROOT.'/data/config.cache.bak.php','w');
+  fwrite($fp,$configStr2);
+  fclose($fp);
+
+  if($mysqlVersion >= 4.1)
+  {
+  	$sql4tmp = "ENGINE=MyISAM DEFAULT CHARSET=".$dblang;
+  }
+  
+  //创建数据表
+  
+  $query = '';
+  $sqls = split(";[\r\n]", base64_decode($sql_string));
+	foreach($sqls as $sql)
+	{
+		 $sql = trim($sql);
+		 if(empty($sql)) continue;
+		 $query = str_replace('#@__', $dbprefix, $sql);
+			if($mysqlVersion < 4.1)
+			{
+			   		$rs = mysql_query($query,$conn);
+			}
+			else
+			{
+			   		if(eregi('CREATE',$query))
+			   		{
+			   			$rs = mysql_query(eregi_replace('TYPE=MyISAM',$sql4tmp,$query),$conn);
+			   		}
+			   		else
+			   		{
+			   			$rs = mysql_query($query,$conn);
+			   		}
+			 }
+	}
+	
+	//更新配置
+	$cquery = "Update `{$dbprefix}sysconfig` set value='{$baseurl}' where varname='cfg_basehost';";
+	mysql_query($cquery,$conn);
+	$cquery = "Update `{$dbprefix}sysconfig` set value='{$cmspath}' where varname='cfg_cmspath';";
+	mysql_query($cquery,$conn);
+	$cquery = "Update `{$dbprefix}sysconfig` set value='{$indexUrl}' where varname='cfg_indexurl';";
+	mysql_query($cquery,$conn);
+	$cquery = "Update `{$dbprefix}sysconfig` set value='{$cookieencode}' where varname='cfg_cookie_encode';";
+	mysql_query($cquery,$conn);
+	$cquery = "Update `{$dbprefix}sysconfig` set value='{$webname}' where varname='cfg_webname';";
+	mysql_query($cquery,$conn);
+	$cquery = "Update `{$dbprefix}sysconfig` set value='{$adminmail}' where varname='cfg_adminemail';";
+	mysql_query($cquery,$conn);
+	$cquery = "Update `{$dbprefix}sysconfig` set value='{$dflang}' where varname='cfg_df_lang';";
+	mysql_query($cquery,$conn);
+	$cquery = "Update `{$dbprefix}sysconfig` set value='{$dfstyle}' where varname='cfg_df_style';";
+	mysql_query($cquery,$conn);
+
+	
+	//增加管理员帐号
+	$adminquery = "INSERT INTO `{$dbprefix}admin` VALUES (1, 10, '$adminuser', '".substr(md5($adminpwd),5,20)."', 'admin', '', '', 0, '".time()."', '127.0.0.1');";
+	mysql_query($adminquery,$conn);
+	
+	//关连前台会员帐号
+	$ntime = time();
+	$adminquery = "INSERT INTO `{$dbprefix}member` (`mid`, `userid`, `pwd`, `uname`, `sex`, `rank`, `email`, `lang`, `company`, `mobile`, `tel`, `fax`, `address`, `scores`, `matt`, `face`, `jointime`, `joinip`, `logintime`, `loginip`)
+	VALUES (1, '$adminuser', '".md5($adminpwd)."', '$adminuser', '1', '100', 'admin@admin.com', 'gb2312', '', '', '', '', '', '10000', '10', '', '$ntime', '', '$ntime', '127.0.0.1');";
+	
+ 	mysql_query($adminquery,$conn);
+ 	
+ 	//获得用户识别码
+ 	$cpinfo = urlencode("Url:{$baseurl}:#:Co:{$webname}:#:Tel:{$tel}:#:Fax:{$fax}:#:Mail:{$adminmail}:#:Link:{$linkman}:#:Addr:{$address}");
+ 	$str = @file_get_contents("http://www.dedecms.com/server/ent/?cpinfo=$cpinfo");
+ 	if(strlen($str) < 50)
+ 	{
+ 		$fp = fopen(DEDEDATA.'/cpinfo.inc', 'w');
+ 		fwrite($fp, $str);
+ 		fclose($fp);
+ 	}
+ 	else
+ 	{
+ 		$fp = fopen(DEDEDATA.'/cpinfo.inc', 'w');
+ 		fwrite($fp, 'Error');
+ 		fclose($fp);
+ 	}
+ 	
+ 	//生成语言顶级栏目
+ 	$contacttype = "<p>{$webname}<br />\r\n{$address}<br />\r\nTel:{$tel} Fax:{$fax}<br />\r\nEmail:<a href=\\'mailto:{$adminmail}\\'>{$adminmail}</a></p>";
+ 	
+ 	$mylangTmp1 = "INSERT INTO `{$dbprefix}mylang` (`lang`, `eid`, `cid`, `langtxt`) VALUES ('~lang~', 'contacttype', '底部公司联系方式', '$contacttype'); ";
+ 	$mylangTmp2 = "INSERT INTO `{$dbprefix}mylang` (`lang`, `eid`, `cid`, `langtxt`) VALUES ('~lang~', 'introduce', '首页公司简介', 'about us'); ";
+ 	
+ 	$topsqlTmp = "INSERT INTO `{$dbprefix}arctype` (`reid`, `topid`, `sortrank`, `typename`, `lang`, `typedir`, `isdefault`, `defaultname`, `channeltype`, `ispart`, `tempsgpage`, `tempindex`, `templist`, `temparticle`, `namerule`, `namerule2`, `description`, `keywords`, `ishidden`, `content`)
+ 							VALUES ('0', '0', '~rank~', '~name~(~lang~)', '~lang~', '{cmspath}/a/~lang~', '~isdefault~', 'index.html', 1, 1, '', '{style}/{lang}/index.htm', '{style}/{lang}/list_article.htm', '{style}/{lang}/article_article.htm', '{typedir}/{Y}{M}{D}/{aid}.html', '{typedir}/index-{tid}-{page}.html', '', '', 0, '');";
+ 	
+ 	if(empty($setuplangs) || !is_array($setuplangs)) $sellangs[] = $dflang;
+ 	else $sellangs = $setuplangs;
+ 	
+ 	$langids = array();
+ 	$i = 1;
+ 	foreach($sellangs as $lang)
+ 	{
+ 		$topsql = str_replace('~lang~', $lang, $topsqlTmp);
+ 		$topsql = str_replace('~name~', $lang_map_arr[$lang], $topsql);
+ 		$topsql = str_replace('~rank~', $i, $topsql);
+ 		$topsql = str_replace('~isdefault~', $isdefault, $topsql);
+ 		mysql_query($topsql, $conn);
+ 		$topid = mysql_insert_id($conn);
+ 		
+ 		//导航模块
+ 		if(is_array($navs))
+ 		{
+ 			foreach($navs as $navid)
+ 			{
+ 				$addsql = str_replace('~lang~', $lang, $install_catalog_sql[$navid]);
+ 				$addsql = str_replace('~name~', $install_lang[$lang][$navid], $addsql);
+ 				$addsql = str_replace('~topid~', $topid, $addsql);
+ 				$addsql = str_replace('~isdefault~', $isdefault, $addsql);
+ 				$addsql = str_replace('#@__', $dbprefix, $addsql);
+ 				mysql_query($addsql, $conn);
+ 			}
+ 		}
+ 		
+ 		$mylang1 = str_replace('~lang~', $lang, $mylangTmp1);
+ 		mysql_query($mylang1, $conn);
+ 		
+ 		$mylang1 = str_replace('~lang~', $lang, $mylangTmp2);
+ 		mysql_query($mylang1, $conn);
+ 		
+ 		$i++;
+ 	}
+ 	
+ 	//更新栏目缓存
+ 	$cache1 = DEDEDATA."/cache/inc_catalog_base.inc";
+	$cache2 = DEDEDATA."/cache/inc_catalog_lang.inc";
+	$rs = mysql_query("Select id,reid,channeltype From `{$dbprefix}arctype`", $conn);
+	$fp1 = fopen($cache1,'w');
+	$phph = '?';
+	$fp1Header = "<{$phph}php\r\nglobal \$_Cs;\r\n\$_Cs=array();\r\n";
+	fwrite($fp1,$fp1Header);
+	while($row = mysql_fetch_array($rs))
+	{
+		fwrite($fp1,"\$_Cs[{$row['id']}]=array({$row['reid']},{$row['channeltype']});\r\n");
+	}
+	fwrite($fp1,"{$phph}>");
+	fclose($fp1);
+	//更新顶级栏目语言地图
+	$rs = mysql_query("Select typename,lang From `{$dbprefix}arctype` where reid=0 ", $conn);
+	$fp1 = fopen($cache2,'w');
+	$phph = '?';
+	$fp1Header = "<{$phph}php\r\nglobal \$lang_has_arr;\r\n\$lang_has_arr = array();\r\n";
+	fwrite($fp1,$fp1Header);
+	while($row = mysql_fetch_array($rs))
+	{
+		$arr = array();
+		preg_match_all("/([^\(]*)/", $row['typename'], $arr);
+		$langname = $arr[0][0];
+		$lang = $row['lang'];
+		fwrite($fp1, "\$lang_has_arr['{$lang}'] = '{$langname}';\r\n");
+	}
+	fwrite($fp1,"{$phph}>");
+	fclose($fp1);
+
+  mysql_close($conn);
+
+  //锁定安装程序
+  $fp = fopen($insLockfile,'w');
+  fwrite($fp,'ok');
+  fclose($fp);
+  include('./templates/step-5.html');
+  exit();
+}
+/*------------------------
+检测数据库是否有效
+function _10_TestDbPwd()
+------------------------*/
+else if($step==10)
+{
+	header("Pragma:no-cache\r\n");
+  header("Cache-Control:no-cache\r\n");
+  header("Expires:0\r\n");
+	$conn = @mysql_connect($dbhost,$dbuser,$dbpwd);
+	if($conn)
+	{
+	  $rs = mysql_select_db($dbname,$conn);
+	  if(!$rs)
+	  {
+		   $rs = mysql_query(" CREATE DATABASE `$dbname`; ",$conn);
+		   if($rs)
+		   {
+		  	  mysql_query(" DROP DATABASE `$dbname`; ",$conn);
+		  	  echo "<font color='green'>信息正确</font>";
+		   }
+		   else
+		   {
+		      echo "<font color='red'>数据库不存在，也没权限创建新的数据库！</font>";
+		   }
+	  }
+	  else
+	  {
+		    echo "<font color='green'>信息正确</font>";
+	  }
+	}
+	else
+	{
+		echo "<font color='red'>数据库连接失败！</font>";
+	}
+	@mysql_close($conn);
+	exit();
+}
+?>

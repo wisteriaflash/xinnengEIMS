@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>木马自检程序</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+<link rel="stylesheet" type="text/css" href="img/indexbody.css" />
+<style type="text/css">
+td{padding-left:8px;}
+</style>
+<script language='javascript' src='js/main.js'></script>
+<script language='javascript' src='../include/dedeajax2.js'></script>
+<script language='javascript'>
+
+function LoadCtTest()
+{
+	$Obj('loaddiv').style.display='block';
+	var myajax = new DedeAjax($DE('messagetd'));
+	myajax.SendGet2('sys_safetest.php?action=test');
+	$Obj('loaddiv').style.display='none';
+}
+
+function LoadCtClear()
+{
+	$Obj('loaddiv').style.display='block';
+	var myajax = new DedeAjax($DE('messagetd'));
+	myajax.SendGet2('sys_safetest.php?action=clear');
+	$Obj('loaddiv').style.display='none';
+}
+
+</script>
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">用户安全中心</div>
+</div>
+<div id='loaddiv' style='display:none'>
+	<p align='center' style='padding-top:200px'><img src='img/loadinglit.gif' /> 请稍后，正在操作中...</p>
+</div>
+
+<table _dlist="line" class="tlist" align="center">
+  <tr>
+    <td width="100%" height="24" colspan="2" bgcolor="#F3FBEC">
+      <b>木马自检程序</b>
+    </td>
+  </tr>
+  <tr>
+    <td height="73" colspan="2" bgcolor="#FFFFFF" style="line-height:22px">
+     <strong>安全建议：</strong>
+    	<br />
+      1、有条件的用户把DedeEIMS中 data、templets、uploads、html、special、images、install目录设置为不允许执行脚本，其它目录禁止写入，系统将更安全；<br />
+      2、本检测程以DedeEIMS开发模式为标准，如果您的网站目录包含其它系统，此检测程序可能会产生错误判断；<br />
+      3、检测程序会跳过对模板缓存目录的检测，为了安全起见，检测完成后建议清空模板缓存。
+    </td>
+  </tr>
+  <tr>
+    <td height="50" colspan="2" bgcolor="#FFFFFF">
+    <button class="btn1" type="button" onclick="LoadCtTest();">开始检测</button>
+    &nbsp;
+    <button class="btn1" type="button" onclick="LoadCtClear();">清空模板缓存</button>
+	</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2" bgcolor="#F3FBEC">检测结果：(结果仅供参考，请务必查看源码后才删除非法文件)</td>
+  </tr>
+  <tr>
+    <td height="300" colspan="2" id="messagetd" valign="top" bgcolor="#FFFFFF">
+    </td>
+  </tr>
+</table>
+</body>
+</html>

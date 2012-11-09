@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo GetLang('imm'); ?>-<?php echo GetLang('sendmsg'); ?></title>
+<?php include(DEDEMEMBER."/templets/head_inc.htm"); ?>
+<script type="text/javascript">
+$(function(){
+			$("#navigation .sort").click(function(){
+		$(this).next(".menu").toggleClass("invisible");
+		$(this).toggleClass("hover");	
+});
+		});
+		function senduid(uid)
+		{
+			$("#msgtoid").attr("value", uid);
+		}
+
+
+</script>
+</head>
+<body>
+<?php include(DEDEMEMBER."/templets/head.htm"); ?>
+<div class="wrapper mT10">
+  <div class="west">
+    <?php include(DEDEMEMBER."/templets/menu.htm"); ?>
+  </div>
+  <div class="east mL10">
+    <div class="heading"><strong class="icon mail mL10" style="width:400px;"><?php echo GetLang('shortmessage'); ?></strong></div>
+    <ul class="titleTabBar fLeftChild mT10">
+      <li class="select"><a href="pm.php?dopost=send"><?php echo GetLang('newmsg'); ?></a></li>
+      <li><a href="pm.php?folder=inbox"><?php echo GetLang('inbox'); ?></a></li>
+      <li><a href="pm.php?folder=outbox"><?php echo GetLang('outbox'); ?></a></li>
+      <li><a href="pm.php?folder=track"><?php echo GetLang('track'); ?></a></li>
+    </ul>
+    <div class="clear"></div>
+    <form class="mTB10 mL10 mR10 fLeft" action="pm.php" method="post" name="form1" style="width:510px">
+      <input type='hidden' name='dopost' value='savesend' />
+      <table cellspacing="1" class="submit mB10">
+        <tbody>
+          <tr>
+            <td width="15%" align="right" valign="top"><?php echo GetLang('getuser'); ?>：</td>
+            <td><input id="msgtoid" name="msgtoid" type="text" class="text" value="<?php if(!empty($uid)) echo $uid; ?>" size="28" maxlength="20" /></td>
+          </tr>
+          <tr>
+            <td width="15%" align="right" valign="top"><?php echo GetLang('title'); ?>：</td>
+            <td><input name="subject" type="text" class="text" value="" size="50" maxlength="70" /></td>
+          </tr>
+          <tr>
+            <td width="15%" align="right" valign="top"><?php echo GetLang('content'); ?>：</td>
+            <td><textarea cols="50" name="message" rows="6" style="height:80px;"></textarea>
+              <br /></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td width="15%" height="45" align="right" valign="top">&nbsp;</td>
+            <td><button class="button2" type="submit"><?php echo GetLang('send'); ?></button></td>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
+    <div class="ccc fRight" style="width:200px;">
+      <div class="caption"><strong class="mL5"><?php echo GetLang('customerlist'); ?></strong></div>
+      <dl class="buddy mL10 mT10 pB10">
+        <dt class="icon"><?php echo GetLang('allcustomer'); ?></dt>
+        <dd>
+          <ul>
+            <?php
+          foreach ($friends as $friend)
+          {
+echo '<li><a class="icon faceSet" href="#" onclick="senduid(\''.$friend['userid'].'\');">'.$friend['userid'].'</a></li>';
+          }
+          ?>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+<?php include(DEDEMEMBER."/templets/foot.htm"); ?>
+</body>
+</html>

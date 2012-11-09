@@ -1,0 +1,47 @@
+<?php
+$z[0]=Array("lang","",254,271);
+$z[0][4]['name']="jobs";
+$z[1]=Array("field","",312,335);
+$z[1][4]['name']="keywords";
+$z[2]=Array("field","",375,426);
+$z[2][4]['name']="description";
+$z[2][4]['function']="html2text(@me)";
+$z[3]=Array("global","",444,473);
+$z[3][4]['name']="cfg_templeturl";
+$z[4]=Array("global","",597,622);
+$z[4][4]['name']="cfg_cmsurl";
+$z[5]=Array("include","",934,971);
+$z[5][4]['filename']="header.htm";
+$z[6]=Array("global","",1028,1057);
+$z[6][4]['name']="cfg_templeturl";
+$z[7]=Array("global","",1187,1212);
+$z[7][4]['name']="cfg_phpurl";
+$z[8]=Array("handlang","",1289,1305);
+$z[9]=Array("channel","<li><a href=\"[field:typeurl/]\">[field:lang.indexname/]</a></li>",1659,1763);
+$z[9][4]['get']="index";
+$z[10]=Array("channel","<li><a href='[field:typeurl/]'>[field:typename/]</a></li> ",1772,1870);
+$z[10][4]['type']="top";
+$z[11]=Array("global","",1931,1957);
+$z[11][4]['name']="cfg_clihost";
+$z[12]=Array("global","",2229,2255);
+$z[12][4]['name']="cfg_clihost";
+$z[13]=Array("lang","",2257,2279);
+$z[13][4]['name']="indexname";
+$z[14]=Array("lang","",2314,2331);
+$z[14][4]['name']="jobs";
+$z[15]=Array("lang","",2501,2521);
+$z[15][4]['name']="joblist";
+$z[16]=Array("channel","\r\n            <li><a href='[field:typeurl/]'>[field:typename/]</a></li> \r\n          ",2611,2735);
+$z[16][4]['type']="son";
+$z[17]=Array("lang","",2871,2893);
+$z[17][4]['name']="contactus";
+$z[18]=Array("mylang","",2981,3014);
+$z[18][4]['eid']="contacttype";
+$z[19]=Array("lang","",3177,3194);
+$z[19][4]['name']="jobs";
+$z[20]=Array("list","\r\n        <table width=\"98%\"  border=\"0\" align=\"center\" class=\"tList mTB10\" style=\"font-size:12px\">\r\n                <thead>\r\n                  <tr>\r\n                    <th colspan=\"4\" align=\"left\">[field:lang.jobname/] : [field:jobname/]<span class=\"mL10\">([field:lang.neednum/]: [field:neednum/])</span></th>\r\n                  </tr>\r\n                </thead>\r\n                <tbody>\r\n                <tr>\r\n                  <th width=\"25%\" class=\"aBlack\">[field:lang.needpart/]</th>\r\n                  <td width=\"25%\">[field:needpart/]</td>\r\n                  <th width=\"25%\"class=\"aBlack\">[field:lang.exptime/]</th>\r\n                  <td width=\"25%\">[field:exptime function=\"MyDate('Y-m-d', @me)\"/]</td>\r\n                </tr>\r\n                <tr>\r\n                  <th class=\"aBlack\">[field:lang.linkman/]</th>\r\n                  <td>[field:linkman/]</td>\r\n                  <th class=\"aBlack\">[field:lang.linktel/]</th>\r\n                  <td>[field:linktel/]</td>\r\n                </tr>\r\n                 <tr>\r\n                  <th class=\"aBlack\">[field:lang.email/]</th>\r\n                  <td>[field:email/]</td>\r\n                  <th class=\"aBlack\">[field:lang.address/]</th>\r\n                  <td>[field:address/]</td>\r\n                </tr>\r\n                  <tr>\r\n                  <th colspan=\"4\" align=\"left\" class=\"aBlack\">[field:lang.jobneed/]</th>\r\n                </tr>\r\n                <tr>\r\n                  <td colspan=\"4\"><strong>[field:jobneed/]</td>\r\n                </tr>\r\n                <tr>\r\n                  <th colspan=\"4\" align=\"left\" class=\"aBlack\">[field:lang.otherissue/]</th>\r\n                </tr>\r\n                <tr>\r\n                  <td colspan=\"4\">[field:msg/]</td>\r\n                </tr>\r\n                </tbody>\r\n              </table>\r\n      ",3259,5096);
+$z[20][4]['pagesize']="6";
+$z[21]=Array("include","",5155,5193);
+$z[21][4]['filename']="footer.htm";
+
+?>

@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>会员权限管理</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">会员权限管理</div>
+</div>
+<table _dlist="line" class="tlist" align="center">
+      <form name="form1" action="member_rank.php" method="post">
+          <input type="hidden" name="dopost" value="save">
+    <tr height="28">
+      <td colspan="5">
+      	<strong>会员管理 &gt; 会员权限管理：</strong>      </td>
+    </tr>
+    <tr bgcolor="#F8FCF1" height="24">
+      <td colspan="5"><strong>级别名称和级别值：（注册会员这个级别不能删除，否则会员系统将会无法正常使用某些功能）</strong></td>
+    </tr>
+    <tr bgcolor="#FDFEE9" height="24" align="center">
+        <td width="30%">级别名称</td>
+      <td width="18%">级别值</td>
+      <td width="18%">默认积分</td>
+      <td width="18%">状态</td>
+      <td width="18%">管理</td>
+    </tr>
+	<?php
+	$k=0;
+	while($row = $dsql->GetObject())
+	{
+	  $k++;
+	?>
+	<input type="hidden" name="ID_<?php echo $k?>" value="<?php echo $row->id; ?>">
+   <tr align="center" bgcolor="#FFFFFF" height="24">
+     <td>
+	      <input name="name_<?php echo $k?>" value="<?php echo $row->membername; ?>" type="text" id="name_<?php echo $k?>" class='txt' />
+	   </td>
+     <td>
+	      <input name="rank_<?php echo $k?>" value="<?php echo $row->rank; ?>"  type="text" id="rank_<?php echo $k?>" class='txt' />
+      </td>
+	   <td>
+       <input name="scores_<?php echo $k?>"  value="<?php echo $row->scores; ?>"  type="text" id="scores_<?php echo $k?>" class='txt' />	
+     </td>
+     <td>
+	     <input name="check_<?php echo $k?>" type="checkbox" id="check_<?php echo $k?>" <?php if($row->id == 3) echo 'disabled="disabled"';?>  class="np" value="1" checked='checked' />
+       正在使用
+     </td>
+	   <td align="center">
+	  	 <a href="<?php echo "member_rank.php?id={$row->id}&amp;dopost=concrete"; ?>">[修改]</a>
+	  	 <a href="member_rank.php?dopost=del&id=<?php echo $row->id; ?>">[删除]</a>
+	  	</td>
+    </tr>
+	<?php
+	}
+	?>
+      	<input type="hidden" name="idend" value="<?php echo $k; ?>">
+
+    <tr bgcolor="#F8FCF1" height="24">
+      <td colspan="5"><strong>新增一个级别：</strong>(由于会员升级是以级别值由低向高升级的，因此增加组别时需注意此值的设置)</td>
+    </tr>
+    <tr bgcolor="#FFFFFF" align="center" height="24">
+      <td> 级别名称 </td>
+      <td> 级别值 </td>
+      <td> 默认积分 </td>
+      <td> 确定新增 </td>
+    	<td>&nbsp;</td>
+    </tr>
+    <tr bgcolor="#FFFFFF" align="center" height="24">
+    	<td> <input name="name_new" type="text" id="name_new" class='txt'  />	  </td>
+    	<td> <input name="rank_new" type="text" id="rank_new" class='txt'  />	  </td>
+    	<td> <input name="scores_new" type="text" id="scores_new" class='txt'  />    </td>
+    	<td> <input name="check_new" type="checkbox" id="check_new" class="np" value="1" /> 增加等级 </td>
+    	<td> <button class="btn1" type="submit">保存</button></td>
+    </tr>
+    <tr>
+      <td height="24" colspan="5" bgcolor="#F8FCF1">&nbsp;</td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

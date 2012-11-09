@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>更新网站地图</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">更新网站地图</div>
+</div>
+
+<table _dlist="line check" class="tlist" align="center">
+  <form name="form1" action="makehtml_map.php" method="get" target='stafrm'>
+<tbody>
+    <tr height="20" bgcolor="#FFFFFF"> 
+      <td width="25%">地图类型：</td>
+      <td>
+      	<input name="dopost" type="radio" id="mdopost1" class="np" value="site" checked='1' />
+      	<label for="mdopost1">普通地图</label>
+      	&nbsp;
+      	<input name="dopost" type="radio" id="mdopost2" class="np" value="rss" />
+      	<label for="mdopost2">RSS地图</label>
+      </td>
+    </tr>
+    <tr> 
+      <td height="20" colspan="2" bgcolor="#FAFAF1" align="center">
+      	<button type="button" class="btn1" onClick="document.form1.submit();">开始更新</button>
+      </td>
+    </tr>
+  </form>
+  <tr bgcolor="#F7FAF3"> 
+    <td height="20" colspan="2"> <table width="100%">
+        <tr> 
+          <td width="74%">进行状态： </td>
+          <td width="26%" align="right"> <script language='javascript'>
+            	function ResizeDiv(obj,ty)
+            	{
+            		if(ty=="+") document.all[obj].style.pixelHeight += 50;
+            		else if(document.all[obj].style.pixelHeight>80) document.all[obj].style.pixelHeight = document.all[obj].style.pixelHeight - 50;
+            	}
+            	</script>
+            [<a href='#' onClick="ResizeDiv('mdv','+');">增大</a>] [<a href='#' onClick="ResizeDiv('mdv','-');">缩小</a>] 
+          </td>
+        </tr>
+      </table></td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr bgcolor="#FFFFFF"> 
+    <td colspan="2" id="mtd">
+    	<div id='mdv' style='width:100%;height:350px;'> 
+        <iframe name="stafrm" frameborder="0" id="stafrm" width="100%" height="100%"></iframe>
+      </div>
+      </td>
+  </tr>
+  </tfoot>
+</table>
+</body>
+</html>

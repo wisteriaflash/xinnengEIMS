@@ -1,0 +1,103 @@
+{dede:config.pagesize value="20"/}
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<title>友情链接管理</title>
+<link type="text/css" rel="stylesheet" href="main.css"/>
+<script src="jquery.js" language="javascript" type="text/javascript"></script>
+<script src="base.js" language="javascript" type="text/javascript"></script>
+
+<script language='javascript'>
+function Sel(stype)
+{
+	  for(var i=0;i < document.getElementsByName('aids').length;i++)
+	  {
+		  if(stype=='all') document.getElementsByName('aids')[i].checked=true;
+		  else document.getElementsByName('aids')[i].checked=false;
+	  }
+}
+function checkSubmit()
+{
+	var str = '';
+	for(var i=0;i < document.getElementsByName('aids').length;i++)
+	{
+		  if(document.getElementsByName('aids')[i].checked){
+		  	if(str=='') str += document.getElementsByName('aids')[i].value;
+		  	else str += ',' + document.getElementsByName('aids')[i].value;
+		  }
+	}
+	if(str=='')
+	{
+		alert('你没选择任何内容！');
+		return false;
+	}
+	else
+	{
+		location="friendlink_edit.php?aids="+str+"&dopost=delall";
+	}
+}
+</script>
+</head>
+<body>
+<div class="mtitle">
+  <div class="lbox">友情链接管理</div>
+</div>
+<table class="tform">
+  <tbody>
+    <tr>
+      <td align="left"></td>
+      <td align="right">[<a href="friendlink_add.php"><u>增加链接</u></a>]
+ 	 	[<a href="friendlink_type.php"><u>网站类型管理</u></a>]
+  	[<a href='{dede:global name='cfg_phpurl' /}/flink.php' target='_blank'><u>友情链接预览</u></a>]</td>
+    </tr>
+  </tbody>
+</table>
+<table _dlist="line check" class="tlist">
+  <form name='form1' method='post' action='friendlink_edit.php' onSubmit='return checkSubmit();'>
+  	<input type='hidden' name='dopost' value='delall'/>
+  	<input type='hidden' name='allid' value=''/>
+  <tr align="center" bgcolor="#F9FCEF" height="26">
+          <td width="6%">选择</td>
+          <td width="23%">网站名称</td>
+          <td width="12%">网站Logo</td>
+          <td width="15%">站长Email</td>
+          <td width="15%">时间</td>
+          <td width="8%">状态</td>
+          <td width="8%">顺序</td>
+          <td width="15%">管理</td>
+        </tr>
+        {dede:datalist}
+        <tr align="center" bgcolor="#FFFFFF" height="26" onMouseMove="javascript:this.bgColor='#FCFDEE';"
+        	 onMouseOut="javascript:this.bgColor='#FFFFFF';">
+          <td><input type='checkbox' name='aids' value='{dede:field.id/}' class='np'></td>
+          <td><a href="{dede:field.url/}" target='_blank'>{dede:field.webname/}</a></td>
+          <td><a href="{dede:field.url/}" target='_blank'>{dede:field.logo function="GetPic(@me)"/}</a></td>
+          <td>{dede:field.email/}</td>
+          <td>{dede:field.dtime function="MyDate('Y-m-d',@me)"/}</td>
+          <td>{dede:field.ischeck function="GetSta(@me)"/}</td>
+          <td>{dede:field.sortrank/}</td>
+          <td>
+          	<a href='friendlink_edit.php?id={dede:field.id/}&dopost=getedit'>[更改]</a>
+		        <a href='friendlink_edit.php?id={dede:field.id/}&dopost=delete'>[删除]</a>
+		      </td>
+        </tr>
+		{/dede:datalist}
+     <tr bgcolor="#FDFEEF" height="28">
+      <td colspan="8">
+      	　<button type="button" class="btn1s" _click="allSelect">全选</button>
+        <button type="button" class="btn1s" _click="unSelect">反选</button>
+      	<button class="btn1s" type="button" onclick='checkSubmit()'>批量删除</button>
+      </td>
+     </tr>
+     <tr align="center" bgcolor="#F9FCEF" height="28">
+      <td colspan="8">
+      	{dede:pagelist listsize=6/}
+      </td>
+     </tr>
+    </form>
+   </table>
+   </td>
+</tr>
+</table>
+</body>
+</html>
