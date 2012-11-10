@@ -89,7 +89,8 @@ class TypeLink
 			$this->Lang = $regArr[2][0];
 			$this->TopID = $row['id'];
 			$turl = GetTypeUrl($row['id'],$row['typedir'],$row['isdefault'],$row['defaultname'],$row['ispart'],$row['namerule2']);
-			$this->IndexLink = "<a href='{$turl}'>{$this->LangName}</a>";
+			// $this->IndexLink = "<a href='{$turl}'>{$this->LangName}</a>";
+			$this->IndexLink = "";
 		}
 		else
 		{
@@ -99,7 +100,8 @@ class TypeLink
 			$this->Lang = $regArr[2][0];
 			$this->TopID = $this->TypeID;
 			$turl = GetTypeUrl($this->TypeInfos['id'],$this->TypeInfos['typedir'],$this->TypeInfos['isdefault'],$this->TypeInfos['defaultname'],$this->TypeInfos['ispart'],$this->TypeInfos['namerule2']);
-			$this->IndexLink = "<a href='{$turl}'>{$this->LangName}</a>";
+			// $this->IndexLink = "<a href='{$turl}'>{$this->LangName}</a>";
+			$this->IndexLink = "";
 		}
 		return $this->Lang;
 	}

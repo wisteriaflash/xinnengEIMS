@@ -20,7 +20,9 @@ function CheckLogin(){
 {dede:include filename="header.htm"/}
 <div class="wrapper mT8">
   <div class="pleft">
-    <div class="place"> <strong>当前位置:</strong> {dede:field name='position'/} </div>
+    <div class="place"> <strong>当前位置:</strong>
+      <a href="{dede:global.cfg_clihost/}">{dede:lang.indexname/}</a> {dede:field name='position'/} 
+   </div>
     <!-- /place -->
     <div class="listbox">
      <ul class="e2">

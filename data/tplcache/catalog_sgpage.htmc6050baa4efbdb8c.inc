@@ -14,20 +14,20 @@ $z[5]=Array("global","",626,651);
 $z[5][4]['name']="cfg_cmsurl";
 $z[6]=Array("include","",963,1000);
 $z[6][4]['filename']="header.htm";
-$z[7]=Array("field","",1140,1166);
+$z[7]=Array("field","",1142,1168);
 $z[7][4]['name']="title";
-$z[8]=Array("field","",1261,1280);
+$z[8]=Array("field","",1263,1282);
 $z[8][4]['name']="title";
-$z[9]=Array("field","",1362,1380);
+$z[9]=Array("field","",1364,1382);
 $z[9][4]['name']="body";
-$z[10]=Array("field","",1392,1413);
+$z[10]=Array("field","",1394,1415);
 $z[10][4]['name']="content";
-$z[11]=Array("arclist","\r\n        <li><a href=\"[field:arcurl/]\" target=\"_blank\">[field:title/]</a></li>\r\n        ",1674,1842);
+$z[11]=Array("arclist","\r\n        <li><a href=\"[field:arcurl/]\" target=\"_blank\">[field:title/]</a></li>\r\n        ",1676,1844);
 $z[11][4]['row']="10";
 $z[11][4]['orderby']="click";
 $z[11][4]['typeid']="3";
 $z[11][4]['titlelen']="40";
-$z[12]=Array("include","",1923,1961);
+$z[12]=Array("include","",1925,1963);
 $z[12][4]['filename']="footer.htm";
 
 ?>
