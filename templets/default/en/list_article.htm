@@ -86,6 +86,10 @@ function CheckLogin(){
             <li><a href='[field:arcurl/]'>[field:title/]</a><span class="aOrange mL10">[field:pubdate function="GetDateMK(@me)"/]</span>
               <p class="clear">[field:description/]…</p>
             </li>
+            <!-- <li> [field:array runphp='yes']@me = (empty(@me['litpic']) ? "" : "<a href='{@me['arcurl']}' class='preview' target='_blank'><img src='{@me['litpic']}'/></a>"); [/field:array]
+              [<b>[field:typelink/]</b>] <a href="[field:arcurl/]" class="title" target="_blank">[field:title/]</a> <span class="info"> <small>日期：</small>[field:pubdate function="GetDateTimeMK(@me)"/] <small>点击：</small>[field:click/] <small>好评：</small>[field:scores/] </span>
+              <p class="intro"> [field:description/]... </p>
+            </li> -->
           {/dede:list} 
           </ul>
           <div class="paglist">{dede:pagelist listsize='5'/}</div>

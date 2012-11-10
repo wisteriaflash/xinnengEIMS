@@ -21,16 +21,14 @@ body {
 	height:auto !important;
 	color:#666;
 	background-color: #fff;
-	font: 400 12px/150% Tahoma, Helvetica, Arial, sans-serif;
+	/*font: 400 12px/150% Tahoma, Helvetica, Arial, sans-serif;*/
+	font:12px Verdana,Arial,Tahoma;
 }
 ol, ul {
 	list-style:none;
 }
 img {
 	border:0;
-}
-a img {
-	border: 1px solid #ccc;
 }
 .ad img {
 	border-style: none;
@@ -285,18 +283,18 @@ button,
 /* 常用样式
 -------------------------------------------------------------------*/
 .wrapper {
-	width: 950px;
+	width: 960px;
 	clear: both;
 	margin: 0 auto;
 }
 /*网站框架*/
 .west {
 	width:260px;
-	float:left;
+	float:right;
 }
 .east {
 	width:680px;
-	float:right;
+	float:left;
 }
 .fLeft {
 	float:left;
@@ -811,4 +809,26 @@ dl.imgList dd.assistant span {
 #bigpic img {
 	max-width:560px;
 	width:expression(this.width > 560 ? '560px' : this.width);
+}
+
+/*---------- d : 附加信息列表 ---------*/
+.d1{/* 前置时间日期的小列表 */
+	padding:4px 0px;
+}
+.d1 li{
+	height:27px;
+	line-height:27px;
+	overflow:hidden;
+}
+.d1 li span{
+	color:#999;
+	margin-right:5px;
+	float:left;
+}
+/*-------------------------------------------------- 
+ list icon
+ ---------------------------------------------*/
+.ico3 li{
+	padding-left:16px;
+	background:url(../images/ico-3.gif) 7px 11px no-repeat;
 }

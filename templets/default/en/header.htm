@@ -1,38 +1,15 @@
-<div id="topBar">
-  <div class="wrapper">
-  <div class="login">
-      <div id="_userlogin">
-        <form name="userlogin" action="/member/index_do.php" method="POST">
-          <input type="hidden" name="fmdo" value="login" />
-          <input type="hidden" name="dopost" value="login" />
-          <input type="hidden" name="keeptime" value="604800" />
-          <ul class="fLeftChild">
-            <li>
-              <label>{dede:lang.username/}</label>
-              <input type="text" name="userid" class="text" style="width:80px;" />
-            </li>
-            <li>
-              <label>{dede:lang.password/}</label>
-              <input type="password" name="pwd" class="text" style="width:80px;" />
-            </li>
-            <li>
-              <label>{dede:lang.validatecode/}</label>
-              <input type="text" name="vdcode" class="text" style="width:50px;"/>
-              <img src="{dede:global.cfg_cmsurl/}/include/vdimgck.php" alt="{dede:lang.validatecode/}" align="absmiddle"/></li>
-            <li>
-              <input class="mL5 mR5" name="submit" type="submit" value="{dede:lang.login/}" />
-            </li>
-            <li><a href="/member/index_do.php?fmdo=user&dopost=regnew" target="_blank">{dede:lang.register/}</a></li>
-          </ul>
-        </form>
+<div class="header">
+  <!-- //菜单 -->
+  <div class="module blue mT10 wrapper w960">
+    <div class="top">
+        <h1 class="logo"><a href="{dede:global.cfg_cmsurl/}/"><img src="{dede:global.cfg_templeturl/}/default/images/logo.gif" height="42" width="220" alt="{dede:global.cfg_webname/}"/></a> </h1>
+      <!-- //如果不使用currentstyle，可以在channel标签加入 cacheid='channeltoplist' 属性提升性能 -->
+      <div id="navMenu">
+        <ul>
+          {dede:channel get='index'}<li><i class="left"></i><i class="right"></i><a href='[field:typeurl/]'><span>[field:lang.indexname/]</span></a></li>{/dede:channel}
+          {dede:channel type='top' currentstyle="<li class='hover'><i></i><a href='~typelink~' ~rel~><span>~typename~</span></a></li>"}<li><i></i><a href='[field:typeurl/]' [field:rel/]><span>[field:typename/]</span></a></li> {/dede:channel}
+        </ul>
       </div>
     </div>
-    <script language="javascript" type="text/javascript">CheckLogin();</script>
-    <ol class="fRight fLeftChild overflow mT5">
-    {dede:langlist}
-      <li><a href="[field:typeurl/]" title="[field:langname/]">[field:langname/]</a></li>
-    {/dede:langlist} 
-    </ol>
-    <i class="fRight">{dede:lang.langent/}</i>
   </div>
-</div>
+</div><!-- //header -->
