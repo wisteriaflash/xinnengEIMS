@@ -113,12 +113,12 @@ if($dopost=='upload')
 		
 		if($cfg_multi_site=='N')
 		{
-			$imgHtml .=  "<a href='$urlValue' target='_blank'><img src='$imgsrcValue' width='$imgwidthValue' border='0' height='$imgheightValue' alt='' /></a>\n";
+			$imgHtml .=  "<img src='$imgsrcValue' width='$imgwidthValue' border='0' height='$imgheightValue' alt='' />\n";
 		}
 		else
 		{
 			if(empty($cfg_basehost)) $cfg_basehost = 'http://'.$_SERVER["HTTP_HOST"];
-			$imgHtml .=  "<a href='{$cfg_basehost}$urlValue' target='_blank'><img src='{$cfg_basehost}$imgsrcValue' width='$imgwidthValue' border='0' height='$imgheightValue' alt='' /></a>\n";
+			$imgHtml .=  "<img src='{$cfg_basehost}$imgsrcValue' width='$imgwidthValue' border='0' height='$imgheightValue' alt='' />\n";
 		}
 	}
 	$imgHtml .= "</p>\r\n";

@@ -166,7 +166,7 @@ FCKConfig.CoreStyles =
 	'Size' :
 	{
 		Element		: 'span',
-		Styles		: { 'font-size' : '#("Size","fontSize")' },
+		// Styles		: { 'font-size' : '#("Size","fontSize")' },
 		Overrides	: [ { Element : 'font', Attributes : { 'size' : null } } ]
 	},
 

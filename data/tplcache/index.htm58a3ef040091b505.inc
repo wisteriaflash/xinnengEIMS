@@ -25,11 +25,9 @@ $z[10]=Array("channelartlist","\r\n   <dl class=\"tbox\">\r\n    <dt><a class=\"
 $z[10][4]['typeid']="3,4,0";
 $z[11]=Array("global","",2858,2887);
 $z[11][4]['name']="cfg_templeturl";
-$z[12]=Array("myad","",2936,2969);
-$z[12][4]['name']="index_contact";
-$z[13]=Array("mylang","",2979,3008);
-$z[13][4]['eid']="contact";
-$z[14]=Array("include","",3042,3080);
-$z[14][4]['filename']="footer.htm";
+$z[12]=Array("mylang","",2931,2960);
+$z[12][4]['eid']="contact";
+$z[13]=Array("include","",2980,3018);
+$z[13][4]['filename']="footer.htm";
 
 ?>

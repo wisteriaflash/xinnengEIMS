@@ -136,3 +136,75 @@ Page: /index.php?upcache=1
 Error: Unknown column 'imgurls' in 'field list' <br />Error sql: <font color='red'>Select imgurls From `dede_addonproduct` where aid='2' limit 0,1;</font>
 */
 ?>
+<?php
+/*
+Page: /plus/view.php?aid=1
+Error: Table 'xinnengcareims.dede_member_space' doesn't exist <br />Error sql: <font color='red'>Select mb.*,ms.spacename,ms.sign,ar.membername as rankname From `dede_member` mb
+		left join `dede_member_space` ms on ms.mid = mb.mid 
+		left join `dede_arcrank` ar on ar.rank = mb.rank
+		where mb.mid='1' limit 0,1 </font>
+*/
+?>
+<?php
+/*
+Page: /plus/view.php?aid=1
+Error: Table 'xinnengcareims.dede_member_space' doesn't exist <br />Error sql: <font color='red'>Select mb.*,ms.spacename,ms.sign,ar.membername as rankname From `dede_member` mb
+		left join `dede_member_space` ms on ms.mid = mb.mid 
+		left join `dede_arcrank` ar on ar.rank = mb.rank
+		where mb.mid='1' limit 0,1 </font>
+*/
+?>
+<?php
+/*
+Page: /plus/view.php?aid=1
+Error: Table 'xinnengcareims.dede_member_space' doesn't exist <br />Error sql: <font color='red'>Select mb.*,ms.spacename,ms.sign,ar.membername as rankname From `dede_member` mb
+		left join `dede_member_space` ms on ms.mid = mb.mid 
+		left join `dede_arcrank` ar on ar.rank = mb.rank
+		where mb.mid='1' limit 0,1 </font>
+*/
+?>
+<?php
+/*
+Page: /plus/view.php?aid=1
+Error: Table 'xinnengcareims.dede_member_space' doesn't exist <br />Error sql: <font color='red'>Select mb.*,ms.spacename,ms.sign,ar.membername as rankname From `dede_member` mb
+		left join `dede_member_space` ms on ms.mid = mb.mid 
+		left join `dede_arcrank` ar on ar.rank = mb.rank
+		where mb.mid='1' limit 0,1 </font>
+*/
+?>
+<?php
+/*
+Page: /plus/view.php?aid=1
+Error: Table 'xinnengcareims.dede_member_space' doesn't exist <br />Error sql: <font color='red'>Select mb.*,ms.spacename,ms.sign,ar.membername as rankname From `dede_member` mb
+		left join `dede_member_space` ms on ms.mid = mb.mid 
+		left join `dede_arcrank` ar on ar.rank = mb.rank
+		where mb.mid='1' limit 0,1 </font>
+*/
+?>
+<?php
+/*
+Page: /plus/view.php?aid=1
+Error: Table 'xinnengcareims.dede_member_space' doesn't exist <br />Error sql: <font color='red'>Select mb.*,ms.spacename,ms.sign,ar.membername as rankname From `dede_member` mb
+		left join `dede_member_space` ms on ms.mid = mb.mid 
+		left join `dede_arcrank` ar on ar.rank = mb.rank
+		where mb.mid='1' limit 0,1 </font>
+*/
+?>
+<?php
+/*
+Page: /plus/view.php?aid=1
+Error: Table 'xinnengcareims.dede_member_space' doesn't exist <br />Error sql: <font color='red'>Select mb.*,ms.spacename,ms.sign,ar.membername as rankname From `dede_member` mb
+		left join `dede_member_space` ms on ms.mid = mb.mid 
+		left join `dede_arcrank` ar on ar.rank = mb.rank
+		where mb.mid='1' limit 0,1 </font>
+*/
+?>
+<?php
+/*
+Page: /plus/view.php?aid=18
+Error: Table 'xinnengcareims.dede_member_space' doesn't exist <br />Error sql: <font color='red'>Select mb.*,ms.spacename,ms.sign,ar.membername as rankname From `dede_member` mb
+		left join `dede_member_space` ms on ms.mid = mb.mid 
+		left join `dede_arcrank` ar on ar.rank = mb.rank
+		where mb.mid='1' limit 0,1 </font>
+*/
+?>
