@@ -121,7 +121,8 @@ function lib_channel(&$ctag,&$refObj)
 					else $row['rel'] = " rel='dropmenu{$row['id']}'";
 				}
 				//处理同级栏目中，当前栏目的样式
-				if( ($row['id']==$typeid || ($topid==$row['id'] && $type=='top') ) && $currentstyle!='' )
+				// if( ($row['id']==$typeid || ($topid==$row['id'] && $type=='top') ) && $currentstyle!='' )
+				if( ($row['id']==$typeid || ($reid==$row['id'] && $type=='top') ) && $currentstyle!='' )
 				{
 					$linkOkstr = $currentstyle;
 					$row['typelink'] = GetOneTypeUrlA($row);

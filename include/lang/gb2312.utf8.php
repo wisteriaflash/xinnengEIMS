@@ -2,7 +2,7 @@
 global $langArr_gb2312;
 $langArr_gb2312 = Array(
 //-----------------------------
-'indexname'=>'主页',
+'indexname'=>'首页',
 'member'=>'会员',
 'flink'=>'友情链接',
 'membercenter'=>'会员中心',

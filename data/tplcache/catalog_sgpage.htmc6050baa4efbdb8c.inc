@@ -1,0 +1,47 @@
+<?php
+$z[0]=Array("field","",254,273);
+$z[0][4]['name']="title";
+$z[1]=Array("global","",295,324);
+$z[1][4]['name']="cfg_templeturl";
+$z[2]=Array("field","",421,444);
+$z[2][4]['name']="keywords";
+$z[3]=Array("field","",484,535);
+$z[3][4]['name']="description";
+$z[3][4]['function']="html2text(@me)";
+$z[4]=Array("global","",599,624);
+$z[4][4]['name']="cfg_cmsurl";
+$z[5]=Array("include","",936,973);
+$z[5][4]['filename']="header.htm";
+$z[6]=Array("global","",1030,1059);
+$z[6][4]['name']="cfg_templeturl";
+$z[7]=Array("global","",1189,1214);
+$z[7][4]['name']="cfg_phpurl";
+$z[8]=Array("handlang","",1291,1307);
+$z[9]=Array("channel","<li><a href=\"[field:typeurl/]\">[field:lang.indexname/]</a></li>",1661,1765);
+$z[9][4]['get']="index";
+$z[10]=Array("channel","<li><a href='[field:typeurl/]'>[field:typename/]</a></li> ",1774,1872);
+$z[10][4]['type']="top";
+$z[11]=Array("global","",1933,1959);
+$z[11][4]['name']="cfg_clihost";
+$z[12]=Array("global","",2231,2257);
+$z[12][4]['name']="cfg_clihost";
+$z[13]=Array("lang","",2259,2281);
+$z[13][4]['name']="indexname";
+$z[14]=Array("field","",2304,2333);
+$z[14][4]['name']="position";
+$z[15]=Array("lang","",2505,2522);
+$z[15][4]['name']="news";
+$z[16]=Array("channel","\r\n            <li><a href='[field:typeurl/]'>[field:typename/]</a></li> \r\n          ",2613,2738);
+$z[16][4]['type']="self";
+$z[17]=Array("lang","",2866,2888);
+$z[17][4]['name']="contactus";
+$z[18]=Array("mylang","",2976,3009);
+$z[18][4]['eid']="contacttype";
+$z[19]=Array("field","",3172,3194);
+$z[19][4]['name']="typename";
+$z[20]=Array("field","",3311,3340);
+$z[20][4]['name']="content";
+$z[21]=Array("include","",3432,3470);
+$z[21][4]['filename']="footer.htm";
+
+?>

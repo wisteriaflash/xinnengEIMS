@@ -966,4 +966,24 @@ if( file_exists(DEDEINC.'/extend.func.php') ) {
 	require_once(DEDEINC.'/extend.func.php');
 }
 
+
+/**
+ *  获取图集的多图
+ *
+ * @return    string
+ */
+ function Getimg($aid,$imgwith=400,$imgheight=300,$num=0){
+    global $dsql;
+    $imgurls = ''; 
+    $row =$dsql->getone( "Select bigpic From `dede_addonproduct` where aid='$aid' ");
+    $imgurls= $row['bigpic']; 
+    preg_match_all("/{dede:img (.*)} (.*){\/dede:img/isU",$imgurls,$wordcount); 
+    $count=count($wordcount[2]); 
+    if ($num>$count || $num==0){$num=$count;} 
+    for($i=0;$i<$num;$i++){ 
+        $imglist.="<li><img src=".trim($wordcount[2][$i])." width=".$imgwith." height=".$imgheight."></li>"; 
+    }
+    return $imglist; 
+}
+
 ?>
