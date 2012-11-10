@@ -434,20 +434,66 @@ Copyright (c) 2008, DedeEIMS All rights reserved.
 	line-height: 32px;
 	height: 32px;
 }
-#position li.home {
-	background-image: url(../images/r.gif);
-	background-repeat: no-repeat;
-	background-position: 0 3px;
-	height: 31px;
-	float: left;
-	padding-left: 20px;
+.pleft .place{
+	width:712px;
+	height:24px;
+	line-height:24px;
+	background:transparent url(../images/green_skin.png) repeat-x scroll 0 -188px;
+	border-top:1px solid #CCDBEC;
+	border-bottom:1px solid #CCDBEC;
+	text-indent:12px;
+	color:#004AA0;
+	overflow:hidden;
 }
-#position li {
-	margin:0 3px;
-	background-image: url(../images/square.gif);
-	background-repeat: no-repeat;
-	background-position: -6000px center;
-	padding-left: 1em;
+.pleft .place strong{
+	color:#004AA0;
+	font-weight:normal;
+	letter-spacing:1px;
+}
+.pleft .place a{
+	color:#004AA0;
+	margin:0px 2px;
+}
+.pleft .place a:hover{
+	color:#ff3333;
+	text-decoration:none;
+}
+.pleft .place small{
+	display:inline-block;
+	vertical-align:middle;
+	width:8px;
+	height:20px;
+	*height:24px;
+	overflow:hidden;
+	background:url(../images/ico-3.gif) 2px 8px no-repeat;
+	font-size:0px;
+}
+.place{
+	height:24px;
+	line-height:24px;
+	text-indent:18px;
+	color:#999;
+	background:transparent url(../images/green_skin.png) repeat-x scroll 0 -188px;
+	border-top:1px solid #BADAA1;
+	border-bottom:1px solid #BADAA1;
+	overflow:hidden;
+	font-family:宋体;
+	margin-bottom:6px;
+	text-align:left;
+}
+.place strong{
+	color:#397CBE;
+	font-weight:normal;
+	letter-spacing:1px;
+}
+.place a{
+	color:#397CBE;
+	margin:0px 2px;
+}
+.place a:hover{
+	color:#FF3366
+	margin:0px 2px;
+	text-decoration: underline;
 }
 /* 产品导航
 -------------------------------------------------------------------*/
