@@ -1,0 +1,5 @@
+INSERT INTO `dede_plus` VALUES('27','友情链接插件','<m:item name=\'友情链接\' link=\'friendlink_main.php\' rank=\'plus_友情链接\' target=\'main\' />','','织梦团队','1','');
+INSERT INTO `dede_plus` VALUES('24','文件管理器','<m:item name=\'文件管理器\' link=\'file_manage_main.php\' rank=\'plus_文件管理器\' target=\'main\' />','','织梦团队','1','');
+INSERT INTO `dede_plus` VALUES('28','投票插件','<m:item name=\'投票插件\' link=\'vote_main.php\' rank=\'plus_投票插件\' target=\'main\' />','','织梦团队','1','');
+INSERT INTO `dede_plus` VALUES('25','广告管理','<m:item name=\'广告管理\' link=\'ad_main.php\' rank=\'plus_广告管理\' target=\'main\' />','','织梦官方','1','');
+INSERT INTO `dede_plus` VALUES('29','留言簿插件','<m:item name=\'留言簿插件\' link=\'catalog_do.php?dopost=guestbook\' rank=\'plus_留言簿插件\' target=\'main\' />','','织梦团队','1','');
