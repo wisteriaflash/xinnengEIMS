@@ -33,7 +33,7 @@ img {
 .ad img {
 	border-style: none;
 }
-address, caption, em, i {
+address, caption, i {
 	font-style:normal;
 	font-weight:400;
 }
@@ -626,14 +626,6 @@ button,
 	zoom:1;
 	display: inline-block;
 	_height:1px;
-}
-* html .clearfix {
- 	height: 0%;
- 	line-height:0;
-}
-*+html .clearfix {
- 	height: 0%;
- 	line-height:0;
 }
 .clearfix {
 	display: block;
