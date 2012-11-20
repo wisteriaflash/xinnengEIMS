@@ -397,6 +397,7 @@ Copyright (c) 2008, DedeEIMS All rights reserved.
 	height: 20px;
 	background-color: #000;
 	filter:alpha(opacity=50);       /* IE */
+	/*filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);*/
 	-moz-opacity:0.5;
 	opacity: 0.5;
 	display: block;
