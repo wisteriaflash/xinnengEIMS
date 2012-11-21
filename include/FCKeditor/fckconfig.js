@@ -105,7 +105,8 @@ FCKConfig.FontColors = '000000,993300,333300,003300,003366,000080,333399,333333,
 
 FCKConfig.FontFormats	= 'p;h1;h2;h3;h4;h5;h6;pre;address;div' ;
 FCKConfig.FontNames		= '宋体;黑体;隶书;幼圆;Arial;Comic Sans MS;Courier New;Tahoma;Times New Roman;Verdana' ;
-FCKConfig.FontSizes		= 'smaller;larger;xx-small;x-small;small;medium;large;x-large;xx-large' ;
+// FCKConfig.FontSizes		= 'smaller;larger;xx-small;x-small;small;medium;large;x-large;xx-large' ;
+FCKConfig.FontSizes		= '8/8px;10/10px;12/12px;14/14px;18/18px;24/24px;36/36px';
 
 FCKConfig.StylesXmlPath		= FCKConfig.EditorPath + 'fckstyles.xml' ;
 
@@ -166,7 +167,7 @@ FCKConfig.CoreStyles =
 	'Size' :
 	{
 		Element		: 'span',
-		// Styles		: { 'font-size' : '#("Size","fontSize")' },
+		Styles		: { 'font-size' : '#("Size","fontSize")' },
 		Overrides	: [ { Element : 'font', Attributes : { 'size' : null } } ]
 	},
 
