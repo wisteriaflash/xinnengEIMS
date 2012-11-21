@@ -6,7 +6,7 @@
       <!-- //如果不使用currentstyle，可以在channel标签加入 cacheid='channeltoplist' 属性提升性能 -->
       <div id="navMenu">
         <ul>
-          {dede:channel get='index'}<li><i class="left"></i><i class="right"></i><a href='[field:typeurl/]'><span>[field:lang.indexname/]</span></a></li>{/dede:channel}
+          <li><i class="left"></i><i class="right"></i><a href="{dede:global.cfg_cmsurl/}/"><span>首页</span></a></li>
           {dede:channel type='top' currentstyle="<li class='hover'><i></i><a href='~typelink~' ~rel~><span>~typename~</span></a></li>"}<li><i></i><a href='[field:typeurl/]' [field:rel/]><span>[field:typename/]</span></a></li> {/dede:channel}
         </ul>
       </div>
