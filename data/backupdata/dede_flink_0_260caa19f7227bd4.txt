@@ -1,0 +1,1 @@
+INSERT INTO `dede_flink` VALUES('2','1','http://www.dedeeims.com','织梦EIMS','','','','1226375403','1','2');
