@@ -23,11 +23,9 @@ $z[9][4]['row']="1";
 $z[9][4]['aid']="2";
 $z[10]=Array("channelartlist","\r\n   <dl class=\"tbox\">\r\n    <dt><a class=\"channel channel_{dede:field name='typeid'/}\" href=\"{dede:field name='typeurl'/}\"><span class=\"title\">{dede:field name='typename'/}</span><i></i></a><span class=\"more\"><a href=\"{dede:field name='typeurl'/}\">更多>></a></span></dt>\r\n    <dd>\r\n      {dede:arclist titlelen='50' row='1' flag='h' orderby='sortrank'}\r\n      <div class=\"hotpic\">\r\n        <a class=\"pic\" href=\"[field:arcurl /]\" target=\"_blank\"><img src=\"[field:picname /]\" /></a>\r\n        <p class=\"title\"><span class=\"maskbg\"></span><em>[field:title /]</em></p>\r\n      </div>\r\n      {/dede:arclist}\r\n     <ul class=\"d1 ico3\">\r\n      {dede:arclist titlelen='60' noflag='h' row='4'}\r\n      <li><a href=\"[field:arcurl /]\" target=\"_blank\">[field:title /]</a><span>[field:pubdate function=\"MyDate('m-d',@me)\"/]</span></li>\r\n      {/dede:arclist}\r\n     </ul>\r\n    </dd>\r\n   </dl>\r\n   ",1866,2806);
 $z[10][4]['typeid']="3,4,0";
-$z[11]=Array("global","",2858,2887);
+$z[11]=Array("global","",2944,2973);
 $z[11][4]['name']="cfg_templeturl";
-$z[12]=Array("mylang","",2931,2960);
-$z[12][4]['eid']="contact";
-$z[13]=Array("include","",2980,3018);
-$z[13][4]['filename']="footer.htm";
+$z[12]=Array("include","",3033,3071);
+$z[12][4]['filename']="footer.htm";
 
 ?>
