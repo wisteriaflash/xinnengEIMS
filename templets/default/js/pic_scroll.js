@@ -23,6 +23,6 @@ $(document).ready(function () {
         height        : 400,
         width         : bannerWidth,
         responsive    : true,
-        animspeed       : 5000
+        animspeed     : 5000
     });
 });
