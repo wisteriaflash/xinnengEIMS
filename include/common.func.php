@@ -981,7 +981,8 @@ if( file_exists(DEDEINC.'/extend.func.php') ) {
     $count=count($wordcount[2]); 
     if ($num>$count || $num==0){$num=$count;} 
     for($i=0;$i<$num;$i++){ 
-        $imglist.="<li><img src=".trim($wordcount[2][$i])." width=".$imgwith." height=".$imgheight."></li>"; 
+        // $imglist.="<li><img src=".trim($wordcount[2][$i])." width=".$imgwith." height=".$imgheight."></li>";
+    	$imglist.="<li style='background-image:url(".trim($wordcount[2][$i]).");'></li>";
     }
     return $imglist; 
 }
