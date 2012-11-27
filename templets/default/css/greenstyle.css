@@ -262,7 +262,7 @@ Copyright (c) 2008, DedeEIMS All rights reserved.
 	width: 1280px;
 	height: 410px;
 }
-.index .main_banner ol.bjqs-markers{
+.index .main_banner .pagination{
 	height: 25px;
 	position: absolute;
 	left: 50%;
@@ -270,18 +270,18 @@ Copyright (c) 2008, DedeEIMS All rights reserved.
 	z-index: 99;
 	list-style: none;
 }
-.index .main_banner ol.bjqs-markers li{
+.index .main_banner .pagination li{
 	float: left;
 	margin: 0 8px;
 }
-.index .main_banner ol.bjqs-markers li a{
+.index .main_banner .pagination li a{
 	display: block;
 	width: 10px;
 	height: 10px;
 	background-position: -9px 0;
 	text-indent: -9999em;
 }
-.index .main_banner ol.bjqs-markers li.active-marker a{
+.index .main_banner .pagination li.current a{
 	background-position: -9px -14px;
 }
 .listbox{
@@ -485,7 +485,6 @@ Copyright (c) 2008, DedeEIMS All rights reserved.
 	border-top:1px solid #BADAA1;
 	border-bottom:1px solid #BADAA1;
 	overflow:hidden;
-	font-family:宋体;
 	margin-bottom:6px;
 	text-align:left;
 }
