@@ -911,6 +911,9 @@ ul.sotrList li span {
 	border-left: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
 }
+.tList td.content{
+	padding: 10px 0 10px 15px;
+}
 .tList .tdbg,
 .tList thead th {
 	color:#2f2f2f;
@@ -1050,17 +1053,15 @@ dl.imgList dd.assistant span {
 	line-height: 27px;
 	height: 27px;
 	display:block;
-	background-image: url(../images/t.gif);
-	background-repeat: no-repeat;
-	background-position: 12px center;
-	background-color: #F4F4F4;
+	background: url(../images/green_skin.png) 0 -292px repeat-x;
+	border-bottom: 1px solid #DADADA;
 }
 .heading strong {
 	font-size: 13px;
 	font-family:Arial,Helvetica,sans-serif;
-	padding-left: 22px;
+	padding-left: 10px;
 	float:left;
-	color:#000;
+	color: #004AA0;
 }
 .heading strong.select {
 }
@@ -1486,4 +1487,19 @@ dl.imgList dd.assistant span {
 }
 .viewbox .picbox ul.e8 li .title{
 	padding-top:0px;
+}
+
+/*job list*/
+#J_jobs thead th{
+	cursor: pointer;
+	color: #004AA0;
+}
+#J_jobs thead th em{
+	display: block;
+	float: right;
+	font-style: normal;
+	font-weight: normal;
+	color: #999;
+	padding-right: 10px;
+	*margin-top: -23px;
 }
