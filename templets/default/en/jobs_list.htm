@@ -79,6 +79,7 @@ $(document).ready(function () {
   $('#J_jobs table').on('click', function(evt){
     var target = evt.target;
     if($(this).find('thead').has(target).length>0){
+      $('#J_jobs tbody').css('display','none');
       $(this).find('tbody').toggle();  
     }
   });
