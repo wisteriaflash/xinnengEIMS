@@ -25,8 +25,8 @@
       <dt class="heading"><strong class="mL5">{dede:lang.jobs/}</strong></dt>
       <dd class="body pB5">
       
-      {dede:list pagesize='6'}
-      <table width="98%"  border="0" align="center" class="tList mTB10" style="font-size:12px">
+      {dede:list pagesize='10' orderby='senddate'}
+      <table id="job[field:id/]" width="98%"  border="0" align="center" class="tList mTB10" style="font-size:12px">
               <thead>
                 <tr>
                   <th colspan="4" align="left">[field:lang.jobname/] : [field:jobname/]<span class="mL10">([field:lang.neednum/]: [field:neednum/])</span><em>(点击) 切换详情</em></th>
@@ -68,6 +68,11 @@
     {/dede:list}     
       </dd>
     </dl>
+    <div class="dede_pages">
+      <div class="pagelist">
+        {dede:pagelist listitem="info,index,end,pre,next,pageno" listsize="5"/}
+      </div>
+    </div><!-- /pages -->
   </div>
   <!-- /pleft -->
 
@@ -75,12 +80,25 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function () {
-  $('#J_jobs table:first tbody').toggle();
+  
+  function init(){
+    var first = "#"+$('#J_jobs table:first').attr('id');
+    var hash=(!window.location.hash) ? first : window.location.hash;
+    var jgpattern =/^#job[0-9]+$/;
+    if(!jgpattern.test(hash)){
+      hash = first;
+    }
+    $(hash).find('tbody').toggle();
+  }
+  init();
+  //
   $('#J_jobs table').on('click', function(evt){
     var target = evt.target;
     if($(this).find('thead').has(target).length>0){
       $('#J_jobs tbody').css('display','none');
-      $(this).find('tbody').toggle();  
+      $(this).find('tbody').toggle();
+      //hash
+      window.location.hash = $(this).attr('id');
     }
   });
 });
