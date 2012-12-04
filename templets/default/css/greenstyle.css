@@ -673,3 +673,8 @@ Copyright (c) 2008, DedeEIMS All rights reserved.
 .footer .about_list li a{
   color: #666;
 }
+.footer .tjicon{
+	clear: both;
+	text-align: center;
+	padding-top: 5px;
+}
