@@ -83,13 +83,21 @@ $(document).ready(function () {
   
   function init(){
     var first = "#"+$('#J_jobs table:first').attr('id');
+    var firstID = getJobID(first);
     var hash=(!window.location.hash) ? first : window.location.hash;
+    var hashID = getJobID(hash);
     var jgpattern =/^#job[0-9]+$/;
-    if(!jgpattern.test(hash)){
+    if(!jgpattern.test(hash) || firstID<hashID){
       hash = first;
     }
     $(hash).find('tbody').toggle();
   }
+  function getJobID(str){
+    str = str.replace("#job","");
+    str = parseInt(str);
+    return str;
+  }
+  //
   init();
   //
   $('#J_jobs table').on('click', function(evt){
