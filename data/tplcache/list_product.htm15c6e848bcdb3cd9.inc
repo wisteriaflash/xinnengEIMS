@@ -22,21 +22,22 @@ $z[9]=Array("lang","",1400,1422);
 $z[9][4]['name']="indexname";
 $z[10]=Array("field","",1427,1456);
 $z[10][4]['name']="position";
-$z[11]=Array("list","\r\n        <li>\r\n          <a href=\"[field:arcurl/]\" class=\"pic\" target=\"_blank\"><img src=\"[field:litpic/]\" alt=\"[field:title function='html2text(@me)'/]\"/></a>\r\n          <a href=\"[field:arcurl/]\" class=\"title\">[field:title/]</a>\r\n          <span class=\"date\"><small>最后更新：</small>[field:pubdate function=\"GetDateMK(@me)\"/]</span>\r\n        </li>\r\n          ",1547,1950);
+$z[11]=Array("list","\r\n        <li>\r\n          <a href=\"[field:arcurl/]\" class=\"pic\" target=\"_blank\"><img src=\"[field:litpic/]\" alt=\"[field:title function='html2text(@me)'/]\"/></a>\r\n          <a href=\"[field:arcurl/]\" class=\"title\">[field:title/]</a>\r\n          <span class=\"date\"><small>最后更新：</small>[field:pubdate function=\"GetDateMK(@me)\"/]</span>\r\n        </li>\r\n          ",1547,1965);
 $z[11][4]['pagesize']="12";
-$z[12]=Array("pagelist","",2062,2133);
+$z[11][4]['orderway']="asc";
+$z[12]=Array("pagelist","",2077,2148);
 $z[12][4]['listitem']="info,index,end,pre,next,pageno";
 $z[12][4]['listsize']="5";
-$z[13]=Array("arclist","\r\n            <li>\r\n              <a href=\"[field:arcurl/]\" target=\"_blank\" class=\"preview\"><img src=\"[field:litpic/]\" alt=\"[field:title function='html2text(@me)'/]\"/></a>\r\n              <a href=\"[field:arcurl/]\" class=\"title\" target=\"_blank\">[field:title/]</a>\r\n              <span class=\"intro\">更新:[field:pubdate function=\"GetDateMK(@me)\"/]</span>\r\n            </li>\r\n                     ",2383,2843);
+$z[13]=Array("arclist","\r\n            <li>\r\n              <a href=\"[field:arcurl/]\" target=\"_blank\" class=\"preview\"><img src=\"[field:litpic/]\" alt=\"[field:title function='html2text(@me)'/]\"/></a>\r\n              <a href=\"[field:arcurl/]\" class=\"title\" target=\"_blank\">[field:title/]</a>\r\n              <span class=\"intro\">更新:[field:pubdate function=\"GetDateMK(@me)\"/]</span>\r\n            </li>\r\n                     ",2398,2858);
 $z[13][4]['row']="5";
 $z[13][4]['type']="image.";
 $z[13][4]['orderby']="click";
-$z[14]=Array("arclist","\r\n            <li><a href=\"[field:arcurl/]\" target=\"_blank\"><img src=\"[field:litpic/]\" alt=\"[field:title function='html2text(@me)'/]\"/><span class=\"title\">[field:title/]</span></a></li>\r\n                    ",3061,3327);
+$z[14]=Array("arclist","\r\n            <li><a href=\"[field:arcurl/]\" target=\"_blank\"><img src=\"[field:litpic/]\" alt=\"[field:title function='html2text(@me)'/]\"/><span class=\"title\">[field:title/]</span></a></li>\r\n                    ",3076,3342);
 $z[14][4]['row']="8";
 $z[14][4]['type']="image.commend.";
-$z[15]=Array("myad","",3447,3479);
+$z[15]=Array("myad","",3462,3494);
 $z[15][4]['name']="listRtPicAD2";
-$z[16]=Array("include","",3527,3565);
+$z[16]=Array("include","",3542,3580);
 $z[16][4]['filename']="footer.htm";
 
 ?>

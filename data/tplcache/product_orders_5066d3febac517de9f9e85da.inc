@@ -6,8 +6,8 @@ $fields = array();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>会员权限管理</title>
 <link type="text/css" rel="stylesheet" href="main.css"/>
-<script src="jquery.js" language="javascript" type="text/javascript"></script>
-<script src="base.js" language="javascript" type="text/javascript"></script>
+<script src="js/jquery.js" language="javascript" type="text/javascript"></script>
+<script src="js/base.js" language="javascript" type="text/javascript"></script>
 
 </head>
 <body>

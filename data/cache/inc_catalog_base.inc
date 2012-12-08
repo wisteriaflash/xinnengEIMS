@@ -8,4 +8,6 @@ $_Cs[4]=array(1,6);
 $_Cs[8]=array(1,1);
 $_Cs[9]=array(1,1);
 $_Cs[10]=array(1,1);
+$_Cs[11]=array(3,1);
+$_Cs[12]=array(3,1);
 ?>
