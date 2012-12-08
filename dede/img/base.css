@@ -287,3 +287,7 @@ border:1px solid #ffffff;
 	background:#F9FFE6;
 	padding:6px;
 }
+#pubdate {
+  background: url(../images/calendar.gif) 3px no-repeat;
+  padding-left: 23px;
+}
