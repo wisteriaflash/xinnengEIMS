@@ -44,7 +44,6 @@ function checkSubmit()
 <input type="hidden" name="dopost" value="save" />
 <input type="hidden" name="channelid" value="<?php echo $channelid?>" />
 <input type="hidden" name="id" value="<?php echo $aid?>" />
-<input type="hidden" name="pubdate" value="<?php echo $arcRow['pubdate']; ?>" />
   <table class="tform" id="needset" id="needset">
    <tbody>
           <tr>
@@ -271,36 +270,11 @@ function checkSubmit()
         <tr>
           <td width="90">&nbsp;发布时间：</td>
           <td width="241">
-            <?php
+          <?php
           $nowtime = GetDateTimeMk(time());
           echo "<input name=\"pubdate\" value=\"$nowtime\" type=\"text\" id=\"pubdate\" style=\"width:120px\">";
-
            ?>                                   
-         <script language="javascript" type="text/javascript">
-            var showX = getElementLeft($Obj("pubdate")) - 130;
-            var showY = (window.navigator.userAgent.indexOf("MSIE") >=1 )? getElementTop($Obj("pubdate")) + 465 :  getElementTop($Obj("pubdate"));
-          if((window.navigator.userAgent.indexOf("MSIE 7.0") >=1 )) {
-            showX = getElementLeft($Obj("pubdate"))+105;
-            showY = getElementTop($Obj("pubdate"))+1200;
-          }
-          if(window.navigator.userAgent.indexOf("MSIE 6.0")>=1)
-          {
-            Calendar.setup({
-              inputField     :    "pubdate",
-              ifFormat       :    "%Y-%m-%d %H:%M:%S",
-              showsTime      :    true,
-              timeFormat     :    "24"
-            });
-          } else {
-            Calendar.setup({
-              inputField     :    "pubdate",
-              ifFormat       :    "%Y-%m-%d %H:%M:%S",
-              showsTime      :    true,
-              position       :    [showX, showY],
-              timeFormat     :    "24"
-            });
-          }
-         </script>    </td>
+          </td>
           <td width="90"></td>
           <td width="379"></td>
     </tr>
@@ -319,7 +293,8 @@ function checkSubmit()
       <td height="24">&nbsp;</td>
     </tr>
   </table>
-
+</tr>
+</table>
 <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td height="56">
@@ -339,5 +314,27 @@ function checkSubmit()
   </tr>
 </table>
 </form>
+<script type="text/javascript">
+//pubdate
+var showX = getElementLeft($Obj("pubdate"));
+var showY = getElementTop($Obj("pubdate"));
+if(window.navigator.userAgent.indexOf("MSIE 6.0")>=1)
+{
+  Calendar.setup({
+    inputField     :    "pubdate",
+    ifFormat       :    "%Y-%m-%d %H:%M:%S",
+    showsTime      :    true,
+    timeFormat     :    "24"
+  });
+} else {
+  Calendar.setup({
+    inputField     :    "pubdate",
+    ifFormat       :    "%Y-%m-%d %H:%M:%S",
+    showsTime      :    true,
+    position       :    [showX, showY],
+    timeFormat     :    "24"
+  });
+}
+</script>
 </body>
 </html>

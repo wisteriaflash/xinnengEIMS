@@ -312,40 +312,15 @@ function checkSubmit()
     </tr>
     <tr>
       <td height="24" colspan="4" class="bline">
-        <table width="800" border="0" cellspacing="0" cellpadding="0">
+        <table width="800" border="0" cellspacing="0" cellpadding="0" id="pubTable">
         <tr>
           <td width="90">&nbsp;发布时间：</td>
           <td width="241">
             <?php
           $nowtime = GetDateTimeMk(time());
           echo "<input name=\"pubdate\" value=\"$nowtime\" type=\"text\" id=\"pubdate\" style=\"width:120px\">";
-
-           ?>                                   
-         <script language="javascript" type="text/javascript">
-            var showX = getElementLeft($Obj("pubdate")) - 130;
-            var showY = (window.navigator.userAgent.indexOf("MSIE") >=1 )? getElementTop($Obj("pubdate")) + 465 :  getElementTop($Obj("pubdate"));
-          if((window.navigator.userAgent.indexOf("MSIE 7.0") >=1 )) {
-            showX = getElementLeft($Obj("pubdate"))+105;
-            showY = getElementTop($Obj("pubdate"))+1200;
-          }
-          if(window.navigator.userAgent.indexOf("MSIE 6.0")>=1)
-          {
-            Calendar.setup({
-              inputField     :    "pubdate",
-              ifFormat       :    "%Y-%m-%d %H:%M:%S",
-              showsTime      :    true,
-              timeFormat     :    "24"
-            });
-          } else {
-            Calendar.setup({
-              inputField     :    "pubdate",
-              ifFormat       :    "%Y-%m-%d %H:%M:%S",
-              showsTime      :    true,
-              position       :    [showX, showY],
-              timeFormat     :    "24"
-            });
-          }
-         </script>    </td>
+           ?>              
+          </td>
           <td width="90"></td>
           <td width="379"></td>
     </tr>
@@ -359,19 +334,43 @@ function checkSubmit()
         </tr>
       </table>
       </td>
+    </tr>
+    </table>
   </tr>
-  </table>
-<table width="214" border="0" cellspacing="0" cellpadding="0" align="center">
-   <tr height="50">
-    <td width="115">
-      <button type="submit" class="btn1">保存</button>
-    </td>
-    <td width="99">
-    <button type="button" class="btn1" onClick="location.reload();" >重置</button>
-    </td>
-   </tr>
 </table>
-
+  <table width="214" border="0" cellspacing="0" cellpadding="0" align="center">
+     <tr height="50">
+      <td width="115">
+        <button type="submit" class="btn1">保存</button>
+      </td>
+      <td width="99">
+      <button type="button" class="btn1" onClick="location.reload();" >重置</button>
+      </td>
+     </tr>
+  </table>
 </form>
+
+<script type="text/javascript">
+//pubdate
+var showX = getElementLeft($Obj("pubdate"));
+var showY = getElementTop($Obj("pubdate"));
+if(window.navigator.userAgent.indexOf("MSIE 6.0")>=1)
+{
+  Calendar.setup({
+    inputField     :    "pubdate",
+    ifFormat       :    "%Y-%m-%d %H:%M:%S",
+    showsTime      :    true,
+    timeFormat     :    "24"
+  });
+} else {
+  Calendar.setup({
+    inputField     :    "pubdate",
+    ifFormat       :    "%Y-%m-%d %H:%M:%S",
+    showsTime      :    true,
+    position       :    [showX, showY],
+    timeFormat     :    "24"
+  });
+}
+</script>
 </body>
 </html>
