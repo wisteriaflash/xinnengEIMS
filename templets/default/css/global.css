@@ -1132,6 +1132,26 @@ dl.imgList dd.assistant span {
 	margin-right:5px;
 	float:left;
 }
+.d4{/*带内容简介的小列表*/
+	padding:0px 0px;
+}
+.d4 li{
+	padding:4px 8px;
+	overflow:hidden;
+}
+.d4 li a{
+	display:block;
+	line-height:23px;
+	overflow:hidden;
+	text-indent:14px;
+	background:url(../images/ico-3.gif) 4px 9px no-repeat;
+}
+.d4 li p{
+	color:#888;
+	line-height:17px;
+	height:33px;
+	overflow:hidden;
+}
 /*-------------------------------------------------- 
  list icon
  ---------------------------------------------*/
