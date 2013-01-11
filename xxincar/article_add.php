@@ -82,7 +82,8 @@ else if($dopost=='save')
 	}
 
 	//对保存的内容进行处理
-	if(empty($writer)) $writer=$cuserLogin->getUserName();
+	if(empty($writer))$writer='xinneng';
+	// if(empty($writer)) $writer=$cuserLogin->getUserName();
 	if(empty($source)) $source = '本站';
 	$pubdate = GetMkTime($pubdate);
 	$senddate = $pubdate = time();
