@@ -1,1 +1,1 @@
-<?php $admin_path = 'dede'; ?>
+<?php $admin_path = 'xxincar'; ?>
