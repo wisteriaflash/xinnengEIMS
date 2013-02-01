@@ -19,24 +19,39 @@ else if($dopost=='delall')
 }
 else if($dopost=='saveedit')
 {
-	$sendtime = GetMkTime($sendtime);
-	$exptime = GetMkTime($exptime);
-	$query = "Update `#@__jobs`
-	 set 
-	 `jobname`='$jobname',
-	 `neednum`='$neednum',
-	 `needpart`='$needpart',
-	 `linkman`='$linkman',
-	 `linktel`='$linktel',
-	 `email`='$email',
-	 `address`='$address',
-	 `sendtime`='$sendtime',
-	 `exptime`='$exptime',
-	 `jobneed`='$jobneed',
-	 `msg`='$msg'
-	 where id='$id' ";
+	if($type=='linkman'){
+		$query = "Update `#@__jobs`
+		 set 
+		 `linkman`='$content'
+		 where id in($aids) ";
+		$tip = "成功批量更改联系人！"; 
+	}else if($type=='linktel'){
+		$query = "Update `#@__jobs`
+		 set 
+		 `linktel`='$content'
+		 where id in($aids) ";
+		$tip = "成功批量更改联系电话！"; 
+	}else{
+		$sendtime = GetMkTime($sendtime);
+		$exptime = GetMkTime($exptime);
+		$query = "Update `#@__jobs`
+		 set 
+		 `jobname`='$jobname',
+		 `neednum`='$neednum',
+		 `needpart`='$needpart',
+		 `linkman`='$linkman',
+		 `linktel`='$linktel',
+		 `email`='$email',
+		 `address`='$address',
+		 `sendtime`='$sendtime',
+		 `exptime`='$exptime',
+		 `jobneed`='$jobneed',
+		 `msg`='$msg'
+		 where id='$id' ";
+		$tip = "成功更改一条招聘信息！"; 
+	}
 	$dsql->ExecuteNoneQuery($query);
-	ShowMsg("成功更改一条招聘信息！",$ENV_GOBACK_URL);
+	ShowMsg($tip,$ENV_GOBACK_URL);
 	exit();
 }
 $row = $dsql->GetOne("Select * From `#@__jobs` where id='$id'");

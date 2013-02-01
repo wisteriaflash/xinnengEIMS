@@ -5,6 +5,7 @@
 <link href="main.css" rel="stylesheet" type="text/css" />
 <script src="jquery.js" language="javascript" type="text/javascript"></script>
 <script src="base.js" language="javascript" type="text/javascript"></script>
+<script src="js/webcalendar.js" type="text/javascript"></script>
 <style type="text/css">
 <!--
 .STYLE1 {color: #666666}
@@ -74,14 +75,14 @@
             <input name="address" type="text" class="txt" id="address" style="width:300px" value="<?php echo $row['address']; ?>" />
           </p></td>
       </tr>
-      <tr>
+      <!-- <tr>
         <td width="100" class="td1"><strong>招聘时间</strong></td>
         <td><p>
             <input name="sendtime" type="text" id="sendtime" class="txt" style="width:150px" value="<?php echo MyDate('Y-m-d',$row['sendtime']); ?>" onClick="SelectDate(this,'yyyy-MM-dd',80,0)" />
             结束：
             <input name="exptime" type="text" id="exptime" class="txt" style="width:150px" value="<?php echo MyDate('Y-m-d',$row['exptime']); ?>" onClick="SelectDate(this,'yyyy-MM-dd',80,0)" />
           </p></td>
-      </tr>
+      </tr> -->
     </tbody>
     <tbody>
       <tr>

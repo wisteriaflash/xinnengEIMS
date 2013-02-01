@@ -365,3 +365,6 @@ body.hidemenu .right {
 .allmenu a:hover{
 	color:#F63;	
 }
+.mainform{
+	position: relative;
+}
